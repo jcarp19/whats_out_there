@@ -3,7 +3,7 @@ import './App.css';
 import DarkParkDetails from './components/DarkParkDetails';
 import Header from './components/Header';
 import Homepage from './components/Homepage';
-import LearnMore from './components/LearnMore';
+
 
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
       <Header />
       <Homepage/>
       <DarkParkDetails /> {/* Adding this component here just to see the display of the image from the api */}
-      <LearnMore />
+      
     </div>
   );
 }
