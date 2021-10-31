@@ -2,7 +2,7 @@
 // maybe logo goes here as well?
 // TO DO: make route to weather api
 import WeatherInterface from "../models/WeatherInterface";
-import telescope from "../images/telescope.svg";
+import telescope from "../images/telescope_image.png";
 import WeatherRoute from "../routes/WeatherRoute";
 
 export default function Header() {

@@ -4,5 +4,9 @@
 // list and define dark park designations (maybe put sources here too)
 
 export default function DarkParkList() {
-    return
+    return (
+        <div>
+            
+        </div>
+    )
 }
