@@ -1,8 +1,9 @@
 // https://stackoverflow.com/questions/18883601/function-to-calculate-distance-between-two-coordinates
 
-// return zip code
-// make sure it's on the list. If not return an err message
-// return lon/lat , 
+// return zip code from form on home page
+// look up zip on LingLat. If not on list return an err message
+
+// return lon/lat
 let zipLat = 84.784698;
 let zipLon = 44.312238;
 // loop through list to calculate distant from returned lon/lat and put in an array
@@ -29,5 +30,6 @@ function toRad(Value)
 {
     return Value * Math.PI / 180;
 }
-
+// send park ID and 'd' from calcDistance to a new array
+// use new array to pull lowest values for 'd'
 // return the ten lowest(closest) parks
