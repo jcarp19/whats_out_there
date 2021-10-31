@@ -70,6 +70,12 @@ main {
     color: #05C7BA;
 }
 
+.LearnMore {
+    display: flex;
+    justify-content: center;
+    color: #05C7BA;
+}
+
 /* Google Fonts I have linked the project to. */
 /* font-family: 'Alumni Sans', sans-serif;
 font-family: 'Zen Kurenaido', sans-serif; 
