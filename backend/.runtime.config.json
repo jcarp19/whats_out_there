@@ -1,0 +1,8 @@
+{
+    "mongodb" : {
+        "uri" : "mongodb+srv://admin:18ZziOXqyWF6gkEj@cluster0.tyfaf.mongodb.net/project3?retryWrites=true&w=majority"
+
+    }
+
+
+}
