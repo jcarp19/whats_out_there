@@ -10,20 +10,23 @@ export default function WeatherRoute() {
     }, [])
 
     function loadWeather() {
-        getSetWeather().then(res => setWeather(res))
+        getSetWeather().then(res => setWeather(res));
     }
+
+    
+
     return (
         <div className="weather_route_div">
 
             <div className="timezone_and_conditions_div">
                  {/* Shows timezone. Automatically set to 'America/Detroit' until changed. */}
                 <h3 className="timezone_h3">
-                <div className="timezone_text">Timezone: </div>  
+                <div className="timezone_text">Time Zone: </div> 
                 {weather?.timezone}</h3>
 
                 {/* Grabs a small description of current weather conditions (example: moderate rain) */}
                  <p className="weather_conditions_p">
-                   <div className="conditions_text"> conditions: </div>
+                   <div className="conditions_text"> Conditions: </div>
                     {weather?.current.weather[0].description}</p>
             </div>
            
