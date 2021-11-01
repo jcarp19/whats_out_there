@@ -92,6 +92,12 @@
     font-family: 'Zen Kurenaido', sans-serif; 
     font-family: 'Trispace', sans-serif;*/
 
+    .temp_icon_details_div {
+        display: flex;
+        align-items: center;
+        color: #93B7BE;
+        font-size: .8rem;
+    }
 
 
 
@@ -103,6 +109,10 @@
     .timezone_h3,
     .weather_conditions_p {
         font-size: 1.5rem;
+    }
+
+    .temp_icon_details_div {
+        font-size: 1rem;
     }
 
 }
