@@ -10,3 +10,4 @@ export default function getParkList(): Promise<DarkPark[]> {
 }
 
 
+//  filter through parks list with id of closest parks

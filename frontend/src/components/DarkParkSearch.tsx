@@ -13,22 +13,20 @@ export default function DarkParkSearch() {
     const [zipLon, setZipLon] = useState(0);
     const [darkParkList, setDarkParkList] = useState<DarkPark[]>([]);
     // useContext stuff. Object containing searchLat, searchLon etc.
-    const {searchParks,
-        loadWeatherByLocation,
-        searchInputs} = useContext(SearchContext);
+    const {loadWeatherByLocation} = useContext(SearchContext);
     
     useEffect(() => {
         getParkList().then(res => setDarkParkList(res));
     },[])
 
     // onsubmit function to set "search" object using zipLat, zipLon (should be available globally after submit)
-    function handleSubmit(lat: any, lon: any){
-        loadWeatherByLocation(lat, lon)
-    }
+    // function handleSubmit(lat: any, lon: any){
+    //     loadWeatherByLocation(lat, lon)
+    // }
     
     return (
         <>
-            <form onSubmit={(e) => {e.preventDefault(); handleSubmit(zipLat, zipLon);}}>
+            <form onSubmit={(e) => {e.preventDefault(); loadWeatherByLocation(zipLat, zipLon)}}>
                 <label htmlFor="search">
                     <input name="search" id="search" type="text" onChange={(e) => {
                         if(e.target.value.length == 5) {
@@ -36,16 +34,18 @@ export default function DarkParkSearch() {
                                 if(array[0] == e.target.value) {
                                 setZipLat(array[1]);
                                 setZipLon(array[2]);
-                                console.log(zipLat);
-                                console.log(zipLon);
-                        }
+                                // console.log(zipLat);
+                                // console.log(zipLon);
+                            }
                     })
                 }
                 }}/>
                 </label>
-                <button type="submit"
-                onClick={(e) => {e.preventDefault(); console.log(zipLat); console.log(zipLon)}}
-                >Search</button>
+                <button type="submit" onClick={(e) => {
+                    e.preventDefault(); 
+                    console.log(zipLat); 
+                    console.log(zipLon)}
+                }>Search</button>
             </form>
             <div>
                 <h2>Park List</h2>

@@ -2,11 +2,7 @@ import WeatherInterface from "../models/WeatherInterface";
 import { getSetWeather, getWeatherByLocation } from "../services/GetWeather";
 import {useEffect, useState} from "react";
 
-interface Props{
-    lat: any,
-    lon: any,
-    hasZipCode: boolean
-}
+
 
 export default function WeatherRoute() {
     const[weather, setWeather] = useState<WeatherInterface>();
@@ -23,6 +19,7 @@ export default function WeatherRoute() {
             // loadWeatherByLocation(lat, lon);
             // console.log(lat)
         // }
+        loadWeather();
     }, [])
 
     function loadWeather() {
