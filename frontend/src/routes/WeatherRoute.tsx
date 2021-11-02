@@ -1,24 +1,39 @@
 import WeatherInterface from "../models/WeatherInterface";
-import { getSetWeather } from "../services/GetWeather";
+import { getSetWeather, getWeatherByLocation } from "../services/GetWeather";
 import {useEffect, useState} from "react";
 
-export default function WeatherRoute() {
-    const[weather, setWeather] = useState<WeatherInterface>();
+interface Props{
+    lat: any,
+    lon: any,
+    hasZipCode: boolean
+}
 
+export default function WeatherRoute({lat, lon, hasZipCode}: Props) {
+    const[weather, setWeather] = useState<WeatherInterface>();
+    
     useEffect(() => {
         // conditional statement here to see if zipcode was entered. (useState set to true or false?)
         //  then call either loadWeather() of call loadWeatherByLocation()
-        loadWeather();
+        if(!hasZipCode) {
+            // loadWeatherByLocation(lat, lon);
+            console.log("it worked")
+            loadWeather();
+        } else if(hasZipCode){
+            // loadWeather();
+            loadWeatherByLocation(lat, lon);
+            console.log(lat)
+        }
     }, [])
 
     function loadWeather() {
         getSetWeather().then(res => setWeather(res));
     }
 
-    function loadWeatherByLocation() {
+    function loadWeatherByLocation(lat: any, lon: any) {
         // create service call for GetWeatherByLocation()
         // call that service here (.then(res => setWeather(res)))
         // takes lat and lon as arguments
+        getWeatherByLocation(lat, lon).then(res => setWeather(res))
     }
 
     
@@ -40,7 +55,7 @@ export default function WeatherRoute() {
 
                 {/* Grabs a small description of current weather conditions (example: moderate rain) */}
                  <p className="weather_conditions_p">
-                   <div className="conditions_text"> Conditions: </div>
+                   <p className="conditions_text"> Conditions: </p>
                     {weather?.current.weather[0].description}</p>
             </div>
            

@@ -15,3 +15,10 @@ export function getSetWeather(): Promise<WeatherInterface>{
         )
     .then(res => res.data)
 }
+
+export function getWeatherByLocation(lat:any, lon:any){
+    return axios.get<WeatherInterface>
+    (`https://api.openweathermap.org/data/2.5/onecall?&lat=${lat}&lon=${lon}&exclude=hourly,daily&units=imperial&appid=${weatherKey}`)
+    .then(res => res.data)
+
+}
