@@ -3,24 +3,18 @@ import DarkPark from "../models/DarkPark";
 import {LongLat} from "../models/LongLat";
 import getParkList from "../services/GetParkList";
 
-
 export default function DarkParkSearch() {
     // receive zip code from form
     // make sure it's on the list. If not return an err message
     // return lon/lat , 
-    const [zipLat, setZipLat] = useState()
-    const [zipLon, setZipLon] = useState();
+    const [zipLat, setZipLat] = useState(0);
+    const [zipLon, setZipLon] = useState(0);
     const [darkParkList, setDarkParkList] = useState<DarkPark[]>([]);
     
-    // loop through list to calculate distant from returned lon/lat and put in an array
-    for (let i = 0; i <= darkParkList.length; i++) {
-        
-    }
-
-
     useEffect(() => {
         getParkList().then(res => setDarkParkList(res));
     },[])
+    
     return (
         <>
             <form>
