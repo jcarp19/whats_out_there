@@ -25,14 +25,18 @@ export default function DarkParkSearch() {
                                 if(array[0] == e.target.value) {
                                 setZipLat(array[1]);
                                 setZipLon(array[2]);
-                                console.log(zipLat);
-                                console.log(zipLon);
-                        }
+                                // console.log(zipLat);
+                                // console.log(zipLon);
+                            }
                     })
                 }
                 }}/>
                 </label>
-                <button type="submit">Search</button>
+                <button type="submit" onClick={(e) => {
+                    e.preventDefault(); 
+                    console.log(zipLat); 
+                    console.log(zipLon)}
+                }>Search</button>
             </form>
             <div>
                 <h2>Park List</h2>

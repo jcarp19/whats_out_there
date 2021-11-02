@@ -3,13 +3,8 @@
 import fence from "../images/fence.png";
 import DarkParkSearch from "../components/DarkParkSearch";
 
-<<<<<<< HEAD
-export default function Homepage() {
-    
-=======
 export default function Homepage() {  
 
->>>>>>> 1cf980ddee5cbda315ac6235d25c7164ff203089
     return (
         <>
         <main>
