@@ -9,7 +9,7 @@ import Homepage from './components/Homepage';
 function App() {
   return (
     <div className="App">
-      <Header />
+     
       <Homepage/>
       <DarkParkDetails /> {/* Adding this component here just to see the display of the image from the api */}
       
