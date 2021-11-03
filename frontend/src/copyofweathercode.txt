@@ -1,0 +1,50 @@
+ const [lat, setLat] = useState<any>();
+    const [lon, setLon] = useState<any>();
+    const [hasZipCode, setHasZipCode] = useState<boolean>(false)
+    const [darkParkList, setDarkParkList] = useState<DarkPark[]>([]);
+
+  useEffect(() => {
+        getParkList().then(res => setDarkParkList(res));
+    },[])
+
+    return (
+        <>
+        <Header lat={lat} lon={lon} hasZipCode={hasZipCode}/>
+        <main>
+            <img src={fence} alt="fence with night sky in the background." className="fence_pic"/>
+            <h1 className="homepage_h1">What's Out There?</h1>
+            <form>
+                <label htmlFor="search">
+                    <input name="search" id="search" type="text" onChange={(e) => {
+                        if(e.target.value.length == 5) {
+                            LongLat.forEach(array => {
+                                if(array[0] == e.target.value) {
+                                setLat(array[1]);
+                                setLon(array[2]);
+                                console.log(lat)
+                                console.log(lon);
+                                setHasZipCode(true);
+                                getWeatherByLocation(lat, lon)
+                        }
+                    })
+                }
+                }}/>
+                </label>
+                <button type="submit">Search</button>
+            </form>
+
+        </main>
+            <div>
+                <h2>Park List</h2>
+                {darkParkList?.map((park, index) => {
+                    return (
+                        <div key={index}>
+                            <p>{park.name}</p>
+                            <p>{park.state}</p>
+                            <p>{park.description}</p>
+                        </div>
+                    )
+            })}</div>
+    </>
+    )
+}

@@ -4,39 +4,40 @@ import App from './App';
 import Homepage from './components/Homepage';
 import DarkParkDetails from './components/DarkParkDetails';
 import LearnMore from './components/LearnMore';
+import DarkParkSearch from './components/DarkParkSearch';
 
-test('Text that displays the h2 on homepage', () => {
+test('Text that displays the h2 on Dark Park Search', () => {
   const spy = jest.fn(); 
-  render(<Homepage />);
+  render(<DarkParkSearch />);
   const h2 = screen.getByRole("h2", {name: "addh2"});
   expect(h2).toBeInTheDocument();
 });
 
-test('Role that displays the button on homepage', () => {
+test('Role that displays the button on Dark Park Search', () => {
   const spy = jest.fn(); 
-  render(<Homepage />);
+  render(<DarkParkSearch />);
   const Button = screen.getByRole("Button", {name: "addButton"});
   expect(Button).toBeInTheDocument();
 });
 
-test('Role that displays the button on homepage', () => {
+test('Role that displays the button on Dark Park search', () => {
   const spy = jest.fn(); 
-  render(<Homepage />);
+  render(<DarkParkSearch />);
   const Form = screen.getByRole("Form", {name: "addForm"});
   expect(Form).toBeInTheDocument();
 });
 
 
-test('Role that displays the button on homepage', () => {
+test('Role that displays the button on Dark Park search', () => {
   const spy = jest.fn(); 
-  render(<Homepage />);
-  const Label = screen.getByRole("Label", {name: "addLabel"});
+  render(<DarkParkSearch />);
+  const Label = screen.getByRole("H2", {name: "addH2"});
   expect(Label).toBeInTheDocument();
 });
 
 test('Role that displays the label on  homepage', () => {
   const spy = jest.fn(); 
-  render(<Homepage />);
+  render(<DarkParkSearch />);
   const Label = screen.getByRole("Label", {name: "addLabel"});
   expect(Label).toBeInTheDocument();
 });
