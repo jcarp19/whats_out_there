@@ -12,13 +12,13 @@ export default interface DarkPark {
     latlong: number[];
     url: string; 
     description: string;
-    comments: []; // to include an object with rating and comment.
+    comments?: (Comments)[] | null; // to include an object with rating and comment.
 }
 
-export interface Latlong {
-    lat: number;
-    long: number;
-}
+// export interface Latlong {
+//     lat: number;
+//     long: number;
+// }
 
 export interface Comments {
     rating: number;

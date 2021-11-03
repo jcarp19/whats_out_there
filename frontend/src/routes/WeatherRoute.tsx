@@ -18,7 +18,7 @@ export default function WeatherRoute() {
     }, [])
 
     function loadWeather() {
-        getSetWeather(searchInputs[0].searchLat, searchInputs[1].searchLon).then(res => setWeather(res));
+        getSetWeather(searchInputs[0].searchLat, searchInputs[0].searchLon).then(res => setWeather(res));
     }
 
     // function loadWeatherByLocation(lat: any, lon: any) {

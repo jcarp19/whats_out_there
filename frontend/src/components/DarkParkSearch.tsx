@@ -26,6 +26,10 @@ export default function DarkParkSearch() {
     // function handleSubmit(lat: any, lon: any){
     //     loadWeatherByLocation(lat, lon)
     // }
+    for (let i = 0; i <= darkParkList.length; i++) {
+        
+    }
+
     
     return (
         <>
@@ -57,7 +61,30 @@ export default function DarkParkSearch() {
                 }>Search</button>
             </form>
             <div>
-                <h2>Park List</h2>
+                <h2>Filtered Park List</h2>
+                {darkParkList?.map((data, index) => {
+                    // console.log(darkParkList);
+                    return (
+                        <div key={index}>
+                            <p>{data.name}</p>
+                            <p>{data.state}</p>
+                            <p>{data.description}</p>
+                            <p>{data.latlong?.map((loc, index) => {
+                                return (
+                                    <div key={index}>
+                                        <p>Park: {loc}</p>
+                                    </div>
+                                )
+                            })}</p>
+                            
+                            <p>Zip Lat: {zipLat}</p>
+                            <p>Zip Lon: {zipLon}</p>
+                        </div>
+                        )
+                })}
+            </div>
+            <div>
+                <h2>Full Park List</h2>
                 {darkParkList?.map((park, index) => {
                     return (
                         <div key={index}>
