@@ -3,7 +3,8 @@ import DarkPark from "../models/DarkPark";
 import {LongLat} from "../models/LongLat";
 import getParkList from "../services/GetParkList";
 // useContext stuff
-import { SearchContext } from "../context/SearchProvider";
+import { SearchContext, SearchProps } from "../context/SearchProvider";
+
 
 export default function DarkParkSearch() {
     // receive zip code from form
@@ -13,7 +14,9 @@ export default function DarkParkSearch() {
     const [zipLon, setZipLon] = useState(0);
     const [darkParkList, setDarkParkList] = useState<DarkPark[]>([]);
     // useContext stuff. Object containing searchLat, searchLon etc.
-    const {loadWeatherByLocation} = useContext(SearchContext);
+    const {searchInputs, loadWeatherByLocation} = useContext(SearchContext);
+    // const[searchLatLon, setSearchLatLon] = useState<SearchProps>({searchLat: zipLat, searchLon: zipLon});
+    
     
     useEffect(() => {
         getParkList().then(res => setDarkParkList(res));
@@ -26,7 +29,7 @@ export default function DarkParkSearch() {
     
     return (
         <>
-            <form onSubmit={(e) => {e.preventDefault(); loadWeatherByLocation(zipLat, zipLon)}}>
+            <form onSubmit={(e) => { console.log(searchInputs); loadWeatherByLocation(searchInputs[0].searchLat, searchInputs[0].searchLon);}}>
                 <label htmlFor="search">
                     <input name="search" id="search" type="text" onChange={(e) => {
                         if(e.target.value.length == 5) {
@@ -34,6 +37,7 @@ export default function DarkParkSearch() {
                                 if(array[0] == e.target.value) {
                                 setZipLat(array[1]);
                                 setZipLon(array[2]);
+                                
                                 // console.log(zipLat);
                                 // console.log(zipLon);
                             }
@@ -44,7 +48,12 @@ export default function DarkParkSearch() {
                 <button type="submit" onClick={(e) => {
                     e.preventDefault(); 
                     console.log(zipLat); 
-                    console.log(zipLon)}
+                    console.log(zipLon);
+                    let searchLatLon = {searchLat: zipLat, searchLon: zipLon};
+                    searchInputs.unshift(searchLatLon);
+                    console.log(searchLatLon);
+                    
+                }
                 }>Search</button>
             </form>
             <div>
@@ -55,10 +64,11 @@ export default function DarkParkSearch() {
                             <p>{park.name}</p>
                             <p>{park.state}</p>
                             <p>{park.description}</p>
+                            <p>{park.latlong[0]}</p>
                         </div>
                     )
             })}</div>
         </>
     )
-
+    
 }

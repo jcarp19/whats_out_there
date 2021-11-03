@@ -1,37 +1,32 @@
 import WeatherInterface from "../models/WeatherInterface";
 import { getSetWeather, getWeatherByLocation } from "../services/GetWeather";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useContext} from "react";
+import { SearchContext } from "../context/SearchProvider";
 
 
 
 export default function WeatherRoute() {
     const[weather, setWeather] = useState<WeatherInterface>();
+    const{loadWeatherByLocation, searchInputs} = useContext(SearchContext)
     
     useEffect(() => {
-        // conditional statement here to see if zipcode was entered. (useState set to true or false?)
-        //  then call either loadWeather() of call loadWeatherByLocation()
-        // if(!hasZipCode) {
-            // loadWeatherByLocation(lat, lon);
-            console.log("it worked")
-            loadWeather();
-        // } else if(hasZipCode){
-            // loadWeather();
-            // loadWeatherByLocation(lat, lon);
-            // console.log(lat)
-        // }
-        loadWeather();
+        getSetWeather(searchInputs[0].searchLat, searchInputs[0].searchLon).then(res => setWeather(res));
+        console.log(searchInputs[0])
+        //  loadWeather();
+        //  loadWeatherByLocation(searchInputs[0].searchLat, searchInputs[0].searchLon);
+       
     }, [])
 
     function loadWeather() {
-        getSetWeather().then(res => setWeather(res));
+        getSetWeather(searchInputs[0].searchLat, searchInputs[1].searchLon).then(res => setWeather(res));
     }
 
-    function loadWeatherByLocation(lat: any, lon: any) {
-        // create service call for GetWeatherByLocation()
-        // call that service here (.then(res => setWeather(res)))
-        // takes lat and lon as arguments
-        getWeatherByLocation(lat, lon).then(res => setWeather(res))
-    }
+    // function loadWeatherByLocation(lat: any, lon: any) {
+    //     // create service call for GetWeatherByLocation()
+    //     // call that service here (.then(res => setWeather(res)))
+    //     // takes lat and lon as arguments
+    //     getWeatherByLocation(lat, lon).then(res => setWeather(res))
+    // }
 
     
 
