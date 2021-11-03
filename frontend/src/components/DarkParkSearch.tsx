@@ -10,7 +10,7 @@ export default function DarkParkSearch() {
     // receive zip code from form
     // make sure it's on the list. If not return an err message
     // return lon/lat , 
-    const [zipLat, setZipLat] = useState("00601");
+    const [zipLat, setZipLat] = useState(0);
     const [zipLon, setZipLon] = useState(0);
     const [darkParkList, setDarkParkList] = useState<DarkPark[]>([]);
     // useContext stuff. Object containing searchLat, searchLon etc.
@@ -62,24 +62,56 @@ export default function DarkParkSearch() {
             </form>
             <div>
                 <h2>Filtered Park List</h2>
-                {darkParkList?.map((data, index) => {
+                {darkParkList.map((data, index) => {
                     // console.log(darkParkList);
+                    let parkLat:number = data.latlong[0];
+                    let parkLon:number = data.latlong[1];
+                    
+                    function calcDistance(zLat:number, zLon:number, pLat:number, pLon:number) {
+                        var R = 6371; // km
+                        var dLat = toRad(pLat-zLat);
+                        var dLon = toRad(pLon-zLon);
+                        var lat1 = toRad(zLat);
+                        var lat2 = toRad(pLat);
+                    
+                        var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                            Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+                        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+                        var d = R * c;
+                        // return Math.round(d * .621371); // convert the km to miles
+                        var solution = Math.round(d * .621371); // convert the km to miles
+                        return solution;
+                    }
+                    
+                    // Converts numeric degrees to radians
+                    function toRad(Value:number) 
+                    {
+                        return Value * Math.PI / 180;
+                    }
+                    let filteredParks = [];
+                    filteredParks.push({name: data.name, state: data.state, desc: data.description, miles: calcDistance(zipLat, zipLon, parkLat, parkLon)})
+                    console.log(filteredParks);
+
+                    filteredParks.sort((a, b) => a.miles - b.miles);
+
                     return (
-                        <div key={index}>
-                            <p>{data.name}</p>
-                            <p>{data.state}</p>
-                            <p>{data.description}</p>
-                            <p>{data.latlong?.map((loc, index) => {
-                                return (
-                                    <div key={index}>
-                                        <p>Park: {loc}</p>
-                                    </div>
-                                )
-                            })}</p>
-                            
-                            <p>Zip Lat: {zipLat}</p>
-                            <p>Zip Lon: {zipLon}</p>
-                        </div>
+                    filteredParks.map((park2, index) => {
+                        return (
+                            <div key={index}>
+                                <p>{park2.name}</p>
+                                <p>{park2.state}</p>
+                                <p>{park2.desc}</p>
+                                <p>Miles from your area: {park2.miles}</p>
+                            </div>
+                        )
+                    })
+                       
+                        // <div key={index}>
+                        //     <p>{data.name}</p>
+                        //     <p>{data.state}</p>
+                        //     <p>{data.description}</p>
+                        //     <p>{calcDistance(zipLat, zipLon, parkLat, parkLon)} Miles from your area.</p>
+                        // </div>
                         )
                 })}
             </div>

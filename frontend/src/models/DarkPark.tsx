@@ -9,7 +9,7 @@ export default interface DarkPark {
     camping: string; // is there camping allowed.
     fee: string; //entrance fee or camping fee.
     address: string;
-    latlong: number[];
+    latlong: any[];
     url: string; 
     description: string;
     comments?: (Comments)[] | null; // to include an object with rating and comment.
