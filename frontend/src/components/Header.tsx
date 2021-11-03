@@ -4,11 +4,6 @@
 import telescope from "../images/telescope_image.png";
 import WeatherRoute from "../routes/WeatherRoute";
 
-interface Props{
-    lat: any,
-    lon: any,
-    hasZipCode: boolean
-}
 
 export default function Header() {
     return (

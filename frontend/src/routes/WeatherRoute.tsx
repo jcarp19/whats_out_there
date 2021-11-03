@@ -10,6 +10,15 @@ export default function WeatherRoute() {
     useEffect(() => {
         // conditional statement here to see if zipcode was entered. (useState set to true or false?)
         //  then call either loadWeather() of call loadWeatherByLocation()
+        // if(!hasZipCode) {
+            // loadWeatherByLocation(lat, lon);
+            console.log("it worked")
+            loadWeather();
+        // } else if(hasZipCode){
+            // loadWeather();
+            // loadWeatherByLocation(lat, lon);
+            // console.log(lat)
+        // }
         loadWeather();
     }, [])
 
