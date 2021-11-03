@@ -22,8 +22,8 @@ export default function Homepage() {
         <main>
             <img src={fence} alt="fence with night sky in the background." className="fence_pic"/>
             <h1 className="homepage_h1">What's Out There?</h1>
-            <form>
-                <label htmlFor="search">
+            <form aria-label = "addForm" role = "Form">
+                <label aria-label = "addLabel" role = "Label" htmlFor="search">
                     <input name="search" id="search" type="text" onChange={(e) => {
                         if(e.target.value.length == 5) {
                             LongLat.forEach(array => {
@@ -37,12 +37,12 @@ export default function Homepage() {
                 }
                 }}/>
                 </label>
-                <button type="submit">Search</button>
+                <button aria-label = "addButton" role = "Button" type="submit">Search</button>
             </form>
 
         </main>
             <div>
-                <h2>Park List</h2>
+                <h2 aria-label = "addh2" role = "h2">Park List</h2>
                 {darkParkList?.map((park, index) => {
                     return (
                         <div key={index}>
