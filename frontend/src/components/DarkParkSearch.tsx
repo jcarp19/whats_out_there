@@ -1,50 +1,119 @@
 import React, { useEffect, useState, useContext } from "react";
-import DarkPark from "../models/DarkPark";
+import DarkPark, {filteredParks} from "../models/DarkPark";
 import {LongLat} from "../models/LongLat";
 import getParkList from "../services/GetParkList";
+import WeatherInterface from "../models/WeatherInterface";
+import { getSetWeather } from "../services/GetWeather";
+
+
 // useContext stuff
 import { SearchContext, SearchProps } from "../context/SearchProvider";
+import Header from "./Header";
 
 
 export default function DarkParkSearch() {
     // receive zip code from form
     // make sure it's on the list. If not return an err message
     // return lon/lat , 
-    const [zipLat, setZipLat] = useState(0);
-    const [zipLon, setZipLon] = useState(0);
+    const [zipLat, setZipLat] = useState(42.33);
+    const [zipLon, setZipLon] = useState(-83.04);
     const [darkParkList, setDarkParkList] = useState<DarkPark[]>([]);
     // useContext stuff. Object containing searchLat, searchLon etc.
     const {searchInputs, loadWeatherByLocation} = useContext(SearchContext);
+    const [filteredParks, setFilteredParks] = useState<filteredParks[]>([]);
+    const[weather, setWeather] = useState<WeatherInterface>();
+
+
     // const[searchLatLon, setSearchLatLon] = useState<SearchProps>({searchLat: zipLat, searchLon: zipLon});
     
     
     useEffect(() => {
-        getParkList().then(res => setDarkParkList(res));
-    },[])
+        getParkList().then(function(res) {
+            {res.map((data) => {
+                let pLat = data.latlong[0];
+                let pLon = data.latlong[1];
+                let zLat = zipLat;
+                let zLon = zipLon;
+                
+                function calcDistance(zLat:number, zLon:number, pLat:number, pLon:number) {
+                    var R = 6371; // km
+                    var dLat = toRad(pLat-zLat);
+                    var dLon = toRad(pLon-zLon);
+                    var lat1 = toRad(zLat);
+                    var lat2 = toRad(pLat);
+                
+                    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+                    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+                    var d = R * c;
+                    // return Math.round(d * .621371); // convert the km to miles
+                    var solution = Math.round(d * .621371); // convert the km to miles
+                    // return solution;
+    
+                    return data.miles = solution;
+                    
+                }
+                // Converts numeric degrees to radians
+                function toRad(Value:number) 
+                {
+                    return Value * Math.PI / 180;
+                }
+               calcDistance(zLat, zLon, pLat, pLon);
+            })}
+            setDarkParkList(res);
+        });
 
-    // onsubmit function to set "search" object using zipLat, zipLon (should be available globally after submit)
-    // function handleSubmit(lat: any, lon: any){
-    //     loadWeatherByLocation(lat, lon)
-    // }
-    for (let i = 0; i <= darkParkList.length; i++) {
+        console.log(searchInputs[0]);
+        getSetWeather(zipLat, zipLon).then(res => setWeather(res));
+  
+     
+    },[zipLat])
+    
+    function formatWeather() {
+        let timeZone = weather?.timezone;
+         return   timeZone?.replace("America/", "")
         
     }
 
-    
     return (
         <>
-            <form aria-label= "addForm" role = "Form" onSubmit={(e) => { console.log(searchInputs); loadWeatherByLocation(searchInputs[0].searchLat, searchInputs[0].searchLon);}}>
-                <label aria-label = "addLabel" role= "Label" htmlFor="search">
+            <div className="weather_route_div">
+                <div className="timezone_and_conditions_div">
+                    {/* Shows timezone. Automatically set to 'America/Detroit' until changed. */}
+                    <h3 className="timezone_h3">
+                    <div className="timezone_text">Time Zone: </div> 
+                    {formatWeather()}</h3>
+
+                    {/* Grabs a small description of current weather conditions (example: moderate rain) */}
+                    <p className="weather_conditions_p">
+                    <p className="conditions_text"> Conditions: </p>
+                        {weather?.current.weather[0].description}</p>
+                </div>
+            
+                <div className="temp_icon_details_div">
+                    {/* temperature */}
+                    <p className="temp_p">{weather?.current.temp}°</p>
+                    {/* Icon representing weather */}
+                    <img className="weather_icon_img"src={"http://openweathermap.org/img/wn/" + weather?.current.weather[0].icon + "@2x.png"} alt='icon representing weather conditions'/>
+                    {/* link to see 7-day forescast and more details */}
+                    <p className="weather_info_p">&#9432;</p>
+                </div> 
+            </div>
+
+            <form aria-label = "addForm" role = "Form" onSubmit={(e) => {console.log(searchInputs);}}>
+                <label aria-label = "addLabel" role = "Label" htmlFor="search">
                     <input name="search" id="search" type="text" onChange={(e) => {
                         if(e.target.value.length == 5) {
                             LongLat.forEach(array => {
                                 if(array[0] == e.target.value) {
                                 setZipLat(array[1]);
                                 setZipLon(array[2]);
-                                
-                                // console.log(zipLat);
-                                // console.log(zipLon);
                             }
+                            
+                            // let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: true};
+                            searchInputs.unshift({searchLat: zipLat, searchLon: zipLon, hasSearched: true});
+                            console.log()
+                            
                     })
                 }
                 }}/>
@@ -53,80 +122,36 @@ export default function DarkParkSearch() {
                     e.preventDefault(); 
                     console.log(zipLat); 
                     console.log(zipLon);
-                    let searchLatLon = {searchLat: zipLat, searchLon: zipLon};
-                    searchInputs.unshift(searchLatLon);
-                    console.log(searchLatLon);
+                    // if(searchInputs[0].hasSearched == false) {
+                    //     let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: true};
+                    //     searchInputs.unshift(searchLatLon);
+                    //     console.log(searchLatLon);
+                    // } else {
+                    //     let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: false};
+                    //     searchInputs.unshift(searchLatLon);
+                    //     console.log(searchLatLon);
+                    // }
                     
+                    (document.querySelector(".hidden") as HTMLButtonElement).style.display = "block";
+                   
                 }
                 }>Search</button>
             </form>
-            <div>
-                <h2 aria-label = "addh2" role = "h2">Filtered Park List</h2>
-                {darkParkList.map((data, index) => {
-                    // console.log(darkParkList);
-                    let parkLat:number = data.latlong[0];
-                    let parkLon:number = data.latlong[1];
-                    
-                    function calcDistance(zLat:number, zLon:number, pLat:number, pLon:number) {
-                        var R = 6371; // km
-                        var dLat = toRad(pLat-zLat);
-                        var dLon = toRad(pLon-zLon);
-                        var lat1 = toRad(zLat);
-                        var lat2 = toRad(pLat);
-                    
-                        var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                            Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
-                        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-                        var d = R * c;
-                        // return Math.round(d * .621371); // convert the km to miles
-                        var solution = Math.round(d * .621371); // convert the km to miles
-                        return solution;
-                    }
-                    
-                    // Converts numeric degrees to radians
-                    function toRad(Value:number) 
-                    {
-                        return Value * Math.PI / 180;
-                    }
-                    let filteredParks = [];
-                    filteredParks.push({name: data.name, state: data.state, desc: data.description, miles: calcDistance(zipLat, zipLon, parkLat, parkLon)})
-                    console.log(filteredParks);
+            <div  className="park-list hidden">
+                <h2 aria-label="addH2" role = "H2" className="park-list-headline">Dark Parks Near You</h2>
+                
 
-                    filteredParks.sort((a, b) => a.miles - b.miles);
-
+                {darkParkList.sort((a, b) => a.miles - b.miles ).map((data, index) => {
                     return (
-                    filteredParks.map((park2, index) => {
-                        return (
-                            <div key={index}>
-                                <p>{park2.name}</p>
-                                <p>{park2.state}</p>
-                                <p>{park2.desc}</p>
-                                <p>Miles from your area: {park2.miles}</p>
-                            </div>
-                        )
-                    })
-                       
-                        // <div key={index}>
-                        //     <p>{data.name}</p>
-                        //     <p>{data.state}</p>
-                        //     <p>{data.description}</p>
-                        //     <p>{calcDistance(zipLat, zipLon, parkLat, parkLon)} Miles from your area.</p>
-                        // </div>
-                        )
-                })}
-            </div>
-            <div>
-                <h2 aria-label = "addH2" role = "H2">Full Park List</h2>
-                {darkParkList?.map((park, index) => {
-                    return (
-                        <div key={index}>
-                            <p>{park.name}</p>
-                            <p>{park.state}</p>
-                            <p>{park.description}</p>
-                            <p>{park.latlong[0]}</p>
+                        <div key={index} className="info-card">
+                            <p className="park-list-name"><a href={data.url} target="_blank">{data.name}</a></p>
+                            <p>{data.state}</p>
+                            <p>{data.description}</p>
+                            <p>{data.miles} miles from your location.</p>
                         </div>
                     )
-            })}</div>
+                }).slice(0, 10)}
+            </div>
         </>
     )
     
