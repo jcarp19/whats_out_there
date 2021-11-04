@@ -1,25 +1,32 @@
 import WeatherInterface from "../models/WeatherInterface";
-import { getSetWeather } from "../services/GetWeather";
-import {useEffect, useState} from "react";
+import { getSetWeather, getWeatherByLocation } from "../services/GetWeather";
+import {useEffect, useState, useContext} from "react";
+import { SearchContext } from "../context/SearchProvider";
+
+
 
 export default function WeatherRoute() {
     const[weather, setWeather] = useState<WeatherInterface>();
-
+    const{loadWeatherByLocation, searchInputs} = useContext(SearchContext)
+    
     useEffect(() => {
-        // conditional statement here to see if zipcode was entered. (useState set to true or false?)
-        //  then call either loadWeather() of call loadWeatherByLocation()
-        loadWeather();
+        getSetWeather(searchInputs[0].searchLat, searchInputs[0].searchLon).then(res => setWeather(res));
+        console.log(searchInputs[0])
+        //  loadWeather();
+        //  loadWeatherByLocation(searchInputs[0].searchLat, searchInputs[0].searchLon);
+       
     }, [])
 
     function loadWeather() {
-        getSetWeather().then(res => setWeather(res));
+        getSetWeather(searchInputs[0].searchLat, searchInputs[0].searchLon).then(res => setWeather(res));
     }
 
-    function loadWeatherByLocation() {
-        // create service call for GetWeatherByLocation()
-        // call that service here (.then(res => setWeather(res)))
-        // takes lat and lon as arguments
-    }
+    // function loadWeatherByLocation(lat: any, lon: any) {
+    //     // create service call for GetWeatherByLocation()
+    //     // call that service here (.then(res => setWeather(res)))
+    //     // takes lat and lon as arguments
+    //     getWeatherByLocation(lat, lon).then(res => setWeather(res))
+    // }
 
     
 
@@ -40,7 +47,7 @@ export default function WeatherRoute() {
 
                 {/* Grabs a small description of current weather conditions (example: moderate rain) */}
                  <p className="weather_conditions_p">
-                   <div className="conditions_text"> Conditions: </div>
+                   <p className="conditions_text"> Conditions: </p>
                     {weather?.current.weather[0].description}</p>
             </div>
            

@@ -1,15 +1,15 @@
 export default interface NewsInterface {
     status: string;
     totalResults: number;
-    articles?: (ArticlesEntity)[] | null;
+    articles: (ArticlesEntity)[];
 }
 export interface ArticlesEntity {
     source: Source;
-    author?: string | null;
+    author: string;
     title: string;
     description: string;
     url: string;
-    urlToImage?: string | null;
+    urlToImage: string;
     publishedAt: string;
     content: string;
 }
