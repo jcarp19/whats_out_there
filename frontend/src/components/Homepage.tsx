@@ -2,17 +2,17 @@
 // user could enter zipcode here and we can use the input for the weather conditions and set the dark park list.
 import fence from "../images/fence.png";
 import DarkParkSearch from "../components/DarkParkSearch";
-import NewsRoute from "../routes/NewsRoute";
+import Header from "./Header";
 
 export default function Homepage() {
 
     return (
         <>
             <main>
+
                 <img src={fence} alt="fence with night sky in the background." className="fence_pic" />
                 <h1 className="homepage_h1">What's Out There?</h1>
                 <DarkParkSearch />
-                <NewsRoute />
             </main>
 
         </>
