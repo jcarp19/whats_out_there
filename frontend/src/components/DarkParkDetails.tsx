@@ -18,16 +18,16 @@ export default function DarkParkDetails() {
     }
 
     return (
-        <div className="park-detail-container" style={{backgroundImage: `url(${picURL?.url})`}}>
-            <h1>Park Detail</h1>
+        <div aria-label = "addDiv" role = "Div" className="park-detail-container" style={{backgroundImage: `url(${picURL?.url})`}}>
+            <h1 aria-label = "addH1" role = "H1">Park Detail</h1>
 
-            <p>Welcome to Whats Out there? Have ever wondered of whats out there in the cosmos?
+            <p aria-label = "addP" role = "Paragraph">Welcome to Whats Out there? Have ever wondered of whats out there in the cosmos?
                 Do you want to find a place where you can relax and enjoy the night sky to see 
                 an immense amount of stars and enjoy the scenery? Well this is the website for you!.
                 Click "Learn more" to get more information about the various parks where you can find these
                 majestic places. Your adventure is only one click away!
             </p>
-            <a  href="Learn More">Learn More</a>
+            <a href="Learn More">Learn More</a>
 
         </div>
     )
