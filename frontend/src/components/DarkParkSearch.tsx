@@ -92,7 +92,8 @@ export default function DarkParkSearch() {
                     filteredParks.push({name: data.name, state: data.state, desc: data.description, miles: calcDistance(zipLat, zipLon, parkLat, parkLon)})
                     console.log(filteredParks);
 
-                    filteredParks.sort((a, b) => a.miles - b.miles);
+                    console.log(filteredParks.sort((a, b) => a.miles - b.miles));
+                    console.log(darkParkList)
 
                     return (
                     filteredParks.map((park2, index) => {
