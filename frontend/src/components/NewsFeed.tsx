@@ -2,22 +2,20 @@
 // uses the newsapi
 // TO DO: make route to newsapi
 
-import NewsInterface from "../models/NewsInterface";
-import { getNews } from "../services/GetNews";
 import { ArticlesEntity } from "../models/NewsInterface";
 
-export default function NewsFeed({ title, description, url }: ArticlesEntity) {
-    return
-    // (
-    //     <div>
-    //         <h1>NewsFeed Placeholder</h1>
-    //         <p>Title: {title}</p>
-    //         <p>Description: {description}</p>
-    //         <p>url: {url}</p>
-    //     </div>
-
-    // )
+// used type "any" to avoid errors, but switch back to "ArticlesEntity" when retrieving all the data.
+export default function NewsFeed({ title, author }: any) {
+    return (
+        <div>
+            <p>{title}</p>
+            <p>{author}</p>
+        </div>
+    )
 }
+
+
+
 
 // // newsapi key
 // //  01506b975fb14e549a407f6016bb935b

@@ -71,7 +71,10 @@ export default function DarkParkSearch() {
     
     function formatWeather() {
         let timeZone = weather?.timezone;
-         return   timeZone?.replace("America/", "")
+        
+            timeZone = timeZone?.replace("America/", "")
+            timeZone = timeZone?.replace("_", " ")
+         return timeZone;
         
     }
 
@@ -100,8 +103,8 @@ export default function DarkParkSearch() {
                 </div> 
             </div>
 
-            <form onSubmit={(e) => {console.log(searchInputs);}}>
-                <label htmlFor="search">
+            <form aria-label = "addForm" role = "Form" onSubmit={(e) => {console.log(searchInputs);}}>
+                <label aria-label = "addLabel" role = "Label" htmlFor="search">
                     <input name="search" id="search" type="text" onChange={(e) => {
                         if(e.target.value.length == 5) {
                             LongLat.forEach(array => {
@@ -118,7 +121,7 @@ export default function DarkParkSearch() {
                 }
                 }}/>
                 </label>
-                <button type="submit" onClick={(e) => {
+                <button aria-label = "addButton" role = "Button" type="submit" onClick={(e) => {
                     e.preventDefault(); 
                     console.log(zipLat); 
                     console.log(zipLon);
@@ -138,7 +141,7 @@ export default function DarkParkSearch() {
                 }>Search</button>
             </form>
             <div  className="park-list hidden">
-                <h2 className="park-list-headline">Dark Parks Near You</h2>
+                <h2 aria-label="addH2" role = "H2" className="park-list-headline">Dark Parks Near You</h2>
                 
 
                 {darkParkList.sort((a, b) => a.miles - b.miles ).map((data, index) => {
