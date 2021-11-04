@@ -71,7 +71,10 @@ export default function DarkParkSearch() {
     
     function formatWeather() {
         let timeZone = weather?.timezone;
-         return   timeZone?.replace("America/", "")
+        
+            timeZone = timeZone?.replace("America/", "")
+            timeZone = timeZone?.replace("_", " ")
+         return timeZone;
         
     }
 
