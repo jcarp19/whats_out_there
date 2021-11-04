@@ -101,6 +101,15 @@
         color: #E0CA3C
     }
 
+    .info-card {
+        box-sizing: border-box;
+        border: 1px solid #dde0e0;
+        padding: 1rem;
+        margin: 1rem;
+        border-radius: 7px;
+        background-color:rgba(147, 183, 190, .25)
+    }
+    
 /* ~~~~~~~~~~~~~ PARK SERACH LIST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .hidden {
     display: none;
@@ -112,14 +121,6 @@
 .park-list-headline {
     color: rgba(147, 183, 190, 1);
     margin-left: 1rem;
-}
-.park-list-item {
-    box-sizing: border-box;
-    border: 1px solid #dde0e0;
-    padding: 1rem;
-    margin: 1rem;
-    border-radius: 7px;
-    background-color:rgba(147, 183, 190, .25)
 }
 .park-list-name {
     font-weight: 700;

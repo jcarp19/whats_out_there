@@ -9,47 +9,24 @@ export default function WeatherRoute() {
     const[weather, setWeather] = useState<WeatherInterface>();
     const{loadWeatherByLocation, searchInputs} = useContext(SearchContext);
     const [resetSearch, setResetSearch] = useState();
-
-    // if (searchInputs[0].hasSearched == true) {
-    //     setResetSearch(true);
-    // } else {
-    //     setResetSearch(false);
-    // }
-    // setResetSearch(searchInputs[0].hasSearched);
     
     useEffect(() => {
-        // setResetSearch(searchInputs[0].hasSearched);
-        console.log(searchInputs[0]);
-        // setResetSearch(searchInputs[0].hasSearched);
-    //    loadWeatherByLocation(searchInputs[0].searchLat, searchInputs[0].searchLon)
-       getSetWeather(searchInputs[0].searchLat, searchInputs[0].searchLon).then(res => setWeather(res));
-    //    .then(res => {
-    //         setResetSearch(searchInputs[0].hasSearched);
-    //         setWeather(res)});
-        
 
-       
+    // from here
+        console.log(searchInputs[0]);
+       getSetWeather(searchInputs[0].searchLat, searchInputs[0].searchLon).then(res => setWeather(res));
     }, [])
 
     function loadWeather() {
         getSetWeather(searchInputs[0].searchLat, searchInputs[0].searchLon).then(res => setWeather(res));
     }
 
-    // function loadWeatherByLocation(lat: any, lon: any) {
-    //     // create service call for GetWeatherByLocation()
-    //     // call that service here (.then(res => setWeather(res)))
-    //     // takes lat and lon as arguments
-    //     getWeatherByLocation(lat, lon).then(res => setWeather(res))
-    // }
-
-    
-
     function formatWeather() {
         let timeZone = weather?.timezone;
          return   timeZone?.replace("America/", "")
         
     }
-
+    // to here
 
     return (
         <div className="weather_route_div">

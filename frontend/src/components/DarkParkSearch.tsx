@@ -2,6 +2,9 @@ import React, { useEffect, useState, useContext } from "react";
 import DarkPark, {filteredParks} from "../models/DarkPark";
 import {LongLat} from "../models/LongLat";
 import getParkList from "../services/GetParkList";
+import WeatherInterface from "../models/WeatherInterface";
+import { getSetWeather } from "../services/GetWeather";
+
 
 // useContext stuff
 import { SearchContext, SearchProps } from "../context/SearchProvider";
@@ -18,6 +21,8 @@ export default function DarkParkSearch() {
     // useContext stuff. Object containing searchLat, searchLon etc.
     const {searchInputs, loadWeatherByLocation} = useContext(SearchContext);
     const [filteredParks, setFilteredParks] = useState<filteredParks[]>([]);
+    const[weather, setWeather] = useState<WeatherInterface>();
+
 
     // const[searchLatLon, setSearchLatLon] = useState<SearchProps>({searchLat: zipLat, searchLon: zipLon});
     
@@ -57,10 +62,44 @@ export default function DarkParkSearch() {
             })}
             setDarkParkList(res);
         });
+
+        console.log(searchInputs[0]);
+        getSetWeather(zipLat, zipLon).then(res => setWeather(res));
+  
+     
     },[zipLat])
     
+    function formatWeather() {
+        let timeZone = weather?.timezone;
+         return   timeZone?.replace("America/", "")
+        
+    }
+
     return (
         <>
+            <div className="weather_route_div">
+                <div className="timezone_and_conditions_div">
+                    {/* Shows timezone. Automatically set to 'America/Detroit' until changed. */}
+                    <h3 className="timezone_h3">
+                    <div className="timezone_text">Time Zone: </div> 
+                    {formatWeather()}</h3>
+
+                    {/* Grabs a small description of current weather conditions (example: moderate rain) */}
+                    <p className="weather_conditions_p">
+                    <p className="conditions_text"> Conditions: </p>
+                        {weather?.current.weather[0].description}</p>
+                </div>
+            
+                <div className="temp_icon_details_div">
+                    {/* temperature */}
+                    <p className="temp_p">{weather?.current.temp}°</p>
+                    {/* Icon representing weather */}
+                    <img className="weather_icon_img"src={"http://openweathermap.org/img/wn/" + weather?.current.weather[0].icon + "@2x.png"} alt='icon representing weather conditions'/>
+                    {/* link to see 7-day forescast and more details */}
+                    <p className="weather_info_p">&#9432;</p>
+                </div> 
+            </div>
+
             <form onSubmit={(e) => {console.log(searchInputs);}}>
                 <label htmlFor="search">
                     <input name="search" id="search" type="text" onChange={(e) => {
@@ -71,6 +110,10 @@ export default function DarkParkSearch() {
                                 setZipLon(array[2]);
                             }
                             
+                            // let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: true};
+                            searchInputs.unshift({searchLat: zipLat, searchLon: zipLon, hasSearched: true});
+                            console.log()
+                            
                     })
                 }
                 }}/>
@@ -79,15 +122,15 @@ export default function DarkParkSearch() {
                     e.preventDefault(); 
                     console.log(zipLat); 
                     console.log(zipLon);
-                    if(searchInputs[0].hasSearched == false) {
-                        let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: true};
-                        searchInputs.unshift(searchLatLon);
-                        console.log(searchLatLon);
-                    } else {
-                        let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: false};
-                        searchInputs.unshift(searchLatLon);
-                        console.log(searchLatLon);
-                    }
+                    // if(searchInputs[0].hasSearched == false) {
+                    //     let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: true};
+                    //     searchInputs.unshift(searchLatLon);
+                    //     console.log(searchLatLon);
+                    // } else {
+                    //     let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: false};
+                    //     searchInputs.unshift(searchLatLon);
+                    //     console.log(searchLatLon);
+                    // }
                     
                     (document.querySelector(".hidden") as HTMLButtonElement).style.display = "block";
                    
@@ -100,7 +143,7 @@ export default function DarkParkSearch() {
 
                 {darkParkList.sort((a, b) => a.miles - b.miles ).map((data, index) => {
                     return (
-                        <div key={index} className="park-list-item">
+                        <div key={index} className="info-card">
                             <p className="park-list-name"><a href={data.url} target="_blank">{data.name}</a></p>
                             <p>{data.state}</p>
                             <p>{data.description}</p>
