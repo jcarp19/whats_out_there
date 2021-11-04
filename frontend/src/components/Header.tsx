@@ -8,7 +8,9 @@ import WeatherRoute from "../routes/WeatherRoute";
 export default function Header() {
     return (
         <header>
-           <img alt="What's Out There Logo" src={telescope} className="logo_pic"/>
+            <div className="logo_pic">
+                <img alt="What's Out There Logo" src={telescope}/>
+            </div>
 
            <WeatherRoute />
         </header>

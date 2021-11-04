@@ -12,6 +12,7 @@ export default interface DarkPark {
     latlong: any[];
     url: string; 
     description: string;
+    miles: number;
     comments?: (Comments)[] | null; // to include an object with rating and comment.
 }
 
@@ -23,4 +24,12 @@ export default interface DarkPark {
 export interface Comments {
     rating: number;
     comment: string;
+}
+
+export interface filteredParks {
+    name: string;
+    state: string;
+    description: string;
+    url: string;
+    miles: number;
 }
