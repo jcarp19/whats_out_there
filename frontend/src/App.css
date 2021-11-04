@@ -1,3 +1,4 @@
+
 /* ~~~~~~~~~~~~~~~ MOBILE VIEW ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
     .logo_pic {
@@ -5,24 +6,24 @@
         width: 10rem; */
         margin-top: .5rem;
         stroke: #93B7BE ;
+        max-width: 50%;
+    }
+    .logo_pic > img {
+        max-width: 100%;
     }
     
     header {
         background:rgb(245, 245, 245, .2);
-        height: 6.5rem;
         width: 100vw;
-        padding: 1.5rem 2rem;
+        padding: 1.5rem 1rem;
+        box-sizing: border-box;
         box-shadow: 0px 5px 10px #1d2038;
         display: flex;
         justify-content: space-between;
     }
     
-    body {
-        background: #2d3047;
-    }
-    
     .fence_pic {
-        height: 15rem;
+        height: 15%;
         width: 90vw;
         mask-image: linear-gradient(to top, rgba(0,0,0, .2), #2d3047);
         z-index: 0;
@@ -36,14 +37,10 @@
     }
     
     .weather_route_div {
-        /* width: 20rem; */
-        /* height: 4rem; */
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-       margin-right: .25rem;
-       padding-right: 4rem;
+        justify-content: flex-start;
+        align-items: flex-start;
     }
     
     
@@ -61,7 +58,6 @@
     .timezone_h3,
     .weather_conditions_p {
         font-size: 1rem;
-        text-align: center;
         margin-top: .3rem;
         color: #dde0e0;
         font-family: 'Alumni Sans', sans-serif;
@@ -101,8 +97,41 @@
         font-size: .8rem;
     }
 
+    .weather_info_p:hover {
+        color: #E0CA3C
+    }
 
+/* ~~~~~~~~~~~~~ PARK SERACH LIST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.hidden {
+    display: none;
+}
+.park-list {
+    max-width: 100%;
+    color: #dde0e0;
+}
+.park-list-headline {
+    color: rgba(147, 183, 190, 1);
+    margin-left: 1rem;
+}
+.park-list-item {
+    box-sizing: border-box;
+    border: 1px solid #dde0e0;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 7px;
+    background-color:rgba(147, 183, 190, .25)
+}
+.park-list-name {
+    font-weight: 700;
+}
+.park-list-name > a {
+    color:#dde0e0;
+    text-decoration: none;
+}
 
+.park-list-name > a:hover {
+    color: #E0CA3C
+}
 
 /* ~~~~~~~~~~~~~ TABLET VIEW ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
@@ -115,6 +144,11 @@
 
     .temp_icon_details_div {
         font-size: 1rem;
+    }
+
+    .fence_pic{
+        height: 10%;
+        width: 80vw;
     }
 
 }
@@ -132,5 +166,11 @@
     .weather_route_div {
         margin-top: .8rem;
     }
+
+    .fence_pic{
+        width: 70vw;
+        height: 5%;
+    }
+
 
 }

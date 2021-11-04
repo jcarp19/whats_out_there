@@ -6,6 +6,7 @@ import { getSetWeather, getWeatherByLocation } from "../services/GetWeather";
 export interface SearchProps {
     searchLat: any,
     searchLon: any,
+    hasSearched: any,
     // setSearchLat: () => void,
     // setSearchLon: () => void,          
 }
@@ -13,6 +14,7 @@ export interface SearchProps {
 export interface FunctionsProps {
     searchLat: any,
     searchLon: any, 
+    hasSearched: any,
     // setSearchLat:() => void,
     // setSearchLon:() => void,
     loadWeatherByLocation:(lat: any, lon: any) => void;
@@ -22,6 +24,7 @@ export interface FunctionsProps {
 const defaultValues: FunctionsProps = {
     searchLat: "42.33",
     searchLon: "-83.04", 
+    hasSearched: false,
     // setSearchLat:() => {},
     // setSearchLon:() => {},
     loadWeatherByLocation: () => {},
@@ -35,8 +38,9 @@ export const SearchContext = React.createContext<FunctionsProps>(defaultValues);
 export const SearchProvider = ({children}: {children: ReactNode}) => {
     const [searchLat, setSearchLat] = useState<SearchProps>();
     const[searchLon, setSearchLon] = useState<SearchProps>();
+    const[hasSearched, setHasSearched] = useState<SearchProps>();
     const[weather, setWeather] = useState<WeatherInterface>()
-    const[searchInputs, setSearchInputs] = useState<SearchProps[]>([{searchLat: "42.33", searchLon:"-83.04"}])
+    const[searchInputs, setSearchInputs] = useState<SearchProps[]>([{searchLat: "42.33", searchLon:"-83.04", hasSearched: false}])
 
    
     function loadWeatherByLocation({searchLat, searchLon}: SearchProps) {
@@ -55,6 +59,7 @@ export const SearchProvider = ({children}: {children: ReactNode}) => {
             searchInputs,
             searchLat,
             searchLon,
+            hasSearched,
             
         }}>
        {children}
