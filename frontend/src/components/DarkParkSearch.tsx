@@ -5,6 +5,7 @@ import getParkList from "../services/GetParkList";
 
 // useContext stuff
 import { SearchContext, SearchProps } from "../context/SearchProvider";
+import Header from "./Header";
 
 
 export default function DarkParkSearch() {
@@ -60,7 +61,7 @@ export default function DarkParkSearch() {
     
     return (
         <>
-            <form onSubmit={(e) => { console.log(searchInputs); loadWeatherByLocation(searchInputs[0].searchLat, searchInputs[0].searchLon);}}>
+            <form onSubmit={(e) => {console.log(searchInputs);}}>
                 <label htmlFor="search">
                     <input name="search" id="search" type="text" onChange={(e) => {
                         if(e.target.value.length == 5) {
@@ -78,11 +79,18 @@ export default function DarkParkSearch() {
                     e.preventDefault(); 
                     console.log(zipLat); 
                     console.log(zipLon);
-                    let searchLatLon = {searchLat: zipLat, searchLon: zipLon};
-                    searchInputs.unshift(searchLatLon);
-                    console.log(searchLatLon);
-                    (document.querySelector(".hidden") as HTMLButtonElement).style.display = "block";
+                    if(searchInputs[0].hasSearched == false) {
+                        let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: true};
+                        searchInputs.unshift(searchLatLon);
+                        console.log(searchLatLon);
+                    } else {
+                        let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: false};
+                        searchInputs.unshift(searchLatLon);
+                        console.log(searchLatLon);
+                    }
                     
+                    (document.querySelector(".hidden") as HTMLButtonElement).style.display = "block";
+                   
                 }
                 }>Search</button>
             </form>

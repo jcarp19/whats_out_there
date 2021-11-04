@@ -7,13 +7,27 @@ import { SearchContext } from "../context/SearchProvider";
 
 export default function WeatherRoute() {
     const[weather, setWeather] = useState<WeatherInterface>();
-    const{loadWeatherByLocation, searchInputs} = useContext(SearchContext)
+    const{loadWeatherByLocation, searchInputs} = useContext(SearchContext);
+    const [resetSearch, setResetSearch] = useState();
+
+    // if (searchInputs[0].hasSearched == true) {
+    //     setResetSearch(true);
+    // } else {
+    //     setResetSearch(false);
+    // }
+    // setResetSearch(searchInputs[0].hasSearched);
     
     useEffect(() => {
-        getSetWeather(searchInputs[0].searchLat, searchInputs[0].searchLon).then(res => setWeather(res));
-        console.log(searchInputs[0])
-        //  loadWeather();
-        //  loadWeatherByLocation(searchInputs[0].searchLat, searchInputs[0].searchLon);
+        // setResetSearch(searchInputs[0].hasSearched);
+        console.log(searchInputs[0]);
+        // setResetSearch(searchInputs[0].hasSearched);
+    //    loadWeatherByLocation(searchInputs[0].searchLat, searchInputs[0].searchLon)
+       getSetWeather(searchInputs[0].searchLat, searchInputs[0].searchLon).then(res => setWeather(res));
+    //    .then(res => {
+    //         setResetSearch(searchInputs[0].hasSearched);
+    //         setWeather(res)});
+        
+
        
     }, [])
 
@@ -30,11 +44,12 @@ export default function WeatherRoute() {
 
     
 
-    function removeAmerica() {
-        let timezone:any = weather?.timezone;
-         return   timezone?.replace("America/", "")
+    function formatWeather() {
+        let timeZone = weather?.timezone;
+         return   timeZone?.replace("America/", "")
         
     }
+
 
     return (
         <div className="weather_route_div">
@@ -43,7 +58,7 @@ export default function WeatherRoute() {
                  {/* Shows timezone. Automatically set to 'America/Detroit' until changed. */}
                 <h3 className="timezone_h3">
                 <div className="timezone_text">Time Zone: </div> 
-                {removeAmerica()}</h3>
+                {formatWeather()}</h3>
 
                 {/* Grabs a small description of current weather conditions (example: moderate rain) */}
                  <p className="weather_conditions_p">
@@ -59,7 +74,7 @@ export default function WeatherRoute() {
                 {/* link to see 7-day forescast and more details */}
                 <p className="weather_info_p">&#9432;</p>
             </div>
-           
+     
 
         </div>
     )
