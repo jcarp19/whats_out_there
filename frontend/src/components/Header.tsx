@@ -4,15 +4,20 @@
 import telescope from "../images/telescope_image.png";
 import WeatherRoute from "../routes/WeatherRoute";
 // import {searchInputs, loadWeatherByLocation} from "../context/SearchProvider";
+import fence from "../images/fence.png";
 
 export default function Header() {
     return (
         <header>
-            <div className="logo_pic">
+            {/* <div className="logo_pic">
                 <img alt="What's Out There Logo" src={telescope}/>
             </div>
 
-           <WeatherRoute />
+           <WeatherRoute /> */}
+
+            <img src={fence} alt="fence with night sky in the background." className="fence_pic" />
+            <h1 className="homepage_h1">What's Out There?</h1>
+
         </header>
     )
 }
