@@ -26,7 +26,7 @@ export default function LearnMore() {
             <h2>Tips for Star Gazing</h2>
             <ul>
                 <li>
-                    Frist Tip: Get up to a high point with less view obstruction. 
+                    First Tip: Get up to a high point with less view obstruction. 
                 </li>
                 <li>
                     Second Tip: Wait to buy a telescope, first buy some Binoculars. 
