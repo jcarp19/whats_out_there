@@ -10,8 +10,8 @@ export default function Homepage() {
         <>
             <main>
 
-                <img src={fence} alt="fence with night sky in the background." className="fence_pic" />
-                <h1 className="homepage_h1">What's Out There?</h1>
+                {/* <img src={fence} alt="fence with night sky in the background." className="fence_pic" />
+                <h1 className="homepage_h1">What's Out There?</h1> */}
                 <DarkParkSearch />
             </main>
 
