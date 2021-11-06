@@ -19,16 +19,7 @@ export default function DarkParkList() {
 
     return (
         <div>
-             <nav className="navbar">
-            <ul>
-              <li><NavLink to="/" style={{textDecoration: "none"}}><p className="navbar_p">Home</p></NavLink></li>
-              <li><NavLink to="/learnmore" style={{textDecoration: "none"}}><p className="navbar_p">Learn More</p></NavLink></li>
-              <li><NavLink to="/news" style={{textDecoration: "none"}}><p className="navbar_p">News</p></NavLink></li>
-              <li><NavLink to="/darkparklist" style={{textDecoration: "none"}}><p className="navbar_p">Park List</p></NavLink></li>
-            </ul>
-          </nav>
-
-            <DarkParkSearch/>
+             <DarkParkSearch/>
             <h1>DarkParkList Page!</h1>
         </div>
     )
