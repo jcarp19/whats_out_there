@@ -1,6 +1,25 @@
+import { useState, useEffect } from "react"
+import NASAInterface from "../models/NASAInterface";
+import GetNASAPic from "../services/GetNASA"
+import "./LearnMore.css"; 
+
+
+
+
 export default function LearnMore() {
+    const [picURL, setPicURL] = useState<NASAInterface>();
+    
+    useEffect(() => {
+        loadPicURL();
+    }, [])
+
+    function loadPicURL() {
+        GetNASAPic().then(res => setPicURL(res));
+    }
     return (
-        <div>
+        
+        <div className = "BackgroundImage">
+            <div aria-label = "addDiv" role = "Div" className="park-detail-container" style={{backgroundImage: `url(${picURL?.url})`}}></div>
             <h1 aria-label = "h1" role = "addh1">Learn More about our Parks</h1>
             <p>Below lists the Designations from the International Dark-Sky Association</p>
             <p>We added in parks recommened by astronomers and photographers where you can witness some spectacular star gazing</p>
@@ -24,6 +43,7 @@ export default function LearnMore() {
             </blockquote>
 
             <h2>Tips for Star Gazing</h2>
+            <div>
             <ul>
                 <li>
                     Frist Tip: Get up to a high point with less view obstruction. 
@@ -35,6 +55,7 @@ export default function LearnMore() {
                     Third Tip: Do your research know when to look where you want the Moon to be in the waxing or waning phase. To witness the details of the moon and its craters. To see the stars look when the moon is in a crescent (when the moon is very thin and barely there) and gibbous phase(When the moon is not present).
                 </li>
             </ul>
+            </div> 
             <h3>Sources</h3>
 
             <ul>

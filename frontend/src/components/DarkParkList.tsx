@@ -6,7 +6,7 @@
 export default function DarkParkList() {
     return (
         <div>
-            
+            <h1>DarkParkList Page!</h1>
         </div>
     )
 }

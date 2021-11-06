@@ -1,177 +1,182 @@
-
 /* ~~~~~~~~~~~~~~~ MOBILE VIEW ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-    .logo_pic {
-        /* height: 5rem;
+.logo_pic {
+  /* height: 5rem;
         width: 10rem; */
-        margin-top: .5rem;
-        stroke: #93B7BE ;
-        max-width: 50%;
-    }
-    .logo_pic > img {
-        max-width: 100%;
-    }
-    
-    header {
-        background:rgb(245, 245, 245, .2);
-        width: 100vw;
-        padding: 1.5rem 1rem;
-        box-sizing: border-box;
-        box-shadow: 0px 5px 10px #1d2038;
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    .fence_pic {
-        height: 15%;
-        width: 90vw;
-        mask-image: linear-gradient(to top, rgba(0,0,0, .2), #2d3047);
-        z-index: 0;
-    }
-    
-    main {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .weather_route_div {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
-    
-    
-    .timezone_h3,
-    .weather_conditions_p,
-    .weather_icon_img {
-        margin: 0px;
-    }
-    
-    .weather_icon_img {
-        height: 4rem;
-        width: 4rem;
-    }
-    
-    .timezone_h3,
-    .weather_conditions_p {
-        font-size: 1rem;
-        margin-top: .3rem;
-        color: #dde0e0;
-        font-family: 'Alumni Sans', sans-serif;
-        font-weight: 400;
-    }
-    
-    .timezone_text,
-    .conditions_text {
-        display: inline;
-        color:#93B7BE;
-    }
-    
-    .LearnMore {
-        display: flex;
-        justify-content: center;
-        color: #05C7BA;
-    }
-    
-    .homepage_h1 {
-        font-family: 'Alumni Sans', sans-serif;
-        font-weight: 700;
-        color: rgba(147, 183, 190, .8);
-        font-size: 4rem;
-        margin: 0px;
-        z-index: 1;
-    }
-    
-    /* Google Fonts I have linked the project to. */
-    /* font-family: 'Alumni Sans', sans-serif;
+  margin-top: 0.5rem;
+  stroke: #93b7be;
+  max-width: 50%;
+}
+.logo_pic > img {
+  max-width: 100%;
+}
+
+header {
+  /* background: rgb(245, 245, 245, 0.2); */
+  background: #2d3047;
+  width: 100vw;
+  padding: 1.5rem 1rem;
+  box-sizing: border-box;
+  box-shadow: 0px 5px 10px #1d2038;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 10px solid rgba(245, 245, 245, 0.2);
+  background-image: url("https://apod.nasa.gov/apod/image/2111/panohugoetmoiAPODjpg-standard1024.jpg");
+}
+
+.fence_pic {
+  height: 15%;
+  width: 90vw;
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.2), #2d3047);
+  z-index: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather_route_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.timezone_h3,
+.weather_conditions_p,
+.weather_icon_img {
+  margin: 0px;
+}
+
+.weather_icon_img {
+  height: 4rem;
+  width: 4rem;
+}
+
+.timezone_h3,
+.weather_conditions_p {
+  font-size: 1rem;
+  margin-top: 0.3rem;
+  color: #dde0e0;
+  font-family: "Alumni Sans", sans-serif;
+  font-weight: 400;
+}
+
+.timezone_text,
+.conditions_text {
+  display: inline;
+  color: #93b7be;
+}
+
+.LearnMore {
+  display: flex;
+  justify-content: center;
+  color: #05c7ba;
+}
+
+.homepage_h1 {
+  font-family: bdr-mono, sans-serif;
+  font-weight: 700;
+  color: rgba(147, 183, 190, 0.8);
+  font-size: 2rem;
+  margin: 0px;
+  z-index: 1;
+}
+
+/* Google Fonts I have linked the project to. */
+/* font-family: 'Alumni Sans', sans-serif;
     font-family: 'Zen Kurenaido', sans-serif; 
     font-family: 'Trispace', sans-serif;*/
 
-    .temp_icon_details_div {
-        display: flex;
-        align-items: center;
-        color: #93B7BE;
-        font-size: .8rem;
-    }
+.temp_icon_details_div {
+  display: flex;
+  align-items: center;
+  color: #93b7be;
+  font-size: 0.8rem;
+}
 
-    .weather_info_p:hover {
-        color: #E0CA3C
-    }
+.weather_info_p:hover {
+  color: #e0ca3c;
+}
 
-    .info-card {
-        box-sizing: border-box;
-        border: 1px solid #dde0e0;
-        padding: 1rem;
-        margin: 1rem;
-        border-radius: 7px;
-        background-color:rgba(147, 183, 190, .25)
-    }
-    
+.info-card {
+  box-sizing: border-box;
+  border: 1px solid #dde0e0;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 7px;
+  background-color: rgba(147, 183, 190, 0.25);
+}
+
+.StarGazing {
+  
+  background-image: url("https://apod.nasa.gov/apod/image/2111/panohugoetmoiAPODjpg-standard1024.jpg");
+  
+
+}
+
+
 /* ~~~~~~~~~~~~~ PARK SERACH LIST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .hidden {
-    display: none;
+  display: none;
 }
 .park-list {
-    max-width: 100%;
-    color: #dde0e0;
+  max-width: 100%;
+  color: #dde0e0;
 }
 .park-list-headline {
-    color: rgba(147, 183, 190, 1);
-    margin-left: 1rem;
+  color: rgba(147, 183, 190, 1);
+  margin-left: 1rem;
 }
 .park-list-name {
-    font-weight: 700;
+  font-weight: 700;
 }
 .park-list-name > a {
-    color:#dde0e0;
-    text-decoration: none;
+  color: #dde0e0;
+  text-decoration: none;
 }
 
 .park-list-name > a:hover {
-    color: #E0CA3C
+  color: #e0ca3c;
 }
 
 /* ~~~~~~~~~~~~~ TABLET VIEW ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-@media only screen and (min-width: 768px){
+@media only screen and (min-width: 768px) {
+  .timezone_h3,
+  .weather_conditions_p {
+    font-size: 1.5rem;
+  }
 
-    .timezone_h3,
-    .weather_conditions_p {
-        font-size: 1.5rem;
-    }
+  .temp_icon_details_div {
+    font-size: 1rem;
+  }
 
-    .temp_icon_details_div {
-        font-size: 1rem;
-    }
-
-    .fence_pic{
-        height: 10%;
-        width: 80vw;
-    }
-
+  .fence_pic {
+    height: 10%;
+    width: 80vw;
+  }
 }
-
 
 /* ~~~~~~~~~~~ DESKTOP VIEW ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-@media only screen and (min-width: 1200px) { 
+@media only screen and (min-width: 1200px) {
+  .timezone_h3,
+  .weather_conditions_p {
+    font-size: 1.75rem;
+  }
 
-    .timezone_h3,
-    .weather_conditions_p {
-        font-size: 1.75rem;
-    }
+  .weather_route_div {
+    margin-top: 0.8rem;
+  }
 
-    .weather_route_div {
-        margin-top: .8rem;
-    }
-
-    .fence_pic{
-        width: 70vw;
-        height: 5%;
-    }
-
-
+  .fence_pic {
+    width: 70vw;
+    height: 5%;
+  }
 }

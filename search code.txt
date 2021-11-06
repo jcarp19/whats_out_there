@@ -1,0 +1,56 @@
+    const [parkLat, setParkLat] = useState<Latlong>();
+    const [parkLon, setParkLon] = useState<Latlong>();
+    
+    let distanceArray = [];
+    
+    // loop through list to calculate distant from returned lon/lat and put in an array
+    darkParkList.forEach(park => {
+        setParkLat(park?.latlong?[0])
+        // This function takes in lat and lon from the zip and park and returns the distance between them as the crow flies (in km)
+        var R = 6371; // km
+        var dLat = toRad(parkLat-zipLat);
+        var dLon = toRad(parkLon-zipLon);
+        var lat1 = toRad(zipLat);
+        var lat2 = toRad(parkLat);
+        
+        var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+        var d = R * c;
+        
+        return Math.round(d * .621371); // convert the km to miles
+    })
+    
+        
+
+        
+    // Converts numeric degrees to radians
+    function toRad(Value:number) {
+        return Value * Math.PI / 180;
+    }
+
+
+    //FILTER
+    export function getByName(toName: string): Promise<ShoutOutInterface[]>{
+    return axios.get<ShoutOutInterface[]>
+    (`${baseUrl}/user/?name=${toName}`)
+    .then(res => res.data)
+}
+
+routes.get("/user/:name", async(req, res) => {
+    const name: string = req.params.name;
+    try{
+        const client = await getClient();
+        const users = await client.db().collection<ShoutOutInterface>('shoutouts1')
+        .find({toName: name}).toArray();
+        res.json(users);
+        // if(users) {
+        //     res.json(users)
+        // } else {
+        //     res.status(404).json({message: "Not Found"})
+        // }
+    } catch(err) {
+        console.log("Error retrieving user", err);
+        res.status(500).json({message: "Internal service error"})
+    }
+})
