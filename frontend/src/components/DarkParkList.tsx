@@ -4,6 +4,7 @@
 // list and define dark park designations (maybe put sources here too)
 import { NavLink } from "react-router-dom";
 import WeatherRoute from "../routes/WeatherRoute";
+import DarkParkSearch from "./DarkParkSearch";
 
 
 export default function DarkParkList() {
@@ -27,7 +28,7 @@ export default function DarkParkList() {
             </ul>
           </nav>
 
-            <WeatherRoute/>
+            <DarkParkSearch/>
             <h1>DarkParkList Page!</h1>
         </div>
     )
