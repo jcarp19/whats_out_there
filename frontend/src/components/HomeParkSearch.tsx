@@ -9,6 +9,7 @@ import getParkList from "../services/GetParkList";
 import WeatherInterface from "../models/WeatherInterface";
 import { getSetWeather } from "../services/GetWeather";
 import { Router, NavLink} from "react-router-dom"
+import { upDateOne } from "../services/GetParkList";
 
 // useContext stuff
 import { SearchContext, SearchProps } from "../context/SearchProvider";
@@ -19,15 +20,16 @@ export default function HomeParkSearch() {
     // receive zip code from form
     // make sure it's on the list. If not return an err message
     // return lon/lat , 
-    const [zipLat, setZipLat] = useState(42.33);
-    const [zipLon, setZipLon] = useState(-83.04);
+    const {searchInputs, loadWeatherByLocation} = useContext(SearchContext);
+    const [zipLat, setZipLat] = useState(searchInputs[0].searchLat);
+    const [zipLon, setZipLon] = useState(searchInputs[0].searchLon);
     const [darkParkList, setDarkParkList] = useState<DarkPark[]>([]);
     // useContext stuff. Object containing searchLat, searchLon etc.
-    const {searchInputs, loadWeatherByLocation} = useContext(SearchContext);
     const [filteredParks, setFilteredParks] = useState<filteredParks[]>([]);
     const [weather, setWeather] = useState<WeatherInterface>();
-    const [rating, setRating] = useState<Comments>();
-    const [comment, setComment] = useState<Comments>();
+    const [rating, setRating] = useState(0);
+    const [comment, setComment] = useState("");
+    const [parkId, setParkId] = useState("");
 
 
     // const[searchLatLon, setSearchLatLon] = useState<SearchProps>({searchLat: zipLat, searchLon: zipLon});
@@ -145,11 +147,7 @@ export default function HomeParkSearch() {
                             searchInputs.unshift({searchLat: zipLat, searchLon: zipLon, hasSearched: true});
                           // console.log(searchInputs)
 
-<<<<<<< HEAD
-                    }}}/>
-=======
                 }}}/>
->>>>>>> fdca7c170d526eed18d63af435ebc295b554b5a9
                 </label>
                 <button aria-label = "addButton" role = "Button" type="submit" onClick={(e) => {
                     e.preventDefault(); 
@@ -178,23 +176,19 @@ export default function HomeParkSearch() {
                             {/* <form method="POST" onSubmit={(e) => {
                                 e.preventDefault();
                                 let newComment:Comments = {rating, comment};
-                                function updateList (newComment: Comments) {
-                                    updateOne(newComment).then(res => setDarkParkList([...darkParkList, res]))
-                                    setRating('');
-                                    setComment('');
-                                }}>
+                                upDateOne(newComment, data._id).then(res => [data.comments, res])
+                                setRating(0);
+                                setComment("");
+                                }>
                                 <h2 className="leaveShoutOut">Leave a Rating and Comment</h2>
                                 
                                 <label>To<label>
-                                <input type="text"></input>
+                                <input type="number" onChange={(e) => {setRating(e.target.valueAsNumber)}}></input>
                             
                                 
                                 <label>From<label>
-                                <input type="text"></input>
+                                <input type="text" onChange={(e) => {setComment(e.target.value)}}></input>
                                 
-                                
-                                
-                            
                                 <button type="submit">
                                 Submit Comment
                                 </button>

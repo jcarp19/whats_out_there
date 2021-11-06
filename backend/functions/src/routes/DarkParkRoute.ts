@@ -1,7 +1,7 @@
 import express from 'express';
 import { getClient } from '../db';
-import DarkPark from "../models/DarkPark";
-import { Comments } from "../models/DarkPark";
+// import DarkPark from "../models/DarkPark";
+// import { Comments } from "../models/DarkPark";
 
 const routes = express.Router();
 
@@ -18,6 +18,7 @@ routes.get("/darkparks", async (req, res) => {
 
 // routes.post("/darkparks", async (req, res) => {
 //     const comment = req.body as Comments;
+//     const id = 
 //     try {
 //         const client = await getClient();
 //         await client.db()
