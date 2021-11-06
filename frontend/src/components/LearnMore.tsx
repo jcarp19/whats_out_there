@@ -16,8 +16,8 @@ export default function LearnMore() {
         GetNASAPic().then(res => setPicURL(res));
     }
     return (
-        <div className = "BackgroundImage">
-
+        <div>
+            
             <nav className="navbar">
             <ul>
               <li><NavLink to="/" style={{textDecoration: "none"}}><p className="navbar_p">Home</p></NavLink></li>
@@ -29,7 +29,7 @@ export default function LearnMore() {
 
             <WeatherRoute/>
 
-
+            <div className = "BackgroundImage" style={{backgroundImage: `url(${picURL?.url})`}}>
             <h1 aria-label = "h1" role = "addh1">Learn More about our Parks</h1>
             <p>Below lists the Designations from the International Dark-Sky Association</p>
             <p>We added in parks recommened by astronomers and photographers where you can witness some spectacular star gazing</p>
@@ -82,7 +82,7 @@ export default function LearnMore() {
             <img src="" alt=""/>
             <img src="" alt=""/>
 
-
+            </div>
         </div>
     )
 }
