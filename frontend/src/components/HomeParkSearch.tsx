@@ -129,38 +129,28 @@ export default function HomeParkSearch() {
             </p>
 
 
-            <form aria-label = "addForm" role = "Form" onSubmit={(e) => {console.log(searchInputs);}}>
+            <form aria-label = "addForm" role = "Form" >
                 <label aria-label = "addLabel" role = "Label" htmlFor="search">
                     <input name="search" id="search" type="text" onChange={(e) => {
                         if(e.target.value.length == 5) {
                             LongLat.forEach(array => {
                                 if(array[0] == e.target.value) {
-                                setZipLat(array[1]);
-                                setZipLon(array[2]);
-                            }
+                                    setZipLat(array[1]);
+                                    setZipLon(array[2]);
+                                }
                             
-                            // let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: true};
+                            })
                             searchInputs.unshift({searchLat: zipLat, searchLon: zipLon, hasSearched: true});
                             console.log(searchInputs)
-                            
-                    })
-                }
+                        }
                 }}/>
                 </label>
                 <button aria-label = "addButton" role = "Button" type="submit" onClick={(e) => {
                     e.preventDefault(); 
                     console.log(zipLat); 
                     console.log(zipLon);
-                    if(searchInputs[0].hasSearched == false) {
-                        let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: true};
-                        searchInputs.unshift(searchLatLon);
-                        console.log(searchLatLon);
-                    } else {
-                        let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: false};
-                        searchInputs.unshift(searchLatLon);
-                        console.log(searchLatLon);
-                    }
-                    
+                    let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: true};
+                    searchInputs.unshift(searchLatLon);
                     (document.querySelector(".hidden") as HTMLButtonElement).style.display = "block";
                    
                 }
