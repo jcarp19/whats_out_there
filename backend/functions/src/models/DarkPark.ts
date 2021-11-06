@@ -14,3 +14,16 @@ export default interface DarkPark {
     description: string;
     comments: [];
 }
+
+export interface Comments {
+    rating: number;
+    comment: string;
+}
+
+export interface filteredParks {
+    name: string;
+    state: string;
+    description: string;
+    url: string;
+    miles: number;
+}

@@ -9,5 +9,10 @@ export default function getParkList(): Promise<DarkPark[]> {
         .then(res => res.data);
 }
 
+// export function addShoutOut(shoutout: ShoutOutInterface): Promise<ShoutOutInterface>{
+//     return axios.post<ShoutOutInterface>(`${baseUrl}/shoutouts`, shoutout)
+//     .then((res) => res.data)
+// }
+
 
 //  filter through parks list with id of closest parks
