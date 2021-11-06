@@ -10,27 +10,27 @@ import NewsFeed from './components/NewsFeed';
 import NewsFeedAll from './components/NewsFeedAll';
 import LearnMore from './components/LearnMore';
 import DarkParkList from './components/DarkParkList';
+import DarkParkSearch from './components/DarkParkSearch';
 
 
 
 
 function App() {
+  
   return (
 
     <SearchProvider>
       <div className="App">
-        <Header />
+        {/* <Header /> */}
         <Router>
-          <div className = "StarGazing">
-          <nav>
+          {/* <nav className="navbar">
             <ul>
-              <li><NavLink to="/">Home</NavLink></li>
-              <li><NavLink to="/learnmore">Learn More</NavLink></li>
-              <li><NavLink to="/news">News</NavLink></li>
-              <li><NavLink to="/darkparklist">Park List</NavLink></li>
+              <li><NavLink to="/" style={{textDecoration: "none"}}><p className="navbar_p">Home</p></NavLink></li>
+              <li><NavLink to="/learnmore" style={{textDecoration: "none"}}><p className="navbar_p">Learn More</p></NavLink></li>
+              <li><NavLink to="/news" style={{textDecoration: "none"}}><p className="navbar_p">News</p></NavLink></li>
+              <li><NavLink to="/darkparklist" style={{textDecoration: "none"}}><p className="navbar_p">Park List</p></NavLink></li>
             </ul>
-          </nav>
-          </div>
+          </nav> */}
           <Switch>
             <Route path="/news" exact>
               <NewsFeedAll />
