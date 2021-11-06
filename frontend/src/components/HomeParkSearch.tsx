@@ -1,3 +1,7 @@
+
+
+
+
 import React, { useEffect, useState, useContext } from "react";
 import DarkPark, {filteredParks} from "../models/DarkPark";
 import {LongLat} from "../models/LongLat";
@@ -11,7 +15,7 @@ import { SearchContext, SearchProps } from "../context/SearchProvider";
 import Header from "./Header";
 
 
-export default function DarkParkSearch() {
+export default function HomeParkSearch() {
     // receive zip code from form
     // make sure it's on the list. If not return an err message
     // return lon/lat , 
@@ -64,14 +68,12 @@ export default function DarkParkSearch() {
         });
 
         console.log(searchInputs[0]);
-        getSetWeather(zipLat, zipLon).then(res => setWeather(res));
-  
-     
+            getSetWeather(zipLat, zipLon).then(res => setWeather(res));
+    
     },[zipLat])
     
     function formatWeather() {
         let timeZone = weather?.timezone;
-        
             timeZone = timeZone?.replace("America/", "")
             timeZone = timeZone?.replace("_", " ")
          return timeZone;
@@ -80,18 +82,18 @@ export default function DarkParkSearch() {
 
     return (
         <>
-
-        <nav className="navbar">
+        <div className="desktop-wrap_nav_weather">
+        <nav className="navbar_home">
             <ul>
-              <li><NavLink to="/" style={{textDecoration: "none"}}><p className="navbar_p">Home</p></NavLink></li>
-              <li><NavLink to="/learnmore" style={{textDecoration: "none"}}><p className="navbar_p">Learn More</p></NavLink></li>
-              <li><NavLink to="/news" style={{textDecoration: "none"}}><p className="navbar_p">News</p></NavLink></li>
-              <li><NavLink to="/darkparklist" style={{textDecoration: "none"}}><p className="navbar_p">Park List</p></NavLink></li>
+              <li><NavLink to="/" style={{textDecoration: "none"}}><p className="navbar_p_home">Home</p></NavLink></li>
+              <li><NavLink to="/learnmore" style={{textDecoration: "none"}}><p className="navbar_p_home">Learn More</p></NavLink></li>
+              <li><NavLink to="/news" style={{textDecoration: "none"}}><p className="navbar_p_home">News</p></NavLink></li>
+              <li><NavLink to="/darkparklist" style={{textDecoration: "none"}}><p className="navbar_p_home">Park List</p></NavLink></li>
             </ul>
           </nav>
 
 
-           <div className="weather_route_div">
+           <div className="weather_route_div_home">
                 <div className="timezone_and_conditions_div">
                     {/* Shows timezone. Automatically set to 'America/Detroit' until changed. */}
                      <h3 className="timezone_h3">
@@ -114,8 +116,18 @@ export default function DarkParkSearch() {
                     <p className="weather_info_p">&#9432;</p> 
                 </div>  
             </div> 
+        </div>
+        
 
-         
+            <Header/>
+
+            <p aria-label = "addP" role = "Paragraph" className="welcome_p">Welcome! Have ever wondered of whats out there in the cosmos?
+                Do you want to find a place where you can relax and enjoy the night sky to see 
+                an immense amount of stars and enjoy the scenery? Well this is the website for you!
+                Click "Learn more" to get more information about our site and where you can find these
+                majestic places. Your adventure is only one click away!
+            </p>
+
 
             <form aria-label = "addForm" role = "Form" onSubmit={(e) => {console.log(searchInputs);}}>
                 <label aria-label = "addLabel" role = "Label" htmlFor="search">
@@ -129,7 +141,7 @@ export default function DarkParkSearch() {
                             
                             // let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: true};
                             searchInputs.unshift({searchLat: zipLat, searchLon: zipLon, hasSearched: true});
-                            console.log()
+                            console.log(searchInputs)
                             
                     })
                 }
@@ -139,15 +151,15 @@ export default function DarkParkSearch() {
                     e.preventDefault(); 
                     console.log(zipLat); 
                     console.log(zipLon);
-                    // if(searchInputs[0].hasSearched == false) {
-                    //     let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: true};
-                    //     searchInputs.unshift(searchLatLon);
-                    //     console.log(searchLatLon);
-                    // } else {
-                    //     let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: false};
-                    //     searchInputs.unshift(searchLatLon);
-                    //     console.log(searchLatLon);
-                    // }
+                    if(searchInputs[0].hasSearched == false) {
+                        let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: true};
+                        searchInputs.unshift(searchLatLon);
+                        console.log(searchLatLon);
+                    } else {
+                        let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: false};
+                        searchInputs.unshift(searchLatLon);
+                        console.log(searchLatLon);
+                    }
                     
                     (document.querySelector(".hidden") as HTMLButtonElement).style.display = "block";
                    

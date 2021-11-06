@@ -6,17 +6,13 @@ import { getSetWeather, getWeatherByLocation } from "../services/GetWeather";
 export interface SearchProps {
     searchLat: any,
     searchLon: any,
-    hasSearched: any,
-    // setSearchLat: () => void,
-    // setSearchLon: () => void,          
+    hasSearched: any,      
 }
 
 export interface FunctionsProps {
     searchLat: any,
     searchLon: any, 
     hasSearched: any,
-    // setSearchLat:() => void,
-    // setSearchLon:() => void,
     loadWeatherByLocation:(lat: any, lon: any) => void;
     searchInputs: SearchProps[];
 }
@@ -25,8 +21,6 @@ const defaultValues: FunctionsProps = {
     searchLat: "42.33",
     searchLon: "-83.04", 
     hasSearched: false,
-    // setSearchLat:() => {},
-    // setSearchLon:() => {},
     loadWeatherByLocation: () => {},
     searchInputs: []
 }
