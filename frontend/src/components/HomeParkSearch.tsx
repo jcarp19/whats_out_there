@@ -3,7 +3,7 @@
 
 
 import React, { useEffect, useState, useContext } from "react";
-import DarkPark, {filteredParks} from "../models/DarkPark";
+import DarkPark, {Comments, filteredParks} from "../models/DarkPark";
 import {LongLat} from "../models/LongLat";
 import getParkList from "../services/GetParkList";
 import WeatherInterface from "../models/WeatherInterface";
@@ -25,7 +25,9 @@ export default function HomeParkSearch() {
     // useContext stuff. Object containing searchLat, searchLon etc.
     const {searchInputs, loadWeatherByLocation} = useContext(SearchContext);
     const [filteredParks, setFilteredParks] = useState<filteredParks[]>([]);
-    const[weather, setWeather] = useState<WeatherInterface>();
+    const [weather, setWeather] = useState<WeatherInterface>();
+    const [rating, setRating] = useState<Comments>();
+    const [comment, setComment] = useState<Comments>();
 
 
     // const[searchLatLon, setSearchLatLon] = useState<SearchProps>({searchLat: zipLat, searchLon: zipLon});
@@ -141,8 +143,8 @@ export default function HomeParkSearch() {
                             
                             })
                             searchInputs.unshift({searchLat: zipLat, searchLon: zipLon, hasSearched: true});
-                            console.log(searchInputs)
-                        }
+                          // console.log(searchInputs)
+
                 }}/>
                 </label>
                 <button aria-label = "addButton" role = "Button" type="submit" onClick={(e) => {
@@ -151,6 +153,7 @@ export default function HomeParkSearch() {
                     console.log(zipLon);
                     let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: true};
                     searchInputs.unshift(searchLatLon);
+
                     (document.querySelector(".hidden") as HTMLButtonElement).style.display = "block";
                    
                 }
@@ -163,10 +166,35 @@ export default function HomeParkSearch() {
                 {darkParkList.sort((a, b) => a.miles - b.miles ).map((data, index) => {
                     return (
                         <div key={index} className="info-card">
+                            <p>{data._id}</p>
                             <p className="park-list-name"><a href={data.url} target="_blank">{data.name}</a></p>
                             <p>{data.state}</p>
                             <p>{data.description}</p>
                             <p>{data.miles} miles from your location.</p>
+                            {/* <form method="POST" onSubmit={(e) => {
+                                e.preventDefault();
+                                let newComment:Comments = {rating, comment};
+                                function updateList (newComment: Comments) {
+                                    updateOne(newComment).then(res => setDarkParkList([...darkParkList, res]))
+                                    setRating('');
+                                    setComment('');
+                                }}>
+                                <h2 className="leaveShoutOut">Leave a Rating and Comment</h2>
+                                
+                                <label>To<label>
+                                <input type="text"></input>
+                            
+                                
+                                <label>From<label>
+                                <input type="text"></input>
+                                
+                                
+                                
+                            
+                                <button type="submit">
+                                Submit Comment
+                                </button>
+                            </form> */}
                         </div>
                     )
                 }).slice(0, 10)}
