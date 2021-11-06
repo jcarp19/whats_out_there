@@ -63,7 +63,6 @@ export default function DarkParkSearch() {
             setDarkParkList(res);
         });
 
-        console.log(searchInputs[0]);
         getSetWeather(zipLat, zipLon).then(res => setWeather(res));
   
      
@@ -133,7 +132,7 @@ export default function DarkParkSearch() {
                             
                             // let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: true};
                             searchInputs.unshift({searchLat: zipLat, searchLon: zipLon, hasSearched: true});
-                            console.log()
+                           
                             
                     })
                 }
@@ -165,6 +164,7 @@ export default function DarkParkSearch() {
                 {darkParkList.sort((a, b) => a.miles - b.miles ).map((data, index) => {
                     return (
                         <div key={index} className="info-card">
+                            <p>{data._id}</p>
                             <p className="park-list-name"><a href={data.url} target="_blank">{data.name}</a></p>
                             <p>{data.state}</p>
                             <p>{data.description}</p>
