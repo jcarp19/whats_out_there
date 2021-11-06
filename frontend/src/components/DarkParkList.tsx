@@ -19,7 +19,7 @@ export default function DarkParkList() {
 
     return (
         <div>
-             <DarkParkSearch/>
+            <DarkParkSearch/>
             <h1>DarkParkList Page!</h1>
         </div>
     )

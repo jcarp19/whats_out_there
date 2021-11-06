@@ -1,7 +1,7 @@
 import {ObjectId} from "mongodb";
 
 export default interface DarkPark {
-    _id?: ObjectId;
+    _id: ObjectId;
     name: string;
     title: string;
     state: string;
@@ -12,7 +12,7 @@ export default interface DarkPark {
     latlong: [];
     url: string;
     description: string;
-    comments: [];
+    comments: (Comments)[];
 }
 
 export interface Comments {

@@ -77,9 +77,6 @@ export default function DarkParkSearch() {
         
     }
 
-    // function updateList (shoutout: ShoutOutInterface) {
-    //     addShoutOut(shoutout).then(res => setShoutOutList([...shoutOutList, res]))
-    // }
 
     return (
         <>
@@ -174,38 +171,7 @@ export default function DarkParkSearch() {
                 }).slice(0, 10)}
 
 
-{/* <Form className="form" method="POST" onSubmit={(e) => {e.preventDefault();
-          let newShoutOut:ShoutOutInterface = {toName, fromName, message};
-          addNewShoutOut(newShoutOut);
-          setFromName('');
-          setToName('');
-          setMessage('');
-        }}>
-        <h2 className="leaveShoutOut">Leave a Shout Out</h2>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>To</Form.Label>
-          <Form.Control type="text" className="formInput" value={toName}
-          onChange={(e) => {setToName(e.target.value)}}
-          />
-        </Form.Group>
-      
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>From</Form.Label>
-          <Form.Control type="text" className="formInput" value={fromName}
-          onChange={(e) => {setFromName(e.target.value)}}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Label>Shout Out</Form.Label>
-          <Form.Control as="textarea" style={{height: '100px'}} value={message}
-          onChange={(e) => {setMessage(e.target.value)}}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit" 
-        className="submitButton" >
-          Submit Shout Out
-        </Button>
-      </Form> */}
+
 
 
             </div>
