@@ -15,14 +15,14 @@ header {
   /* background: rgb(245, 245, 245, 0.2); */
   background: #2d3047;
   width: 100vw;
-  padding: 1.5rem 1rem;
+  padding: 1rem 1rem;
   box-sizing: border-box;
-  box-shadow: 0px 5px 10px #1d2038;
+  /* box-shadow: 0px 10px 10px #1d2038; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  border-top: 10px solid rgba(245, 245, 245, 0.2);
+  /* border-top: 10px solid rgba(245, 245, 245, 0.2); */
 }
 
 .fence_pic {
@@ -30,6 +30,12 @@ header {
   width: 90vw;
   mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.2), #2d3047);
   z-index: 0;
+}
+
+.welcome_p {
+    color:rgba(147, 183, 190, 1);
+    text-align: center;
+    margin: 1rem;
 }
 
 main {
@@ -41,15 +47,26 @@ main {
 
 .weather_route_div {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  background: rgba(245, 245, 245, 0.02);
+  box-shadow: 0px 5px 20px #1d2038;
+  width: 100vw;
+}
+
+.weather_route_div_home {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-shadow: 0px 10px 10px #1d2038;
+  margin-bottom: 15px;
 }
 
 .timezone_h3,
 .weather_conditions_p,
 .weather_icon_img {
-  margin: 0px;
+  margin: .25rem;
 }
 
 .weather_icon_img {
@@ -97,6 +114,7 @@ main {
   align-items: center;
   color: #93b7be;
   font-size: 0.8rem;
+  margin-left: 1rem;
 }
 
 .weather_info_p:hover {
@@ -136,12 +154,76 @@ main {
   color: #e0ca3c;
 }
 
+.navbar > ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background: rgba(245, 245, 245, 0.2);
+    margin: 0px;
+    height: 2.25rem;
+    width: 100vw;
+}
+
+.navbar_home > ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background: rgba(245, 245, 245, 0.2);
+    margin: 0px;
+    height: 2.25rem;
+    width: 100vw;
+}
+
+.navbar_p {
+    color: #2D3047;
+    font-family: "Alumni Sans", sans-serif;
+    font-size: 1.5rem;
+    margin: .25rem 2rem;
+}
+
+.navbar_p_home {
+    color: #2D3047;
+    font-family: "Alumni Sans", sans-serif;
+    font-size: 1.5rem;
+    margin: .25rem 2rem;
+}
+
+.navbar_p_home:hover {
+    color: #e0ca3c;
+}
+
+.navbar_p:hover {
+    color: #e0ca3c;
+}
+
+.telescope_img {
+    height: 5rem;
+    width: 5rem;
+    background: #03635D;
+    padding: 1.5rem;
+    border-radius: 50%;
+}
+
+.newsArticle_div{
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 1rem;
+}
+
+.newsArticle_div:nth-child(2n) {
+    flex-direction: row;
+}
+
 /* ~~~~~~~~~~~~~ TABLET VIEW ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 @media only screen and (min-width: 768px) {
   .timezone_h3,
   .weather_conditions_p {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    display: inline-block;
+    margin: 1.5rem;
   }
 
   .temp_icon_details_div {
@@ -152,6 +234,20 @@ main {
     height: 10%;
     width: 80vw;
   }
+
+  .navbar_p{
+      margin: .25rem 3rem;
+  }
+
+  .homepage_h1{
+      font-size: 3rem;
+  }
+
+  .welcome_p {
+    width: 60vw;
+  }
+
+
 }
 
 /* ~~~~~~~~~~~ DESKTOP VIEW ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -159,15 +255,55 @@ main {
 @media only screen and (min-width: 1200px) {
   .timezone_h3,
   .weather_conditions_p {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
+    margin: 1rem;
   }
 
-  .weather_route_div {
+  .weather_route_div_home {
     margin-top: 0.8rem;
+    display: flex;
+    max-width: 40%;
+    box-shadow: none;
   }
 
   .fence_pic {
     width: 70vw;
-    height: 5%;
+    height: 10%;
   }
+
+  .navbar_home {
+      width: 60%;
+  }
+
+  .navbar_home > ul {
+      height: 3rem;
+      background: none;
+      max-width: 60%;
+  }
+
+  .navbar_p_home{
+    margin: .25rem 1rem;
+    font-size: 2rem;
+    }
+
+    .navbar_p{
+        font-size: 2.25rem;
+    }
+
+    .navbar > ul {
+        height: 3rem;
+    }
+
+
+    .homepage_h1{
+        font-size: 3.75rem;
+    }
+
+    .desktop-wrap_nav_weather {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background:rgba(245, 245, 245, 0.2);
+        max-width: 100vw;
+    }
 }

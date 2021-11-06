@@ -23,7 +23,10 @@ export default function WeatherRoute() {
 
     function formatWeather() {
         let timeZone = weather?.timezone;
-         return   timeZone?.replace("America/", "")
+        
+            timeZone = timeZone?.replace("America/", "")
+            timeZone = timeZone?.replace("_", " ")
+         return timeZone;
         
     }
     // to here
