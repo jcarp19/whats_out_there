@@ -51,7 +51,7 @@ main {
   align-items: center;
   background: rgba(245, 245, 245, 0.02);
   box-shadow: 0px 5px 20px #1d2038;
-  width: 100vw;
+  width: 100%;
 }
 
 .weather_route_div_home {
@@ -162,7 +162,7 @@ main {
     background: rgba(245, 245, 245, 0.2);
     margin: 0px;
     height: 2.25rem;
-    width: 100vw;
+    width: 100%;
 }
 
 .navbar_home > ul {
@@ -173,7 +173,7 @@ main {
     background: rgba(245, 245, 245, 0.2);
     margin: 0px;
     height: 2.25rem;
-    width: 100vw;
+    width: 100%;
 }
 
 .navbar_p {
