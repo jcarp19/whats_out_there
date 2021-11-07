@@ -1,8 +1,9 @@
 import axios from "axios";
 import DarkPark from "../models/DarkPark";
-import {Comments} from "../models/DarkPark";
+import { Comments } from "../models/DarkPark";
 
 const baseURL = process.env.REACT_APP_BASE_URL || '';
+
 
 export default function getParkList(): Promise<DarkPark[]> {
     return axios.get<DarkPark[]>
@@ -10,9 +11,20 @@ export default function getParkList(): Promise<DarkPark[]> {
         .then(res => res.data);
 }
 
-export function upDateOne(id:any, comment: Comments): Promise<Comments>{
+// Steph just added this: fetch to display all the darkpark list
+export const fetchParkList = (): Promise<DarkPark[]> => {
+    return axios.get<DarkPark[]>(`${baseURL}/darkparklist`).then((res) => res.data);
+}
+
+
+// export function addShoutOut(shoutout: ShoutOutInterface): Promise<ShoutOutInterface>{
+//     return axios.post<ShoutOutInterface>(`${baseUrl}/shoutouts`, shoutout)
+//     .then((res) => res.data)
+// }
+
+export function upDateOne(id: any, comment: Comments): Promise<Comments> {
     return axios.put<Comments>(`${baseURL}/darkparks/addcomment/${id}`, comment)
-    .then((res) => res.data)
+        .then((res) => res.data)
 }
 
 // , id:string
