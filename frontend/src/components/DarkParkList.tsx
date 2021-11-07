@@ -49,4 +49,10 @@ export default function DarkParkList(): any {
 
     </div>
   )
+  return (
+    <div>
+      <DarkParkSearch />
+      <h1>DarkParkList Page!</h1>
+    </div>
+  )
 }

@@ -13,7 +13,7 @@ export default interface DarkPark {
     url: string; 
     description: string;
     miles: number;
-    comments?: (Comments)[] | null; // to include an object with rating and comment.
+    comments: (Comments)[]; // to include an object with rating and comment.
 }
 
 // export interface Latlong {

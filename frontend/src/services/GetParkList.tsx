@@ -1,5 +1,6 @@
 import axios from "axios";
 import DarkPark from "../models/DarkPark";
+import { Comments } from "../models/DarkPark";
 
 const baseURL = process.env.REACT_APP_BASE_URL || '';
 
@@ -21,5 +22,10 @@ export const fetchParkList = (): Promise<DarkPark[]> => {
 //     .then((res) => res.data)
 // }
 
+export function upDateOne(id: any, comment: Comments): Promise<Comments> {
+    return axios.put<Comments>(`${baseURL}/darkparks/addcomment/${id}`, comment)
+        .then((res) => res.data)
+}
 
+// , id:string
 //  filter through parks list with id of closest parks
