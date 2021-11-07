@@ -10,10 +10,10 @@ export default function getParkList(): Promise<DarkPark[]> {
         .then(res => res.data);
 }
 
-export function upDateOne(comment: Comments, parkId:string): Promise<Comments>{
-    return axios.post<Comments>(`${baseURL}/darkparks`, comment)
+export function upDateOne(id:any, comment: Comments): Promise<Comments>{
+    return axios.put<Comments>(`${baseURL}/darkparks/addcomment/${id}`, comment)
     .then((res) => res.data)
 }
 
-
+// , id:string
 //  filter through parks list with id of closest parks

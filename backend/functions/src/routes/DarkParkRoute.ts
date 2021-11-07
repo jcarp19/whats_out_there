@@ -1,7 +1,9 @@
 import express from 'express';
 import { getClient } from '../db';
-// import DarkPark from "../models/DarkPark";
-// import { Comments } from "../models/DarkPark";
+import DarkPark from "../models/DarkPark";
+import { Comments } from "../models/DarkPark";
+import { ObjectId } from 'bson';
+
 
 const routes = express.Router();
 
@@ -16,20 +18,25 @@ routes.get("/darkparks", async (req, res) => {
     }
 })
 
-// routes.post("/darkparks", async (req, res) => {
-//     const comment = req.body as Comments;
-//     const id = 
-//     try {
-//         const client = await getClient();
-//         await client.db()
-//         .collection<DarkPark>('darkparks')
-//         .updateOne({_id of input field}, {$set: {Comment}});
-//         res.status(201).json(comment)
-//     } catch (err) {
-//         console.error("ERROR", err);
-//         res.status(500).json({message: "Internal Service Error."})
-//     }
-// })
+routes.put(`/darkparks/addcomment/:id`, async (req, res) => {
+    const newComment: Comments = {
+        rating: req.body.rating,
+        comment: req.body.comment
+    }
+    const id = req.params.id;
+    // delete newComment.id
+
+    try {
+        const client = await getClient();
+        await client.db()
+        .collection<DarkPark>('darkparks')
+        .updateOne({_id: new ObjectId(id)}, {$push: {comments: newComment}});
+        res.status(200).json(newComment)
+    } catch (err) {
+        console.error("ERROR", err);
+        res.status(500).json({message: "Internal Service Error."})
+    }
+})
 
 
 export default routes;

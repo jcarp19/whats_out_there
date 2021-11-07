@@ -32,17 +32,22 @@ header {
   z-index: 0;
 }
 
+.welcomeP_searchForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .welcome_p {
     color:rgba(147, 183, 190, 1);
     text-align: center;
     margin: 1rem;
+    align-self: center;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.search_form {
+    display: flex;
+    justify-content: center;
 }
 
 .weather_route_div {
@@ -165,7 +170,7 @@ main {
     background: rgba(245, 245, 245, 0.2);
     margin: 0px;
     height: 2.25rem;
-    width: 100%;
+    max-width: 100%;
 }
 
 .navbar_home > ul {
@@ -176,7 +181,7 @@ main {
     background: rgba(245, 245, 245, 0.2);
     margin: 0px;
     height: 2.25rem;
-    width: 100%;
+    max-width: 100%;
 }
 
 .navbar_p {

@@ -29,7 +29,7 @@ export default function HomeParkSearch() {
     const [weather, setWeather] = useState<WeatherInterface>();
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("");
-    const [parkId, setParkId] = useState("");
+ 
 
 
     // const[searchLatLon, setSearchLatLon] = useState<SearchProps>({searchLat: zipLat, searchLon: zipLon});
@@ -85,7 +85,7 @@ export default function HomeParkSearch() {
     }
 
     return (
-        <>
+        <main>
         <div className="desktop-wrap_nav_weather">
         <nav className="navbar_home">
             <ul>
@@ -124,7 +124,8 @@ export default function HomeParkSearch() {
         
 
             <Header/>
-
+     
+        <div className="welcomeP_searchForm">
             <p aria-label = "addP" role = "Paragraph" className="welcome_p">Welcome! Have ever wondered of whats out there in the cosmos?
                 Do you want to find a place where you can relax and enjoy the night sky to see 
                 an immense amount of stars and enjoy the scenery? Well this is the website for you!
@@ -133,7 +134,7 @@ export default function HomeParkSearch() {
             </p>
 
 
-            <form aria-label = "addForm" role = "Form" >
+            <form aria-label = "addForm" role = "Form" className="search_form">
                 <label aria-label = "addLabel" role = "Label" htmlFor="search">
                     <input name="search" id="search" type="text" onChange={(e) => {
                         if(e.target.value.length == 5) {
@@ -161,6 +162,8 @@ export default function HomeParkSearch() {
                 }
                 }>Search</button>
             </form>
+        </div>
+
             <div  className="park-list hidden">
                 <h2 aria-label="addH2" role = "H2" className="park-list-headline">Dark Parks Near You</h2>
                 
@@ -173,31 +176,40 @@ export default function HomeParkSearch() {
                             <p>{data.state}</p>
                             <p>{data.description}</p>
                             <p>{data.miles} miles from your location.</p>
-                            {/* <form method="POST" onSubmit={(e) => {
+                            <form method="PUT" onSubmit={(e) => {
                                 e.preventDefault();
                                 let newComment:Comments = {rating, comment};
-                                upDateOne(newComment, data._id).then(res => [data.comments, res])
+                                // testing to see if pushing would refresh the page, it did not
+                                upDateOne(data._id, newComment).then(res => data.comments.push(res))
                                 setRating(0);
                                 setComment("");
-                                }>
-                                <h2 className="leaveShoutOut">Leave a Rating and Comment</h2>
+                                }}>
+                                <h2 className="leaveRatingComment_h2">Leave a Rating and Comment</h2>
                                 
-                                <label>To<label>
-                                <input type="number" onChange={(e) => {setRating(e.target.valueAsNumber)}}></input>
+                                <label htmlFor="rating">Rating:</label>
+                                <input type="number" name="rating" value={rating} onChange={(e) => {setRating(e.target.valueAsNumber)}}></input>
                             
                                 
-                                <label>From<label>
-                                <input type="text" onChange={(e) => {setComment(e.target.value)}}></input>
+                                <label htmlFor="comment">Comment:</label>
+                                <input type="text" name="comment" value={comment} onChange={(e) => {setComment(e.target.value)}}></input>
                                 
                                 <button type="submit">
                                 Submit Comment
                                 </button>
-                            </form> */}
+                            </form>
+                            <p>{data.comments.map((comment, index) => {
+                                return (
+                                    <div>
+                                    <p>{comment.rating}</p>
+                                    <p>{comment.comment}</p>
+                                    </div>
+                                )
+                            })}</p>
                         </div>
                     )
                 }).slice(0, 10)}
             </div>
-        </>
+        </main>
     )
     
 }
