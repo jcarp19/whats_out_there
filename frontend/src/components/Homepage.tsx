@@ -4,6 +4,7 @@ import fence from "../images/fence.png";
 import HomeParkSearch from "../components/HomeParkSearch";
 import Header from "./Header";
 
+
 export default function Homepage() {
 
     return (
