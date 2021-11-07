@@ -3,33 +3,52 @@
 // use case (example): if you live in detroit but plan on taking a trip to Arizona.
 // list and define dark park designations (maybe put sources here too)
 import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
 import WeatherRoute from "../routes/WeatherRoute";
 import DarkParkSearch from "./DarkParkSearch";
+import DarkPark from "../models/DarkPark";
+// import ParkList from 
+// import DarkParkDatabase from "../services/DarkParkDatabase";
+import ShowDarkPark from "./ShowDarkPark";
+import getParkList from "../services/GetParkList";
 
 
-export default function DarkParkList() {
-    // const [weather, setWeather] = useState();
-    // const {searchInputs} = useContext(SearchContext)
+export default function DarkParkList(): any {
 
+  const [darkParkList, setDarkParkList] = useState<DarkPark[]>([]);
+  useEffect(() => {
 
-    // useEffect(() => {
-    //     getSetWeather(searchInputs[0].searchLat, searchInputs[0].searchLon).then(res => setWeather(res))
-    // }, [])
+    loadParkList();
+  }, [])
+  function loadParkList() {
+    getParkList().then(res => {
+      setDarkParkList(res);
+    })
+  }
 
+  return (
+    <div>
+      <DarkParkSearch />
+      <h2 aria-label="addH2" role="H2" className="park-list-headline">Full Dark Park List</h2>
 
-    return (
-        <div>
-             <nav className="navbar">
-            <ul>
-              <li><NavLink to="/" style={{textDecoration: "none"}}><p className="navbar_p">Home</p></NavLink></li>
-              <li><NavLink to="/learnmore" style={{textDecoration: "none"}}><p className="navbar_p">Learn More</p></NavLink></li>
-              <li><NavLink to="/news" style={{textDecoration: "none"}}><p className="navbar_p">News</p></NavLink></li>
-              <li><NavLink to="/darkparklist" style={{textDecoration: "none"}}><p className="navbar_p">Park List</p></NavLink></li>
-            </ul>
-          </nav>
+      {darkParkList.map((data, index) => {
+        console.log(data);
+        return (
+          <div key={index} className="info-card">
+            {/* <p>{data._id}</p> */}
+            <p className="park-list-name"><a href={data.url} target="_blank">{data.name}</a></p>
+            <p>{data.state}</p>
+            <p>Light Pollution: {data.lightPollution}</p>
+            <p>Is Camping Available?: {data.camping}</p>
+            <p>Fee: {data.fee}</p>
+            <p>{data.description}</p>
+            <details>
+              <summary>Click for Link</summary>
+              <p className="newsfeed_content">{data.url}</p></details>
+          </div>
+        )
+      })}
 
-            <DarkParkSearch/>
-            <h1>DarkParkList Page!</h1>
-        </div>
-    )
+    </div>
+  )
 }
