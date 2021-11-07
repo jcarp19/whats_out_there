@@ -40,7 +40,6 @@ export default function NewsFeedAll() {
       </nav>
 
       <WeatherRoute />
-      <DarkParkSearch />
 
       <div>
         <h2 aria-label="addH2" role="H2" className="park-list-headline">News Feed</h2>
