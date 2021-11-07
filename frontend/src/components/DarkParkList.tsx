@@ -7,9 +7,6 @@ import { useEffect, useState } from "react";
 import WeatherRoute from "../routes/WeatherRoute";
 import DarkParkSearch from "./DarkParkSearch";
 import DarkPark from "../models/DarkPark";
-// import ParkList from 
-// import DarkParkDatabase from "../services/DarkParkDatabase";
-import ShowDarkPark from "./ShowDarkPark";
 import getParkList from "../services/GetParkList";
 
 
@@ -43,8 +40,9 @@ export default function DarkParkList(): any {
             <p>Fee: {data.fee}</p>
             <p>{data.description}</p>
             <details>
-              <summary>Click for Link</summary>
-              <p className="newsfeed_content">{data.url}</p></details>
+              <summary>Click for Full Address</summary>
+              <p>Address: {data.address}</p>
+            </details>
           </div>
         )
       })}
