@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import NASAInterface from "../models/NASAInterface";
 import GetNASAPic from "../services/GetNASA"
+import "./LearnMore.css";
 
 
 export default function LearnMore() {
@@ -37,12 +38,16 @@ export default function LearnMore() {
             <blockquote cite="https://www.darksky.org/our-work/conservation/idsp/become-a-dark-sky-place/">
             Terms and Definitions for Eligibility for Dark Sky Park Level: 
             
-            Eligibility: 
+            Eligibility:The eligibility of sites for participation in the International Dark Sky Places program depends on the category of the designation sought.
 
-            The eligibility of sites for participation in the International Dark Sky Places program depends on the category of the designation sought.
             Communities: Must have some type of legal organization that is officially recognized by outside groups. This can be in the form of a town, city, municipality or other legally organized community (such as an urban neighborhood or subdivisions). There is no night sky quality criterion associated with this category.
+
             Parks: Must be public or private land, accessible to the public in part or whole, that is legally protected for scientific, natural, educational, cultural, heritage and/or public enjoyment purposes. The core area must provide an exceptional dark sky resource, relative to the communities and cities that surround it, where the night sky brightness is routinely equal to or darker than 21.2 magnitudes per square arc second.
-            Reserves:  Must be  public or private land of at least 700 km², accessible to the public in part or whole, that is legally protected for scientific, natural, educational, cultural, heritage and/or public enjoyment purposes. The core area must provide an exceptional dark sky resource, relative to the communities and cities that surround it, where the night sky brightness is routinely equal to or darker than 20 magnitudes per square arc second.
+
+            Reserves:  Must be  public or private land of at least 700 km², accessible to the public in part or whole, that is legally protected for scientific, natural, educational, cultural, heritage and/or public enjoyment purposes. The core area must provide an exceptional dark sky resource, relative to the communities and cities that surround it, where the night sky brightness is routinely 
+            equal to or darker than 20 magnitudes per square arc second.
+
+
             Sanctuaries: Must be public or private land, accessible to the public in part or whole, that is legally protected for scientific, natural, educational, cultural, heritage and/or public enjoyment purposes. The site must provide an exceptional dark sky resource where the night sky brightness is routinely equal to or darker than 21.5 magnitudes per square arc second
 
             Urban Night Sky Places: Must be a municipal park, open space, observing site, or other similar property, accessible to the public in part or whole, 

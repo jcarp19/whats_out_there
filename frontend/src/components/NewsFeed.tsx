@@ -7,8 +7,6 @@ import { ArticlesEntity } from "../models/NewsInterface";
 // used type "any" to avoid errors, but switch back to "ArticlesEntity" when retrieving all the data.
 export default function NewsFeed({ title, author, url, description, content }: ArticlesEntity) {
 
-
-
     return (
         <div className="info-card">
             <p className="newsfeed_title"><a href={url} className="newsfeed_url">{title}</a></p>
@@ -20,6 +18,9 @@ export default function NewsFeed({ title, author, url, description, content }: A
             </details>
         </div>
     )
+
+
+
 }
 
 
