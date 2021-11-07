@@ -2,6 +2,22 @@
 .BackgroundImage {
 
     background-image: url("https://apod.nasa.gov/apod/image/2111/panohugoetmoiAPODjpg-standard1024.jpg");
-    min-height: 100vh;
+    padding-top: 305px;
+    object-fit: cover;
+    color: aquamarine
+    
 }
+
+h1 {
+    
+    margin-top: -196px;
+}
+
+body {
+    margin: 0px;
+    margin-top: 87px;
+
+}
+
+
 

@@ -145,11 +145,7 @@ export default function HomeParkSearch() {
                             searchInputs.unshift({searchLat: zipLat, searchLon: zipLon, hasSearched: true});
                           // console.log(searchInputs)
 
-<<<<<<< HEAD
-                    }}}/>
-=======
                 }}}/>
->>>>>>> fdca7c170d526eed18d63af435ebc295b554b5a9
                 </label>
                 <button aria-label = "addButton" role = "Button" type="submit" onClick={(e) => {
                     e.preventDefault(); 

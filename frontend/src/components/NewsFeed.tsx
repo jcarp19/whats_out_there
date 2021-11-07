@@ -8,7 +8,6 @@ import { ArticlesEntity } from "../models/NewsInterface";
 export default function NewsFeed({ title, author, url, description, content }: ArticlesEntity) {
     
     
-    
     return (
         <div className="info-card">
             <p className="newsfeed_title"><a href={url} className="newsfeed_url">{title}</a></p>
@@ -18,6 +17,8 @@ export default function NewsFeed({ title, author, url, description, content }: A
                 <summary>Full Story</summary>
                 <p className="newsfeed_content">{content}</p>
             </details>
+
+
         </div>
     )
 }
