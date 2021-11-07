@@ -214,26 +214,28 @@ export default function HomeParkSearch() {
 
                             <details>
                                 <summary><span className="leaveRatingComment_h2">Click to Leave a Rating and Comment</span></summary>
-                            <form method="PUT" onSubmit={(e) => {
+                            <form method="PUT" id="comment-form" onSubmit={(e) => {
                                 e.preventDefault();
                                 let newComment:Comments = {rating, comment};
                                 // testing to see if pushing would refresh the page, it did not
                                 upDateOne(data._id, newComment).then(res => data.comments.push(res))
                                 setRating(0);
                                 setComment("");
-                                resetUse();
-                                
-                                // document.getElementsByName("rating").forEach(input => input = "");
-                                // document.querySelectorAll(".commentInput").forEach(input => input.textContent = "");
+                                getParkList().then(res => setDarkParkList([...darkParkList]));
+                                // setRating(0);
+                                // setComment("");
+                                // resetUse();
+                                // document.getElementsByName("rating").forEach(input => input = 0);
+                                // document.querySelectorAll("input").forEach(input => input.textContent = "");
                             }}>
                                
                                 
                                 <label htmlFor="rating">Rating:</label>
-                                <input className="ratingInput" type="number" name="rating" onChange={(e) => {setRating(e.target.valueAsNumber)}}></input>
+                                <input placeholder="rating" className="ratingInput" type="number" name="rating" onChange={(e) => {setRating(e.target.valueAsNumber)}}></input>
                             
                                 
                                 <label htmlFor="comment">Comment:</label>
-                                <input className="commentInput" type="text" name="comment" onChange={(e) => {setComment(e.target.value)}}></input>
+                                <input placeholder="comment" className="commentInput" type="text" name="comment" onChange={(e) => {setComment(e.target.value)}}></input>
                                 
                                 <button type="submit">
                                 Submit Comment
