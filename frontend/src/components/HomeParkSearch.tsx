@@ -33,8 +33,43 @@ export default function HomeParkSearch() {
 
 
     // const[searchLatLon, setSearchLatLon] = useState<SearchProps>({searchLat: zipLat, searchLon: zipLon});
-    
-    
+        const resetUse = () => {
+            getParkList().then(function(res) {
+                {res.map((data) => {
+                    let pLat = data.latlong[0];
+                    let pLon = data.latlong[1];
+                    let zLat = zipLat;
+                    let zLon = zipLon;
+                    
+                    function calcDistance(zLat:number, zLon:number, pLat:number, pLon:number) {
+                        var R = 6371; // km
+                        var dLat = toRad(pLat-zLat);
+                        var dLon = toRad(pLon-zLon);
+                        var lat1 = toRad(zLat);
+                        var lat2 = toRad(pLat);
+                    
+                        var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                            Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+                        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+                        var d = R * c;
+                        // return Math.round(d * .621371); // convert the km to miles
+                        var solution = Math.round(d * .621371); // convert the km to miles
+                        // return solution;
+        
+                        return data.miles = solution;
+                        
+                    }
+                    // Converts numeric degrees to radians
+                    function toRad(Value:number) 
+                    {
+                        return Value * Math.PI / 180;
+                    }
+                   calcDistance(zLat, zLon, pLat, pLon);
+                })}
+                setDarkParkList(res);
+            });
+        }
+
     useEffect(() => {
         getParkList().then(function(res) {
             {res.map((data) => {
@@ -176,6 +211,9 @@ export default function HomeParkSearch() {
                             <p>{data.state}</p>
                             <p>{data.description}</p>
                             <p>{data.miles} miles from your location.</p>
+
+                            <details>
+                                <summary><span className="leaveRatingComment_h2">Click to Leave a Rating and Comment</span></summary>
                             <form method="PUT" onSubmit={(e) => {
                                 e.preventDefault();
                                 let newComment:Comments = {rating, comment};
@@ -183,15 +221,19 @@ export default function HomeParkSearch() {
                                 upDateOne(data._id, newComment).then(res => data.comments.push(res))
                                 setRating(0);
                                 setComment("");
-                                }}>
-                                <h2 className="leaveRatingComment_h2">Leave a Rating and Comment</h2>
+                                resetUse();
+                                
+                                // document.getElementsByName("rating").forEach(input => input = "");
+                                // document.querySelectorAll(".commentInput").forEach(input => input.textContent = "");
+                            }}>
+                               
                                 
                                 <label htmlFor="rating">Rating:</label>
-                                <input type="number" name="rating" value={rating} onChange={(e) => {setRating(e.target.valueAsNumber)}}></input>
+                                <input className="ratingInput" type="number" name="rating" onChange={(e) => {setRating(e.target.valueAsNumber)}}></input>
                             
                                 
                                 <label htmlFor="comment">Comment:</label>
-                                <input type="text" name="comment" value={comment} onChange={(e) => {setComment(e.target.value)}}></input>
+                                <input className="commentInput" type="text" name="comment" onChange={(e) => {setComment(e.target.value)}}></input>
                                 
                                 <button type="submit">
                                 Submit Comment
@@ -205,6 +247,7 @@ export default function HomeParkSearch() {
                                     </div>
                                 )
                             })}</p>
+                            </details>
                         </div>
                     )
                 }).slice(0, 10)}
