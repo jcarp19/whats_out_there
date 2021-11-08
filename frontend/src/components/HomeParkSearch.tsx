@@ -170,11 +170,11 @@ export default function HomeParkSearch() {
                     Click "Learn more" to get more information about our site and where you can find these
                     majestic places. Your adventure is only one click away!
                 </p>
-
-                
-                <form aria-label="addForm" role="Form" className="search_form">
-                    <label aria-label="addLabel" role="Label" htmlFor="search">
-                        <input name="search" id="search" type="text" onChange={(e) => {
+                <div className="park-search">
+                <form aria-label="addForm" role="Form" className="park-search-form">
+                <h2 className="park-search-headline">Enter your zip to find parks near you.</h2>
+                    <label className="park-search-label" aria-label="addLabel" role="Label" htmlFor="search"></label>
+                        <input className="park-search-zip" name="search" id="search" type="text" placeholder="Enter Your Zip" onChange={(e) => {
                             if (e.target.value.length == 5) {
                                 setNumParks(10);
                                 LongLat.forEach(array => {
@@ -189,8 +189,7 @@ export default function HomeParkSearch() {
 
                             }
                         }} />
-                    </label>
-                    <button aria-label="addButton" role="Button" type="submit" onClick={(e) => {
+                    <button className="park-search-button" aria-label="addButton" role="Button" type="submit" onClick={(e) => {
                         e.preventDefault();
                         console.log(zipLat);
                         console.log(zipLon);
@@ -199,13 +198,11 @@ export default function HomeParkSearch() {
                     }
                     }>Search</button>
                 </form>
+                </div>
             </div>
 
             <div className="park-list">
-                <h2 aria-label="addH2" role="H2" className="park-list-headline">Dark Parks Near You</h2>
-
-
-
+                {/* <h2 aria-label="addH2" role="H2" className="park-list-headline">Dark Parks Near You</h2> */}
                 {darkParkList.sort((a, b) => a.miles - b.miles).map((data, index) => {
                     return (
                         <div key={index} className="info-card">
