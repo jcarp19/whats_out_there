@@ -4,7 +4,7 @@ import DarkPark, { Comments, filteredParks } from "../models/DarkPark";
 import { LongLat } from "../models/LongLat";
 import getParkList from "../services/GetParkList";
 import {WeatherInterface} from "../models/WeatherInterface";
-import { getSetWeather } from "../services/GetWeather";
+import { getSetWeather, getWeekForecast } from "../services/GetWeather";
 import { Router, NavLink } from "react-router-dom"
 import { upDateOne } from "../services/GetParkList";
 import Forecast from "./Forecast";
@@ -25,6 +25,7 @@ export default function HomeParkSearch() {
     // useContext stuff. Object containing searchLat, searchLon etc.
     const [filteredParks, setFilteredParks] = useState<filteredParks[]>([]);
     const [weather, setWeather] = useState<WeatherInterface>();
+    const [forecast, setForecast] = useState<WeatherInterface>();
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("");
     const [numParks, setNumParks] = useState(0);
@@ -109,6 +110,7 @@ export default function HomeParkSearch() {
 
         console.log(searchInputs[0]);
         getSetWeather(zipLat, zipLon).then(res => setWeather(res));
+        getWeekForecast(zipLat, zipLon).then((res) => setForecast(res));
 
     }, [zipLat])
 
@@ -123,11 +125,41 @@ export default function HomeParkSearch() {
     function formatTemp(temp: any){
         let fixedTemp = temp?.toFixed()
         return fixedTemp;
+    }
+
+    function formatDateTime(unix: any) {
+        var a = new Date(unix * 1000);
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var year = a.getFullYear();
+        var month = months[a.getMonth()];
+        var date = a.getDate();
+        var hour = a.getHours() >= 12 ? a.getHours() - 12 + 'PM' : a.getHours() + 'AM';
+        if (hour == "0PM"){
+           hour = "12PM"
         }
+        // var min = a.getMinutes() < 10 ? '0' + a.getMinutes() : a.getMinutes();
+        var time = month + ' ' + date +  ' ' + hour  ;
+        return time;
+        
+      }
+    
+      function formatDate(unix: any) {
+        var a = new Date(unix * 1000);
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var year = a.getFullYear();
+        var month = months[a.getMonth()];
+        var date = a.getDate();
+        var hour = a.getHours();
+        var min = a.getMinutes() < 10 ? '0' + a.getMinutes() : a.getMinutes();
+        // var sec = a.getSeconds() < 10 ? '0' + a.getSeconds() : a.getSeconds();
+        var monthDate = month + ' ' + date ;
+        return monthDate;  
+      }
     
 
     return (
         <main>
+            {/* THIS CONTAINS BOTH NAVBAR AND WEATHER (USED FOR DESKTOP VIEW) */}
             <div className="desktop-wrap_nav_weather">
                 <nav className="navbar_home">
                     <ul>
@@ -138,7 +170,7 @@ export default function HomeParkSearch() {
                     </ul>
                 </nav>
 
-
+        {/* THIS IS THE WEATHER HEADER BEGINNING */}
                 <div className="weather_route_div_home">
                     <div className="timezone_and_conditions_div">
                         {/* Shows timezone. Automatically set to 'America/Detroit' until changed. */}
@@ -163,14 +195,62 @@ export default function HomeParkSearch() {
                     </div>
                 </div>
             </div>
+        {/* THIS IS WEATHER HEADER END */}
 
-              
+         {/* THIS IS THE FORECAST POP UP BEGINNING  */}
             <div className="modal_container hidden">
-                <Forecast/>
+                <div className="modal">
+                 <div className="modal-content">
+                     <span className="close"
+                    onClick={(e) => {document.querySelectorAll(".modal_container").forEach((item) => item.classList.toggle("hidden"));}}>
+                    &times;
+                    </span>
+                     <h2 className="modal_h2">5 Hour Forecast</h2>
+                     <div className="hourly_forecast">
+                         {forecast?.hourly.map((hour, index) => {
+                             return (
+                                  <div key={index} className="hour_info">
+                                        <p className="forecast_p">
+                                         <img className="weather_icon_img" src={
+                                        "http://openweathermap.org/img/wn/" +
+                                         hour.weather[0].icon +
+                                        "@2x.png" } alt="icon representing weather conditions" />
+                                         </p>
+                                    <div className="forecast_card">
+                                        <p className="forecast_p"> {formatDateTime(hour.dt)} </p>
+                                        <p className="forecast_p">{formatTemp(hour.temp)}°</p>
+                                    </div>
+                                </div>
+                                )
+                         }).slice(0, 5)}
+             </div>
+        
+                <h2 className="modal_h2">7 Day Forecast</h2>
+                 <div className="daily_forecast">
+                    {forecast?.daily.map((day, index) => {
+                         return <div key={index} className="daily_info">
+                        <p className="forecast_p">
+                        <img className="weather_icon_img" src={
+                         "http://openweathermap.org/img/wn/" +
+                          day.weather[0].icon +
+                        "@2x.png" } alt="icon representing weather conditions" />
+                         </p>
+                     <div className="forecast_card">
+                         <p className="forecast_p"> {formatDate(day.dt)}</p>
+                         <p className="forecast_p">{formatTemp(day.temp.day)}°</p>
+                     </div>
+                 </div>;
+                     }).slice(0,7)}
+             </div>
+        
             </div>
+         </div>
+     </div>
+    {/* THIS IS THE FORECAST POP UP ENDING */}
 
+    {/* THIS IS THE HEADER */}
             <Header />
-
+        
             <div className="welcomeP_searchForm">
                 <p aria-label="addP" role="Paragraph" className="welcome_p">Welcome! Have ever wondered of whats out there in the cosmos?
                     Do you want to find a place where you can relax and enjoy the night sky to see
