@@ -1,15 +1,13 @@
 
-
-
-
 import React, { useEffect, useState, useContext } from "react";
 import DarkPark, { Comments, filteredParks } from "../models/DarkPark";
 import { LongLat } from "../models/LongLat";
 import getParkList from "../services/GetParkList";
-import WeatherInterface from "../models/WeatherInterface";
+import {WeatherInterface} from "../models/WeatherInterface";
 import { getSetWeather } from "../services/GetWeather";
 import { Router, NavLink } from "react-router-dom"
 import { upDateOne } from "../services/GetParkList";
+import Forecast from "./Forecast";
 
 // useContext stuff
 import { SearchContext, SearchProps } from "../context/SearchProvider";
@@ -29,6 +27,7 @@ export default function HomeParkSearch() {
     const [weather, setWeather] = useState<WeatherInterface>();
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("");
+    const [hasClicked, setHasClicked] = useState(false);
 
 
 
@@ -121,6 +120,15 @@ export default function HomeParkSearch() {
 
     }
 
+    function showForecast() {
+        if (!hasClicked) {
+          setHasClicked(true);
+        } else {
+          setHasClicked(false);
+        }
+      }
+    
+
     return (
         <main>
             <div className="desktop-wrap_nav_weather">
@@ -154,11 +162,15 @@ export default function HomeParkSearch() {
                         {/* Icon representing weather */}
                         <img className="weather_icon_img" src={"http://openweathermap.org/img/wn/" + weather?.current.weather[0].icon + "@2x.png"} alt='icon representing weather conditions' />
                         {/* link to see 7-day forescast and more details */}
-                        <p className="weather_info_p">&#9432;</p>
+                        <p className="weather_info_p" onClick={(e) => {document.querySelectorAll(".modal_container").forEach(item => item.classList.toggle("hidden"))}}>&#9432;</p>
                     </div>
                 </div>
             </div>
 
+              
+            <div className="modal_container hidden">
+                <Forecast/>
+            </div>
 
             <Header />
 
