@@ -33,7 +33,7 @@ export default function DarkParkList(): any {
         return (
           <div key={index} className="info-card">
             {/* <p>{data._id}</p> */}
-            <p className="park-list-name"><a href={data.url} target="_blank">{data.name}</a></p>
+            <p className=""><a href={data.url} target="_blank">{data.name}</a></p>
             <p>{data.state}</p>
             <p>Light Pollution: {data.lightPollution}</p>
             <p>Is Camping Available?: {data.camping}</p>
