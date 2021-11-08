@@ -1,5 +1,8 @@
+/* Jim testing */
 /* ~~~~~~~~~~~~~~~ MOBILE VIEW ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
+main {
+  width: 100%;
+}
 .logo_pic {
   /* height: 5rem;
         width: 10rem; */
@@ -22,6 +25,7 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  z-index: 0;
   /* border-top: 10px solid rgba(245, 245, 245, 0.2); */
 }
 
@@ -29,25 +33,24 @@ header {
   height: 15%;
   width: 90vw;
   mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.2), #2d3047);
-  z-index: 0;
 }
 
-.welcomeP_searchForm{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.welcomeP_searchForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .welcome_p {
-    color:rgba(147, 183, 190, 1);
-    text-align: center;
-    margin: 1rem;
-    align-self: center;
+  color: rgba(147, 183, 190, 1);
+  text-align: center;
+  margin: 1rem;
+  align-self: center;
 }
 
 .search_form {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .weather_route_div {
@@ -60,7 +63,7 @@ header {
 }
 
 .weather_route_div_home {
-    display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -71,7 +74,7 @@ header {
 .timezone_h3,
 .weather_conditions_p,
 .weather_icon_img {
-  margin: .25rem;
+  margin: 0.25rem;
 }
 
 .weather_icon_img {
@@ -98,7 +101,6 @@ header {
   display: flex;
   justify-content: center;
   color: #05c7ba;
-  
 }
 
 .homepage_h1 {
@@ -107,7 +109,7 @@ header {
   color: rgba(147, 183, 190, 0.8);
   font-size: 2rem;
   margin: 0px;
-  z-index: 1;
+  z-index: 0;
 }
 
 /* Google Fonts I have linked the project to. */
@@ -137,12 +139,130 @@ header {
   color: #dde0e0;
 }
 
+/* ~~~~~~~~~~~~~~~~~~~~ FORECAST MODAL ~~~~~~~~~~~~~~~~~~` */
+.modal {
+    display: flex;
+    flex-wrap: wrap;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: rgba(147, 183, 190, 1);
+    margin: auto;
+    padding: 1rem;
+    border: 1px solid #dde0e0;
+    border-radius: 7px;
+    width: 80%; /* Could be more or less, depending on screen size */
+    height: 40rem;
+    box-sizing: content-box;
+  }
+
+  .modal_h2{
+      color: #dde0e0;
+      text-align: center;
+      margin:5px;
+      font-family:  "Alumni Sans", sans-serif;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #2d3047;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #e0ca3c;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .hour_info,
+  .daily_info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #dde0e0;
+      border-radius: 7px;
+      width: calc(28% - .01rem);
+      height: calc(30% - .02rem);
+      box-shadow: 0px 2px 10px #1d2038;
+      margin: .2rem .3rem;
+      color: #2d3047;
+      box-sizing: border-box;
+      font-size: 1rem;
+      font-family:  "Alumni Sans", sans-serif;
+  }
+
+  .daily_info{
+    width: calc(20% - .01rem);
+    height: calc(30% - .02rem);
+  }
+
+  .forecast_card {
+      background: #dde0e0;
+      width: 100%;  
+      border-radius: 0px 0px 7px 7px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      
+  }
+
+  .hourly_forecast{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+  }
+
+  .daily_forecast{
+      display: flex;
+      width: 100%;
+      /* height: 10rem; */
+      box-sizing: border-box;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+  }
+
+  .forecast_p {
+      margin: 0px;
+  }
 
 
-/* ~~~~~~~~~~~~~ PARK SERACH LIST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~ PARK SEARCH LIST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .hidden {
   display: none;
 }
+.park-search-zip {
+  box-sizing: border-box;
+  padding: 1em 2em;
+  width: 75%;
+  border: 3px solid #dde0e0;
+  border-radius: 50px;
+  margin-bottom: 0.5em;
+}
+.park-search-button {
+  padding: 1em 2.5em;
+  color: #2d3047;
+  background-color: #93b7be;
+}
+/* ~~~~~~~~~~~~~ PARK LIST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .park-list {
   max-width: 100%;
 }
@@ -161,90 +281,122 @@ header {
 .park-list-name > a:hover {
   color: #e0ca3c;
 }
-
+/* ~~~~~~~~~~~~~ COMMENT FORM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#comment-form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 100%;
+  padding-top: 1em;
+}
+.ratingInput {
+  padding: .5em 1em;
+  margin-bottom: 1em;
+}
+.commentInput {
+  padding: .5em 1em;
+  margin-bottom: 1em;
+}
+#comment-form > button {
+  padding: 1em 2.5em;
+  color: #2d3047;
+  background-color: #93b7be;
+  width: 50%;
+  align-self: center;
+}
 .navbar > ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    background: rgba(245, 245, 245, 0.2);
-    margin: 0px;
-    height: 2.25rem;
-    max-width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background: rgba(245, 245, 245, 0.2);
+  margin: 0px;
+  height: 2.25rem;
+  max-width: 100%;
 }
 
 .navbar_home > ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    background: rgba(245, 245, 245, 0.2);
-    margin: 0px;
-    height: 2.25rem;
-    max-width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background: rgba(245, 245, 245, 0.2);
+  margin: 0px;
+  height: 2.25rem;
+  max-width: 100%;
 }
 
 .navbar_p {
     color: #2D3047;
     font-family: "Alumni Sans", sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     margin: .25rem 2rem;
 }
 
 .navbar_p_home {
     color: #2D3047;
     font-family: "Alumni Sans", sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     margin: .25rem 2rem;
 }
 
 .navbar_p_home:hover {
-    color: #e0ca3c;
+  color: #e0ca3c;
 }
 
 .navbar_p:hover {
-    color: #e0ca3c;
+  color: #e0ca3c;
 }
 
 .telescope_img {
-    height: 5rem;
-    width: 5rem;
-    background: #03635D;
-    padding: 1.5rem;
-    border-radius: 50%;
+  height: 5rem;
+  width: 5rem;
+  background: #03635d;
+  padding: 1.5rem;
+  border-radius: 50%;
 }
 
 .newsfeed_h2 {
-    color: #93b7be;
-    text-align: center;
-    font-family:  "Alumni Sans", sans-serif;
-    font-size: 2rem;
-    font-weight: 400;
-    margin-top: 3rem;
+  color: #93b7be;
+  text-align: center;
+  font-family: "Alumni Sans", sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  margin-top: 3rem;
 }
 
 .newsfeed_card {
-    width: 70%;
+  width: 70%;
 }
 
-.newsArticle_div{
-    display: flex;
-    flex-direction: row-reverse;
-    margin: 1rem;
+.newsArticle_div {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 1rem;
 }
 
 .newsArticle_div_all {
-    display: flex;
-    flex-direction: row;
-    margin: 1rem;
+  display: flex;
+  flex-direction: row;
+  margin: 1rem;
 }
 
 .newsArticle_div:nth-child(2n) {
-    flex-direction: row;
+  flex-direction: row;
 }
 
 .newsArticle_div_all:nth-child(2n) {
-    flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+
+/* ~~~~~~~~~~~~~ Steph added this for the NewsFeed ~~~~~~~~~~~~ */
+.newsfeed-pix {
+  width: 70%;
+}
+
+.newsfeed-div {
+  width: 70%;
+  margin: auto;
 }
 
 /* ~~~~~~~~~~~~~ TABLET VIEW ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -266,23 +418,131 @@ header {
     width: 80vw;
   }
 
-  .navbar_p{
-      margin: .25rem 3rem;
-      font-size: 1.5rem;
+  .navbar_p {
+    margin: 0.25rem 3rem;
+    font-size: 1.5rem;
   }
 
-  .navbar_p_home{
-      margin: .25rem 3rem;
-      font-size: 1.5rem;
+  .navbar_p_home {
+    margin: 0.25rem 3rem;
+    font-size: 1.5rem;
   }
 
-  .homepage_h1{
-      font-size: 3rem;
+  .homepage_h1 {
+    font-size: 3rem;
   }
 
   .welcome_p {
     width: 60vw;
   }
+
+  /* ~~~~~~~~~~~~~~~~~~~~ TABLET VIEW FORECAST MODAL ~~~~~~~~~~~~~~~~~~` */
+.modal {
+    display: flex;
+    flex-wrap: wrap;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: rgba(147, 183, 190, 1);
+    margin: auto;
+    padding: 1rem;
+    border: 1px solid #dde0e0;
+    border-radius: 7px;
+    width: 80%; /* Could be more or less, depending on screen size */
+    height: 35rem;
+    box-sizing: content-box;
+  }
+
+  .modal_h2{
+      color: #dde0e0;
+      text-align: center;
+      margin: 1.25rem;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #2d3047;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #e0ca3c;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .hour_info,
+  .daily_info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #dde0e0;
+      border-radius: 7px;
+      width: calc(12% - .01rem);
+      height: calc(30% - .02rem);
+      box-shadow: 0px 2px 10px #1d2038;
+      margin: .2rem .3rem;
+      color: #2d3047;
+      box-sizing: border-box;
+      font-size: 1.25rem;
+  }
+
+  .hour_info{
+    width: calc(15% - .01rem);
+  }
+
+
+  .forecast_card {
+      background: #dde0e0;
+      width: 100%;  
+      border-radius: 0px 0px 7px 7px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      
+  }
+
+  .hourly_forecast{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+  }
+
+  .daily_forecast{
+      display: flex;
+      width: 100%;
+      /* height: 10rem; */
+      box-sizing: border-box;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+  }
+
+  .forecast_p {
+    margin: .5rem;
+    }
+
+    .modal_h2{
+        font-size: 2rem;
+    }
+
 
 
 }
@@ -309,38 +569,37 @@ header {
   }
 
   .navbar_home {
-      width: 60%;
+    width: 60%;
   }
 
   .navbar_home > ul {
-      height: 3rem;
-      background: none;
-      max-width: 60%;
+    height: 3rem;
+    background: none;
+    max-width: 60%;
   }
 
-  .navbar_p_home{
-    margin: .25rem 1rem;
+  .navbar_p_home {
+    margin: 0.25rem 1rem;
     font-size: 2rem;
-    }
+  }
 
-    .navbar_p{
-        font-size: 2.25rem;
-    }
+  .navbar_p {
+    font-size: 2.25rem;
+  }
 
-    .navbar > ul {
-        height: 3rem;
-    }
+  .navbar > ul {
+    height: 3rem;
+  }
 
+  .homepage_h1 {
+    font-size: 3.75rem;
+  }
 
-    .homepage_h1{
-        font-size: 3.75rem;
-    }
-
-    .desktop-wrap_nav_weather {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background:rgba(245, 245, 245, 0.2);
-        max-width: 100vw;
-    }
+  .desktop-wrap_nav_weather {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(245, 245, 245, 0.2);
+    max-width: 100vw;
+  }
 }

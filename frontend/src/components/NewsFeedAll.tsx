@@ -15,19 +15,19 @@ import NewsFeed from "./NewsFeed";
 // used type "any" to avoid errors, but switch back to "ArticlesEntity" when retrieving all the data.
 export default function NewsFeedAll() {
 
-    const [news, setNews] = useState<NewsInterface>()
-    const[articles, setArticles] = useState<ArticlesEntity[]>()
-    useEffect(() => {
-        loadNews();
-    }, [])
-    function loadNews() {
-        getNews().then(res => {
-            console.log(res)
-            // setNews(res)
-            setArticles(res.articles)
-            console.log(news)
-        })
-    }
+  const [news, setNews] = useState<NewsInterface>()
+  const [articles, setArticles] = useState<ArticlesEntity[]>()
+  useEffect(() => {
+    loadNews();
+  }, [])
+  function loadNews() {
+    getNews().then(res => {
+      console.log(res)
+      // setNews(res)
+      setArticles(res.articles)
+      console.log(news)
+    })
+  }
 
   return (
     <div aria-label = "addDiv1" role = "Div1">
@@ -47,22 +47,23 @@ export default function NewsFeedAll() {
 
 
         <div>
-            {articles?.map((article, index) => {
-                 function assignImage(index: any) {
-                    if(index%2 == 0) {
-                       let img = telescope_Right;
-                       return img;
-                    } else {
-                        let img = telescope_Left;
-                        return img;
-                    }}
-                return (
-                    <div key={index} className="newsArticle_div_all">
-                        <img src={assignImage(index)} alt="telescope inside of a circle" className="telescope_img"/>
-                        <NewsFeed title={article.title} source={article.source} description={article.description} url={article.url} image={article.image} publishedAt={article.publishedAt} content={article.content}/>
-                    </div>
-                )
-            })}
+          {articles?.map((article, index) => {
+            function assignImage(index: any) {
+              if (index % 2 == 0) {
+                let img = telescope_Right;
+                return img;
+              } else {
+                let img = telescope_Left;
+                return img;
+              }
+            }
+            return (
+              <div key={index} className="newsArticle_div_all">
+                <img src={assignImage(index)} alt="telescope inside of a circle" className="telescope_img" />
+                <NewsFeed title={article.title} source={article.source} description={article.description} url={article.url} image={article.image} publishedAt={article.publishedAt} content={article.content} />
+              </div>
+            )
+          })}
 
         </div>
       </div>

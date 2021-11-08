@@ -2,9 +2,10 @@ import React, { useEffect, useState, useContext } from "react";
 import DarkPark, { filteredParks } from "../models/DarkPark";
 import { LongLat } from "../models/LongLat";
 import getParkList from "../services/GetParkList";
-import WeatherInterface from "../models/WeatherInterface";
+import {WeatherInterface} from "../models/WeatherInterface";
 import { getSetWeather } from "../services/GetWeather";
-import { Router, NavLink } from "react-router-dom"
+import { Router, NavLink } from "react-router-dom";
+import Forecast from "../components/Forecast";
 
 // useContext stuff
 import { SearchContext, SearchProps } from "../context/SearchProvider";
@@ -22,6 +23,7 @@ export default function DarkParkSearch() {
     const [darkParkList, setDarkParkList] = useState<DarkPark[]>([]);
     const [filteredParks, setFilteredParks] = useState<filteredParks[]>([]);
     const [weather, setWeather] = useState<WeatherInterface>();
+    const [numParks, setNumParks] = useState(0);
 
 
     // const[searchLatLon, setSearchLatLon] = useState<SearchProps>({searchLat: zipLat, searchLon: zipLon});
@@ -78,6 +80,11 @@ export default function DarkParkSearch() {
 
     }
 
+    function formatTemp(temp: any){
+        let fixedTemp = temp?.toFixed()
+        return fixedTemp;
+        }
+
 
     return (
         <>
@@ -108,35 +115,37 @@ export default function DarkParkSearch() {
 
                 <div className="temp_icon_details_div">
                     {/* temperature */}
-                    <p className="temp_p">{weather?.current.temp}°</p>
+                    <p className="temp_p">{formatTemp(weather?.current.temp)}°</p>
                     {/* Icon representing weather */}
                     <img className="weather_icon_img" src={"http://openweathermap.org/img/wn/" + weather?.current.weather[0].icon + "@2x.png"} alt='icon representing weather conditions' />
                     {/* link to see 7-day forescast and more details */}
-                    <p className="weather_info_p">&#9432;</p>
+                    <p className="weather_info_p" onClick={(e) => {document.querySelectorAll(".modal_container").forEach(item => item.classList.toggle("hidden"))}}>&#9432;</p>
                 </div>
             </div>
 
+            <div className="modal_container hidden">
+                <Forecast/>
+            </div>
 
+            <div className="park-search">
+            <form className="park-search-form" aria-label="addForm" role="Form" onSubmit={(e) => { console.log(searchInputs); }}>
+            <h2 className="park-search-headline">Enter your zip to find parks near you.</h2>
+                <label className="park-search-label" aria-label="addLabel" role="Label" htmlFor="search"></label>
 
-            <form aria-label="addForm" role="Form" onSubmit={(e) => { console.log(searchInputs); }}>
-                <label aria-label="addLabel" role="Label" htmlFor="search">
-                    <input name="search" id="search" type="text" onChange={(e) => {
+                    <input className="park-search-zip" name="search" id="search" type="text" placeholder="Enter Your Zip" onChange={(e) => {
                         if (e.target.value.length == 5) {
                             LongLat.forEach(array => {
+                                setNumParks(10);
                                 if (array[0] == e.target.value) {
                                     setZipLat(array[1]);
                                     setZipLon(array[2]);
                                 }
-
                                 // let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: true};
                                 searchInputs.unshift({ searchLat: zipLat, searchLon: zipLon, hasSearched: true });
-
-
                             })
                         }
                     }} />
-                </label>
-                <button aria-label="addButton" role="Button" type="submit" onClick={(e) => {
+                <button className="park-search-button" aria-label="addButton" role="Button" type="submit" onClick={(e) => {
                     e.preventDefault();
                     console.log(zipLat);
                     console.log(zipLon);
@@ -149,31 +158,22 @@ export default function DarkParkSearch() {
                     //     searchInputs.unshift(searchLatLon);
                     //     console.log(searchLatLon);
                     // }
-
-                    (document.querySelector(".hidden") as HTMLButtonElement).style.display = "block";
-
                 }
                 }>Search</button>
             </form>
-            <div className="park-list hidden">
-                <h2 aria-label="addH2" role="H2" className="park-list-headline">Dark Parks Near You</h2>
+            </div>
 
-
+            <div className="park-list">
                 {darkParkList.sort((a, b) => a.miles - b.miles).map((data, index) => {
                     return (
                         <div key={index} className="info-card">
-                            <p>{data._id}</p>
                             <p className="park-list-name"><a href={data.url} target="_blank">{data.name}</a></p>
                             <p>{data.state}</p>
                             <p>{data.description}</p>
                             <p>{data.miles} miles from your location.</p>
                         </div>
                     )
-                }).slice(0, 10)}
-
-
-
-
+                }).slice(0, numParks)}
             </div>
         </>
     )
