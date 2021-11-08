@@ -15,11 +15,11 @@ export default function DarkParkSearch() {
     // receive zip code from form
     // make sure it's on the list. If not return an err message
     // return lon/lat , 
-    const [zipLat, setZipLat] = useState(42.33);
-    const [zipLon, setZipLon] = useState(-83.04);
-    const [darkParkList, setDarkParkList] = useState<DarkPark[]>([]);
     // useContext stuff. Object containing searchLat, searchLon etc.
-    const { searchInputs, loadWeatherByLocation } = useContext(SearchContext);
+    const {searchInputs, loadWeatherByLocation} = useContext(SearchContext);
+    const [zipLat, setZipLat] = useState(searchInputs[0].searchLat);
+    const [zipLon, setZipLon] = useState(searchInputs[0].searchLon);
+    const [darkParkList, setDarkParkList] = useState<DarkPark[]>([]);
     const [filteredParks, setFilteredParks] = useState<filteredParks[]>([]);
     const [weather, setWeather] = useState<WeatherInterface>();
 

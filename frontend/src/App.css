@@ -187,14 +187,14 @@ header {
 .navbar_p {
     color: #2D3047;
     font-family: "Alumni Sans", sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin: .25rem 2rem;
 }
 
 .navbar_p_home {
     color: #2D3047;
     font-family: "Alumni Sans", sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin: .25rem 2rem;
 }
 
@@ -214,14 +214,37 @@ header {
     border-radius: 50%;
 }
 
+.newsfeed_h2 {
+    color: #93b7be;
+    text-align: center;
+    font-family:  "Alumni Sans", sans-serif;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-top: 3rem;
+}
+
+.newsfeed_card {
+    width: 70%;
+}
+
 .newsArticle_div{
     display: flex;
     flex-direction: row-reverse;
     margin: 1rem;
 }
 
+.newsArticle_div_all {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+}
+
 .newsArticle_div:nth-child(2n) {
     flex-direction: row;
+}
+
+.newsArticle_div_all:nth-child(2n) {
+    flex-direction: row-reverse;
 }
 
 /* ~~~~~~~~~~~~~ TABLET VIEW ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -245,6 +268,12 @@ header {
 
   .navbar_p{
       margin: .25rem 3rem;
+      font-size: 1.5rem;
+  }
+
+  .navbar_p_home{
+      margin: .25rem 3rem;
+      font-size: 1.5rem;
   }
 
   .homepage_h1{

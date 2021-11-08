@@ -5,16 +5,16 @@
 import { ArticlesEntity } from "../models/NewsInterface";
 
 // used type "any" to avoid errors, but switch back to "ArticlesEntity" when retrieving all the data.
-export default function NewsFeed({ title, author, url, description, content }: ArticlesEntity) {
+export default function NewsFeed({title, url, description, content, publishedAt, image}: ArticlesEntity) {
 
     return (
-        <div className="info-card">
-            <p className="newsfeed_title"><a href={url} className="newsfeed_url">{title}</a></p>
-            <p className="newsfeed_author">{author}</p>
-            <p className="newsfeed_description">{description}</p>
+        <div className="info-card newsfeed_card">
+            <p className="newsfeed_title">{title}</p>
+            <a href={url} className="newsfeed_url">Click to read full story</a>
             <details>
-                <summary>Full Story</summary>
-                <p className="newsfeed_content">{content}</p>
+                <summary>Description</summary>
+                <p className="newsfeed_content">{description}</p>
+               
             </details>
         </div>
     )
@@ -30,3 +30,7 @@ export default function NewsFeed({ title, author, url, description, content }: A
 // //  01506b975fb14e549a407f6016bb935b
 // // https://newsapi.org/v2/everything?domains=nasa.gov&apiKey=01506b975fb14e549a407f6016bb935b
 // // https://newsapi.org/
+
+
+// gnews
+// key: b1699b1b5b5eaa294a088cd7eb40de6a
