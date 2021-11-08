@@ -26,28 +26,31 @@ export default function DarkParkList(): any {
   return (
     <div>
       <DarkParkSearch />
-      <h2 aria-label="addH2" role="H2" className="park-list-headline">Full Dark Park List</h2>
+      <div className="park-list">
+        <h2 aria-label="addH2" role="H2" className="park-list-headline">Full Dark Park List</h2>
 
-      {darkParkList.map((data, index) => {
-        console.log(data);
-        return (
-          <div key={index} className="info-card">
-            {/* <p>{data._id}</p> */}
-            <p className=""><a href={data.url} target="_blank">{data.name}</a></p>
-            <p>{data.state}</p>
-            <p>Light Pollution: {data.lightPollution}</p>
-            <p>Is Camping Available?: {data.camping}</p>
-            <p>Fee: {data.fee}</p>
-            <p>{data.description}</p>
-            <details>
-              <summary>Click for Full Address</summary>
-              <p>Address: {data.address}</p>
-            </details>
-          </div>
-        )
-      })}
+        {darkParkList.map((data, index) => {
+          console.log(data);
+          return (
+            <div key={index} className="info-card">
+              {/* <p>{data._id}</p> */}
+              <p className="park-list-name"><a href={data.url} target="_blank">{data.name}</a></p>
+              <p>{data.state}</p>
+              <p>Light Pollution: {data.lightPollution}</p>
+              <p>Is Camping Available?: {data.camping}</p>
+              <p>Fee: {data.fee}</p>
+              <p>{data.description}</p>
+              <details>
+                <summary>Click for Full Address</summary>
+                <p>Address: {data.address}</p>
+              </details>
+            </div>
+          )
+        })}
+
+      </div>
 
     </div>
   )
-  
+
 }
