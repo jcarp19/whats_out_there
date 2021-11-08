@@ -1,5 +1,7 @@
 /* ~~~~~~~~~~~~~~~ MOBILE VIEW ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
+main {
+  width: 100%;
+}
 .logo_pic {
   /* height: 5rem;
         width: 10rem; */
@@ -133,15 +135,44 @@ header {
   margin: 1rem;
   border-radius: 7px;
   background-color: rgba(147, 183, 190, 0.25);
+  color: #dde0e0;
 }
 
-/* ~~~~~~~~~~~~~ PARK SERACH LIST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-.hidden {
-  display: none;
+/* ~~~~~~~~~~~~~ PARK SERACH FORM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.park-search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
 }
+.park-search-headline {
+  color: #dde0e0;
+}
+.park-search-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.park-search-label {
+  width: 100%;
+}
+.park-search-zip {
+  box-sizing: border-box;
+  padding: 1em 2em;
+  width: 75%;
+  border: 3px solid #dde0e0;
+  border-radius: 50px;
+  margin-bottom: 0.5em;
+}
+.park-search-button {
+  padding: 1em 2.5em;
+  color: #2d3047;
+  background-color: #93b7be;
+}
+/* ~~~~~~~~~~~~~ PARK LIST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .park-list {
   max-width: 100%;
-  color: #dde0e0;
 }
 .park-list-headline {
   color: rgba(147, 183, 190, 1);

@@ -11,9 +11,9 @@ export default function NewsFeed({ title, url, description, content, publishedAt
         <div className="info-card newsfeed_card">
             <p className="newsfeed_title">{title}</p>
             <div className="newsfeed-div"><img className="newsfeed-pix" src={image} /></div>
-            <a href={url} className="newsfeed_url">Click to read full story</a>
             <details>
-                <summary>Description</summary>
+                <summary>More Details</summary>
+                <a href={url} className="newsfeed_url">Click to read full story</a>
                 <p className="newsfeed_content">{description}</p>
 
             </details>
