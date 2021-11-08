@@ -5,16 +5,17 @@
 import { ArticlesEntity } from "../models/NewsInterface";
 
 // used type "any" to avoid errors, but switch back to "ArticlesEntity" when retrieving all the data.
-export default function NewsFeed({title, url, description, content, publishedAt, image}: ArticlesEntity) {
+export default function NewsFeed({ title, url, description, content, publishedAt, image }: ArticlesEntity) {
 
     return (
         <div className="info-card newsfeed_card">
             <p className="newsfeed_title">{title}</p>
-            <a href={url} className="newsfeed_url">Click to read full story</a>
+            <div className="newsfeed-div"><img className="newsfeed-pix" src={image} /></div>
             <details>
-                <summary>Description</summary>
+                <summary>More Details</summary>
+                <a href={url} className="newsfeed_url">Click to read full story</a>
                 <p className="newsfeed_content">{description}</p>
-               
+
             </details>
         </div>
     )

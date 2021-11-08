@@ -23,7 +23,8 @@ export default function DarkParkSearch() {
     const [darkParkList, setDarkParkList] = useState<DarkPark[]>([]);
     const [filteredParks, setFilteredParks] = useState<filteredParks[]>([]);
     const [weather, setWeather] = useState<WeatherInterface>();
- 
+    const [numParks, setNumParks] = useState(0);
+
 
     // const[searchLatLon, setSearchLatLon] = useState<SearchProps>({searchLat: zipLat, searchLon: zipLon});
 
@@ -126,25 +127,25 @@ export default function DarkParkSearch() {
                 <Forecast/>
             </div>
 
-            <form aria-label="addForm" role="Form" onSubmit={(e) => { console.log(searchInputs); }}>
-                <label aria-label="addLabel" role="Label" htmlFor="search">
-                    <input name="search" id="search" type="text" onChange={(e) => {
+            <div className="park-search">
+            <form className="park-search-form" aria-label="addForm" role="Form" onSubmit={(e) => { console.log(searchInputs); }}>
+            <h2 className="park-search-headline">Enter your zip to find parks near you.</h2>
+                <label className="park-search-label" aria-label="addLabel" role="Label" htmlFor="search"></label>
+
+                    <input className="park-search-zip" name="search" id="search" type="text" placeholder="Enter Your Zip" onChange={(e) => {
                         if (e.target.value.length == 5) {
                             LongLat.forEach(array => {
+                                setNumParks(10);
                                 if (array[0] == e.target.value) {
                                     setZipLat(array[1]);
                                     setZipLon(array[2]);
                                 }
-
                                 // let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: true};
                                 searchInputs.unshift({ searchLat: zipLat, searchLon: zipLon, hasSearched: true });
-
-
                             })
                         }
                     }} />
-                </label>
-                <button aria-label="addButton" role="Button" type="submit" onClick={(e) => {
+                <button className="park-search-button" aria-label="addButton" role="Button" type="submit" onClick={(e) => {
                     e.preventDefault();
                     console.log(zipLat);
                     console.log(zipLon);
@@ -157,31 +158,22 @@ export default function DarkParkSearch() {
                     //     searchInputs.unshift(searchLatLon);
                     //     console.log(searchLatLon);
                     // }
-
-                    (document.querySelector(".hidden") as HTMLButtonElement).style.display = "block";
-
                 }
                 }>Search</button>
             </form>
-            <div className="park-list hidden">
-                <h2 aria-label="addH2" role="H2" className="park-list-headline">Dark Parks Near You</h2>
+            </div>
 
-
+            <div className="park-list">
                 {darkParkList.sort((a, b) => a.miles - b.miles).map((data, index) => {
                     return (
                         <div key={index} className="info-card">
-                            <p>{data._id}</p>
                             <p className="park-list-name"><a href={data.url} target="_blank">{data.name}</a></p>
                             <p>{data.state}</p>
                             <p>{data.description}</p>
                             <p>{data.miles} miles from your location.</p>
                         </div>
                     )
-                }).slice(0, 10)}
-
-
-
-
+                }).slice(0, numParks)}
             </div>
         </>
     )
