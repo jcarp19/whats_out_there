@@ -25,9 +25,10 @@ export default function DarkParkDetails() {
                 Do you want to find a place where you can relax and enjoy the night sky to see 
                 an immense amount of stars and enjoy the scenery? Well this is the website for you!.
                 Click "Learn more" to get more information about the various parks where you can find these
-                majestic places. Your adventure is only one click away!
+                majestic places. 
             </p>
-            <a href="Learn More">Learn More</a>
+            <p aria-label = "addP2" role = "P2">Your adventure is only one click away!</p>
+            <a aria-label = "addAnchor" role = "Anchor" href="Learn More">Learn More</a>
 
         </div>
     )
