@@ -133,7 +133,8 @@ header {
   padding: 1rem;
   margin: 1rem;
   border-radius: 7px;
-  background-color: rgba(147, 183, 190, 0.25)
+  background-color: rgba(147, 183, 190, 0.25);
+  color: #dde0e0;
 }
 
 
@@ -144,7 +145,6 @@ header {
 }
 .park-list {
   max-width: 100%;
-  color: #dde0e0;
 }
 .park-list-headline {
   color: rgba(147, 183, 190, 1);

@@ -29,6 +29,7 @@ export default function HomeParkSearch() {
     const [weather, setWeather] = useState<WeatherInterface>();
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("");
+    const [numParks, setNumParks] = useState(0);
 
 
 
@@ -170,11 +171,12 @@ export default function HomeParkSearch() {
                     majestic places. Your adventure is only one click away!
                 </p>
 
-
+                
                 <form aria-label="addForm" role="Form" className="search_form">
                     <label aria-label="addLabel" role="Label" htmlFor="search">
                         <input name="search" id="search" type="text" onChange={(e) => {
                             if (e.target.value.length == 5) {
+                                setNumParks(10);
                                 LongLat.forEach(array => {
                                     if (array[0] == e.target.value) {
                                         setZipLat(array[1]);
@@ -194,15 +196,12 @@ export default function HomeParkSearch() {
                         console.log(zipLon);
                         let searchLatLon = { searchLat: zipLat, searchLon: zipLon, hasSearched: true };
                         searchInputs.unshift(searchLatLon);
-
-                        (document.querySelector(".hidden") as HTMLButtonElement).style.display = "block";
-
                     }
                     }>Search</button>
                 </form>
             </div>
 
-            <div className="park-list hidden">
+            <div className="park-list">
                 <h2 aria-label="addH2" role="H2" className="park-list-headline">Dark Parks Near You</h2>
 
 
@@ -210,7 +209,6 @@ export default function HomeParkSearch() {
                 {darkParkList.sort((a, b) => a.miles - b.miles).map((data, index) => {
                     return (
                         <div key={index} className="info-card">
-                            <p>{data._id}</p>
                             <p className="park-list-name"><a href={data.url} target="_blank">{data.name}</a></p>
                             <p>{data.state}</p>
                             <p>{data.description}</p>
@@ -245,18 +243,18 @@ export default function HomeParkSearch() {
                                         Submit Comment
                                     </button>
                                 </form>
-                                <p>{data.comments.map((comment, index) => {
+                                <div>{data.comments.map((comment, index) => {
                                     return (
-                                        <div>
+                                        <div key={index}>
                                             <p>{comment.rating}</p>
                                             <p>{comment.comment}</p>
                                         </div>
                                     )
-                                })}</p>
+                                })}</div>
                             </details>
                         </div>
                     )
-                }).slice(0, 10)}
+                }).slice(0, numParks)}
             </div>
         </main >
     )
