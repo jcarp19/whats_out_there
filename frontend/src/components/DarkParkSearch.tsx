@@ -2,9 +2,10 @@ import React, { useEffect, useState, useContext } from "react";
 import DarkPark, { filteredParks } from "../models/DarkPark";
 import { LongLat } from "../models/LongLat";
 import getParkList from "../services/GetParkList";
-import WeatherInterface from "../models/WeatherInterface";
+import {WeatherInterface} from "../models/WeatherInterface";
 import { getSetWeather } from "../services/GetWeather";
-import { Router, NavLink } from "react-router-dom"
+import { Router, NavLink } from "react-router-dom";
+import Forecast from "../components/Forecast";
 
 // useContext stuff
 import { SearchContext, SearchProps } from "../context/SearchProvider";
@@ -79,6 +80,11 @@ export default function DarkParkSearch() {
 
     }
 
+    function formatTemp(temp: any){
+        let fixedTemp = temp?.toFixed()
+        return fixedTemp;
+        }
+
 
     return (
         <>
@@ -109,12 +115,16 @@ export default function DarkParkSearch() {
 
                 <div className="temp_icon_details_div">
                     {/* temperature */}
-                    <p className="temp_p">{weather?.current.temp}°</p>
+                    <p className="temp_p">{formatTemp(weather?.current.temp)}°</p>
                     {/* Icon representing weather */}
                     <img className="weather_icon_img" src={"http://openweathermap.org/img/wn/" + weather?.current.weather[0].icon + "@2x.png"} alt='icon representing weather conditions' />
                     {/* link to see 7-day forescast and more details */}
-                    <p className="weather_info_p">&#9432;</p>
+                    <p className="weather_info_p" onClick={(e) => {document.querySelectorAll(".modal_container").forEach(item => item.classList.toggle("hidden"))}}>&#9432;</p>
                 </div>
+            </div>
+
+            <div className="modal_container hidden">
+                <Forecast/>
             </div>
 
             <div className="park-search">

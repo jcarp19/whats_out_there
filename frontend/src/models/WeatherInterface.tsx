@@ -1,12 +1,12 @@
-export default interface WeatherInterface {
+export interface WeatherInterface {
   lat: number;
   lon: number;
   timezone: string;
   timezone_offset: number;
   current: Current;
-  minutely?: MinutelyEntity[] | null;
+  hourly: (HourlyEntity)[];
+  daily: (DailyEntity)[];
 }
-
 export interface Current {
   dt: number;
   sunrise: number;
@@ -21,8 +21,7 @@ export interface Current {
   visibility: number;
   wind_speed: number;
   wind_deg: number;
-  wind_gust: number;
-  weather: WeatherEntity[];
+  weather: (WeatherEntity)[];
 }
 export interface WeatherEntity {
   id: number;
@@ -30,8 +29,54 @@ export interface WeatherEntity {
   description: string;
   icon: string;
 }
-
-export interface MinutelyEntity {
+export interface HourlyEntity {
   dt: number;
-  precipitation: number;
+  temp: number;
+  feels_like: number;
+  pressure: number;
+  humidity: number;
+  dew_point: number;
+  uvi: number;
+  clouds: number;
+  visibility: number;
+  wind_speed: number;
+  wind_deg: number;
+  wind_gust: number;
+  weather: (WeatherEntity)[];
+  pop: number;
+}
+export interface DailyEntity {
+  dt: number;
+  sunrise: number;
+  sunset: number;
+  moonrise: number;
+  moonset: number;
+  moon_phase: number;
+  temp: Temp;
+  feels_like: FeelsLike;
+  pressure: number;
+  humidity: number;
+  dew_point: number;
+  wind_speed: number;
+  wind_deg: number;
+  wind_gust: number;
+  weather: (WeatherEntity)[];
+  clouds: number;
+  pop: number;
+  uvi: number;
+  rain?: number | null;
+}
+export interface Temp {
+  day: number;
+  min: number;
+  max: number;
+  night: number;
+  eve: number;
+  morn: number;
+}
+export interface FeelsLike {
+  day: number;
+  night: number;
+  eve: number;
+  morn: number;
 }
