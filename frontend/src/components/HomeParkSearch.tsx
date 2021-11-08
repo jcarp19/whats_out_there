@@ -230,7 +230,7 @@ export default function HomeParkSearch() {
 
 
                                     <label htmlFor="rating">Rating:</label>
-                                    <input placeholder="rating" className="ratingInput" type="number" name="rating" onChange={(e) => { setRating(e.target.valueAsNumber) }}></input>
+                                    <input placeholder="rating" className="ratingInput" type="number" max="10" min="1" name="rating" onChange={(e) => { setRating(e.target.valueAsNumber) }}></input>
 
 
                                     <label htmlFor="comment">Comment:</label>
