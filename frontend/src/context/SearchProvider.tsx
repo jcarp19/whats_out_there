@@ -1,5 +1,5 @@
 import React, {ReactNode, useState, createContext} from "react";
-import WeatherInterface from "../models/WeatherInterface";
+import {WeatherInterface} from "../models/WeatherInterface";
 import DarkPark from "../models/DarkPark";
 import { getSetWeather, getWeatherByLocation } from "../services/GetWeather";
 

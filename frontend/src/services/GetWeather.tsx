@@ -1,5 +1,5 @@
 import axios from "axios";
-import WeatherInterface from "../models/WeatherInterface"
+import {WeatherInterface} from "../models/WeatherInterface"
 
 const weatherKey = process.env.REACT_APP_WEATHER_API || '';
 
@@ -21,4 +21,10 @@ export function getWeatherByLocation(lat?:any | "42.33", lon?:any){
     (`https://api.openweathermap.org/data/2.5/onecall?&lat=${lat}&lon=${lon}&exclude=hourly,daily&units=imperial&appid=${weatherKey}`)
     .then(res => res.data)
 
+}
+
+export function getWeekForecast(lat: any, lon: any): Promise<WeatherInterface>{
+    return axios.get<WeatherInterface>
+    (`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&units=imperial&appid=${weatherKey}`)
+    .then(res => res.data)
 }
