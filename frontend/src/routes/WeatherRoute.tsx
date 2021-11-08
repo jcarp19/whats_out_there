@@ -30,6 +30,10 @@ export default function WeatherRoute() {
     return timeZone;
   }
 
+  function formatTemp(temp: any){
+    let fixedTemp = temp?.toFixed()
+    return fixedTemp;
+    }
  
   return (
     <>
@@ -50,7 +54,7 @@ export default function WeatherRoute() {
 
         <div className="temp_icon_details_div">
           {/* temperature */}
-          <p className="temp_p">{weather?.current.temp}°</p>
+          <p className="temp_p">{formatTemp(weather?.current.temp)}°</p>
           {/* Icon representing weather */}
           <img
             className="weather_icon_img"

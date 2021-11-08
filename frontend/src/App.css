@@ -138,7 +138,8 @@ header {
 
 /* ~~~~~~~~~~~~~~~~~~~~ FORECAST MODAL ~~~~~~~~~~~~~~~~~~` */
 .modal {
-    display: flex; /* Hidden by default */
+    display: flex;
+    flex-wrap: wrap;
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
@@ -153,11 +154,20 @@ header {
   /* Modal Content/Box */
   .modal-content {
     background-color: rgba(147, 183, 190, 1);
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: auto;
     padding: 1rem;
     border: 1px solid #dde0e0;
     border-radius: 7px;
     width: 80%; /* Could be more or less, depending on screen size */
+    height: 40rem;
+    box-sizing: content-box;
+  }
+
+  .modal_h2{
+      color: #dde0e0;
+      text-align: center;
+      margin:5px;
+      font-family:  "Alumni Sans", sans-serif;
   }
   
   /* The Close Button */
@@ -175,8 +185,64 @@ header {
     cursor: pointer;
   }
 
+  .hour_info,
+  .daily_info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #dde0e0;
+      border-radius: 7px;
+      width: calc(28% - .01rem);
+      height: calc(30% - .02rem);
+      box-shadow: 0px 2px 10px #1d2038;
+      margin: .2rem .3rem;
+      color: #2d3047;
+      box-sizing: border-box;
+      font-size: 1rem;
+      font-family:  "Alumni Sans", sans-serif;
+  }
 
-/* ~~~~~~~~~~~~~ PARK SERACH LIST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+  .daily_info{
+    width: calc(20% - .01rem);
+    height: calc(30% - .02rem);
+  }
+
+  .forecast_card {
+      background: #dde0e0;
+      width: 100%;  
+      border-radius: 0px 0px 7px 7px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      
+  }
+
+  .hourly_forecast{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+  }
+
+  .daily_forecast{
+      display: flex;
+      width: 100%;
+      /* height: 10rem; */
+      box-sizing: border-box;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+  }
+
+  .forecast_p {
+      margin: 0px;
+  }
+
+
+/* ~~~~~~~~~~~~~ PARK SEARCH LIST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .hidden {
   display: none;
 }
@@ -225,14 +291,14 @@ header {
 .navbar_p {
     color: #2D3047;
     font-family: "Alumni Sans", sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     margin: .25rem 2rem;
 }
 
 .navbar_p_home {
     color: #2D3047;
     font-family: "Alumni Sans", sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     margin: .25rem 2rem;
 }
 
@@ -321,6 +387,114 @@ header {
   .welcome_p {
     width: 60vw;
   }
+
+  /* ~~~~~~~~~~~~~~~~~~~~ TABLET VIEW FORECAST MODAL ~~~~~~~~~~~~~~~~~~` */
+.modal {
+    display: flex;
+    flex-wrap: wrap;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: rgba(147, 183, 190, 1);
+    margin: auto;
+    padding: 1rem;
+    border: 1px solid #dde0e0;
+    border-radius: 7px;
+    width: 80%; /* Could be more or less, depending on screen size */
+    height: 35rem;
+    box-sizing: content-box;
+  }
+
+  .modal_h2{
+      color: #dde0e0;
+      text-align: center;
+      margin: 1.25rem;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #2d3047;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #e0ca3c;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .hour_info,
+  .daily_info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #dde0e0;
+      border-radius: 7px;
+      width: calc(12% - .01rem);
+      height: calc(30% - .02rem);
+      box-shadow: 0px 2px 10px #1d2038;
+      margin: .2rem .3rem;
+      color: #2d3047;
+      box-sizing: border-box;
+      font-size: 1.25rem;
+  }
+
+  .hour_info{
+    width: calc(15% - .01rem);
+  }
+
+
+  .forecast_card {
+      background: #dde0e0;
+      width: 100%;  
+      border-radius: 0px 0px 7px 7px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      
+  }
+
+  .hourly_forecast{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+  }
+
+  .daily_forecast{
+      display: flex;
+      width: 100%;
+      /* height: 10rem; */
+      box-sizing: border-box;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+  }
+
+  .forecast_p {
+    margin: .5rem;
+    }
+
+    .modal_h2{
+        font-size: 2rem;
+    }
+
 
 
 }
