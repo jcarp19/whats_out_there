@@ -30,12 +30,12 @@ export default function LearnMore() {
 
             <WeatherRoute/>
 
-            <div className = "BackgroundImage" style={{backgroundImage: `url(${picURL?.url})`}}>
-            <h1 aria-label = "h1" role = "addh1">Learn More about our Parks</h1>
+            <div className = "BackgroundImage">
+            <h1 aria-label = "addh1" role = "h1">Learn More about our Parks</h1>
             <p>Below lists the Designations from the International Dark-Sky Association</p>
             <p>We added in parks recommened by astronomers and photographers where you can witness some spectacular star gazing</p>
             
-            <blockquote cite="https://www.darksky.org/our-work/conservation/idsp/become-a-dark-sky-place/">
+            <blockquote className = "Terms" cite="https://www.darksky.org/our-work/conservation/idsp/become-a-dark-sky-place/">
             Terms and Definitions for Eligibility for Dark Sky Park Level: 
             
             Eligibility:The eligibility of sites for participation in the International Dark Sky Places program depends on the category of the designation sought.
@@ -56,9 +56,10 @@ export default function LearnMore() {
             or 50,000 or more people if defined as a “metro area” of two or more adjoining municipalities. 
             There is no night sky quality criterion associated with this category.
             </blockquote>
+            
 
             <h2>Tips for Star Gazing</h2>
-            <div>
+            <div className = "border">
             <ul>
                 <li>
                     First Tip: Get up to a high point with less view obstruction. 
@@ -71,6 +72,8 @@ export default function LearnMore() {
                 </li>
             </ul>
             </div> 
+
+            <div className = "borderSources">
             <h3>Sources</h3>
 
             <ul>
@@ -82,13 +85,16 @@ export default function LearnMore() {
                    
                 </li>
             </ul>
+            </div>
 
 
             <img src="" alt=""/>
             <img src="" alt=""/>
 
             </div>
-        </div>
+            </div>
+             
+        
     )
 }
 

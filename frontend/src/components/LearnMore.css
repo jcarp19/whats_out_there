@@ -1,16 +1,56 @@
 
 .BackgroundImage {
-
-    background-image: url("https://apod.nasa.gov/apod/image/2111/panohugoetmoiAPODjpg-standard1024.jpg");
-    padding-top: 305px;
-    object-fit: cover;
-    color: aquamarine
     
+    background-image: url("https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/potw2101a_0.jpg");
+    padding-top: 305px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+    color: #dde0e0
+    
+    
+}
+
+.border {
+    box-sizing: border-box;
+    border: 1px solid #dde0e0;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 10px;
+    background-color: rgb(147,183,190, .25); 
+
+}
+
+.borderSources {
+    box-sizing: border-box;
+    border: 1px solid #dde0e0;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 10px;
+    background-color: rgb(147,183,190, .25); 
+}
+
+.Terms {
+    box-sizing: border-box;
+    border: 1px solid #dde0e0;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 10px;
+    background-color: rgb(147,183,190, .25); 
 }
 
 h1 {
     
     margin-top: -196px;
+    color: rgba(147, 183, 190, 1);
+}
+
+h2 {
+    color: rgba(147, 183, 190, 1);
+}
+
+h3 {
+    color: rgba(147, 183, 190, 1);
 }
 
 body {
