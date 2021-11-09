@@ -32,7 +32,7 @@ export default function DarkParkList(): any {
         {darkParkList.map((data, index) => {
           console.log(data);
           return (
-            <div key={index} className="info-card">
+            <div key={index} className="info-card park-list-card">
               {/* <p>{data._id}</p> */}
               <p className="park-list-name"><a href={data.url} target="_blank">{data.name}</a></p>
               <p>{data.state}</p>
