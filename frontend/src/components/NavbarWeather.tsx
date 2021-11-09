@@ -1,7 +1,9 @@
 import { WeatherInterface} from "../models/WeatherInterface";
 import { NavLink } from "react-router-dom";
 import Forecast from "../components/Forecast"
-
+import { getWeekForecast } from "../services/GetWeather";
+import { SearchContext } from "../context/SearchProvider";
+import { useContext, useState } from "react";
 
 interface Props {
     weather?: WeatherInterface;
@@ -9,6 +11,8 @@ interface Props {
 }
 
 export default function NavbarWeather({weather, forecast}: Props) {
+    const [forecast2, setForecast2] = useState<WeatherInterface>();
+    const { searchInputs } = useContext(SearchContext);
     
     function formatWeather() {
         let timeZone = weather?.timezone;
@@ -58,12 +62,13 @@ export default function NavbarWeather({weather, forecast}: Props) {
                         {/* link to see 7-day forescast and more details */}
                         <p onClick={(e) => {
                             e.preventDefault();
+                            getWeekForecast(searchInputs[0].searchLat, searchInputs[0].searchLon).then(res => setForecast2(res))
                             document.querySelectorAll(".modal_container").forEach(item => item.classList.toggle("hidden"))}} className="weather_info_p" >&#9432;</p>
                     </div>
                 </div>
 
                 <div className="modal_container hidden">
-                    <Forecast forecast={forecast}/>
+                    <Forecast forecast={forecast2}/>
                 </div>
             </div>
 
