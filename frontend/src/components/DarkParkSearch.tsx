@@ -149,15 +149,8 @@ export default function DarkParkSearch() {
                     e.preventDefault();
                     console.log(zipLat);
                     console.log(zipLon);
-                    // if(searchInputs[0].hasSearched == false) {
-                    //     let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: true};
-                    //     searchInputs.unshift(searchLatLon);
-                    //     console.log(searchLatLon);
-                    // } else {
-                    //     let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: false};
-                    //     searchInputs.unshift(searchLatLon);
-                    //     console.log(searchLatLon);
-                    // }
+                    let searchLatLon = { searchLat: zipLat, searchLon: zipLon, hasSearched: true };
+                    searchInputs.unshift(searchLatLon);
                 }
                 }>Search</button>
             </form>

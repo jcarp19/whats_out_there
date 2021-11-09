@@ -30,7 +30,7 @@ export default function NewsFeedAll() {
   }
 
   return (
-    <div>
+    <div aria-label = "addDiv1" role = "Div1">
       <nav className="navbar">
         <ul>
           <li><NavLink to="/" style={{ textDecoration: "none" }}><p className="navbar_p">Home</p></NavLink></li>
@@ -43,7 +43,7 @@ export default function NewsFeedAll() {
       <WeatherRoute />
 
       <div>
-        <h2 aria-label="addH2" role="H2" className="park-list-headline">Top 10 News Stories</h2>
+        <h2 className="park-list-headline">Top 10 News Stories</h2>
 
 
         <div>
