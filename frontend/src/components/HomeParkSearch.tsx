@@ -1,29 +1,25 @@
 
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import DarkPark, { Comments, filteredParks } from "../models/DarkPark";
 import { LongLat } from "../models/LongLat";
 import getParkList from "../services/GetParkList";
 import {WeatherInterface} from "../models/WeatherInterface";
 import { getSetWeather, getWeekForecast } from "../services/GetWeather";
-import { Router, NavLink } from "react-router-dom"
 import { upDateOne } from "../services/GetParkList";
-import Forecast from "./Forecast";
-
 // useContext stuff
-import { SearchContext, SearchProps } from "../context/SearchProvider";
+import { SearchContext } from "../context/SearchProvider";
 import Header from "./Header";
+import NavbarWeather from "./NavbarWeather";
 
 
 export default function HomeParkSearch() {
     // receive zip code from form
     // make sure it's on the list. If not return an err message
     // return lon/lat , 
-    const { searchInputs, loadWeatherByLocation } = useContext(SearchContext);
+    const { searchInputs } = useContext(SearchContext);
     const [zipLat, setZipLat] = useState(searchInputs[0].searchLat);
     const [zipLon, setZipLon] = useState(searchInputs[0].searchLon);
     const [darkParkList, setDarkParkList] = useState<DarkPark[]>([]);
-    // useContext stuff. Object containing searchLat, searchLon etc.
-    const [filteredParks, setFilteredParks] = useState<filteredParks[]>([]);
     const [weather, setWeather] = useState<WeatherInterface>();
     const [forecast, setForecast] = useState<WeatherInterface>();
     const [rating, setRating] = useState(0);
@@ -114,141 +110,15 @@ export default function HomeParkSearch() {
 
     }, [zipLat])
 
-    function formatWeather() {
-        let timeZone = weather?.timezone;
-        timeZone = timeZone?.replace("America/", "")
-        timeZone = timeZone?.replace("_", " ")
-        return timeZone;
-
-    }
-
-    function formatTemp(temp: any){
-        let fixedTemp = temp?.toFixed()
-        return fixedTemp;
-    }
-
-    function formatDateTime(unix: any) {
-        var a = new Date(unix * 1000);
-        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        var year = a.getFullYear();
-        var month = months[a.getMonth()];
-        var date = a.getDate();
-        var hour = a.getHours() >= 12 ? a.getHours() - 12 + 'PM' : a.getHours() + 'AM';
-        if (hour == "0PM"){
-           hour = "12PM"
-        }
-        // var min = a.getMinutes() < 10 ? '0' + a.getMinutes() : a.getMinutes();
-        var time = month + ' ' + date +  ' ' + hour  ;
-        return time;
-        
-      }
-    
-      function formatDate(unix: any) {
-        var a = new Date(unix * 1000);
-        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        var year = a.getFullYear();
-        var month = months[a.getMonth()];
-        var date = a.getDate();
-        var hour = a.getHours();
-        var min = a.getMinutes() < 10 ? '0' + a.getMinutes() : a.getMinutes();
-        // var sec = a.getSeconds() < 10 ? '0' + a.getSeconds() : a.getSeconds();
-        var monthDate = month + ' ' + date ;
-        return monthDate;  
-      }
-    
-
+   
     return (
         <main>
-            {/* THIS CONTAINS BOTH NAVBAR AND WEATHER (USED FOR DESKTOP VIEW) */}
-            <div className="desktop-wrap_nav_weather">
-                <nav className="navbar_home">
-                    <ul>
-                        <li className="navbar-item"><NavLink to="/" style={{ textDecoration: "none" }}>Home</NavLink></li>
-                        <li className="navbar-item"><NavLink to="/learnmore" style={{ textDecoration: "none" }}>Learn More</NavLink></li>
-                        <li className="navbar-item"><NavLink to="/news" style={{ textDecoration: "none" }}>News</NavLink></li>
-                        <li className="navbar-item"><NavLink to="/darkparklist" style={{ textDecoration: "none" }}>Park List</NavLink></li>
-                    </ul>
-                </nav>
+          
+        {/* THIS IS THE NAVBAR AND WEATHER */}
+             <NavbarWeather weather={weather} forecast={forecast}/>
 
-        {/* THIS IS THE WEATHER HEADER BEGINNING */}
-                <div className="weather_route_div_home">
-                    <div className="timezone_and_conditions_div">
-                        {/* Shows timezone. Automatically set to 'America/Detroit' until changed. */}
-                        <h3 className="timezone_h3">
-                            <div className="timezone_text">Time Zone: </div>
-                            {formatWeather()}</h3>
-
-                        {/* Grabs a small description of current weather conditions (example: moderate rain) */}
-                        <p className="weather_conditions_p">
-                            <p className="conditions_text"> Conditions: </p>
-                            {weather?.current.weather[0].description}</p>
-                    </div>
-
-
-                    <div className="temp_icon_details_div">
-                        {/* temperature */}
-                        <p className="temp_p">{formatTemp(weather?.current.temp)}°</p>
-                        {/* Icon representing weather */}
-                        <img className="weather_icon_img" src={"http://openweathermap.org/img/wn/" + weather?.current.weather[0].icon + "@2x.png"} alt='icon representing weather conditions' />
-                        {/* link to see 7-day forescast and more details */}
-                        <p className="weather_info_p" onClick={(e) => {document.querySelectorAll(".modal_container").forEach(item => item.classList.toggle("hidden"))}}>&#9432;</p>
-                    </div>
-                </div>
-            </div>
-        {/* THIS IS WEATHER HEADER END */}
-
-         {/* THIS IS THE FORECAST POP UP BEGINNING  */}
-            <div className="modal_container hidden">
-                <div className="modal">
-                 <div className="modal-content">
-                     <span className="close"
-                    onClick={(e) => {document.querySelectorAll(".modal_container").forEach((item) => item.classList.toggle("hidden"));}}>
-                    &times;
-                    </span>
-                     <h2 className="modal_h2">5 Hour Forecast</h2>
-                     <div className="hourly_forecast">
-                         {forecast?.hourly.map((hour, index) => {
-                             return (
-                                  <div key={index} className="hour_info">
-                                        <p className="forecast_p">
-                                         <img className="weather_icon_img" src={
-                                        "http://openweathermap.org/img/wn/" +
-                                         hour.weather[0].icon +
-                                        "@2x.png" } alt="icon representing weather conditions" />
-                                         </p>
-                                    <div className="forecast_card">
-                                        <p className="forecast_p"> {formatDateTime(hour.dt)} </p>
-                                        <p className="forecast_p">{formatTemp(hour.temp)}°</p>
-                                    </div>
-                                </div>
-                                )
-                         }).slice(0, 5)}
-             </div>
         
-                <h2 className="modal_h2">7 Day Forecast</h2>
-                 <div className="daily_forecast">
-                    {forecast?.daily.map((day, index) => {
-                         return <div key={index} className="daily_info">
-                        <p className="forecast_p">
-                        <img className="weather_icon_img" src={
-                         "http://openweathermap.org/img/wn/" +
-                          day.weather[0].icon +
-                        "@2x.png" } alt="icon representing weather conditions" />
-                         </p>
-                     <div className="forecast_card">
-                         <p className="forecast_p"> {formatDate(day.dt)}</p>
-                         <p className="forecast_p">{formatTemp(day.temp.day)}°</p>
-                     </div>
-                 </div>;
-                     }).slice(0,7)}
-             </div>
-        
-            </div>
-         </div>
-     </div>
-    {/* THIS IS THE FORECAST POP UP ENDING */}
-
-    {/* THIS IS THE HEADER */}
+        {/* THIS IS THE HEADER */}
             <Header />
         
             <div className="welcomeP_searchForm">

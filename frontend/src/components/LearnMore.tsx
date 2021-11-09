@@ -1,16 +1,23 @@
-import WeatherRoute from "../routes/WeatherRoute";
-import { NavLink } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import NASAInterface from "../models/NASAInterface";
 import GetNASAPic from "../services/GetNASA"
 import "./LearnMore.css";
+import { getSetWeather, getWeekForecast } from "../services/GetWeather";
+import { SearchContext } from "../context/SearchProvider";
+import { WeatherInterface } from "../models/WeatherInterface";
+import NavbarWeather from "./NavbarWeather";
 
 
 export default function LearnMore() {
     const [picURL, setPicURL] = useState<NASAInterface>();
+    const [weather, setWeather] = useState<WeatherInterface>();
+    const [forecast, setForecast] = useState<WeatherInterface>();
+    const { searchInputs } = useContext(SearchContext);
     
     useEffect(() => {
         loadPicURL();
+        getSetWeather(searchInputs[0].searchLat, searchInputs[0].searchLon).then(res => setWeather(res));
+        getWeekForecast(searchInputs[0].searchLat, searchInputs[0].searchLon).then((res) => setForecast(res));
     }, [])
 
     function loadPicURL() {
@@ -19,16 +26,8 @@ export default function LearnMore() {
     return (
         <div>
             
-            <nav className="navbar">
-            <ul>
-              <li><NavLink to="/" style={{textDecoration: "none"}}><p className="navbar_p">Home</p></NavLink></li>
-              <li><NavLink to="/learnmore" style={{textDecoration: "none"}}><p className="navbar_p">Learn More</p></NavLink></li>
-              <li><NavLink to="/news" style={{textDecoration: "none"}}><p className="navbar_p">News</p></NavLink></li>
-              <li><NavLink to="/darkparklist" style={{textDecoration: "none"}}><p className="navbar_p">Park List</p></NavLink></li>
-            </ul>
-          </nav>
-
-            <WeatherRoute/>
+           {/* This is the navbar and weather */}
+            <NavbarWeather weather={weather} forecast={forecast}/>
 
 
             {/* <div className="BackgroundImage"> */}
