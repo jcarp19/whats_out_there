@@ -64,7 +64,7 @@ export interface DailyEntity {
   clouds: number;
   pop: number;
   uvi: number;
-  rain?: number | null;
+  rain: number | null;
 }
 export interface Temp {
   day: number;

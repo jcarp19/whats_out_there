@@ -6,7 +6,7 @@ import Forecast from "../components/Forecast";
 
 export default function WeatherRoute() {
   const [weather, setWeather] = useState<WeatherInterface>();
-  const { loadWeatherByLocation, searchInputs } = useContext(SearchContext);
+  const { searchInputs } = useContext(SearchContext);
 
 
   useEffect(() => {

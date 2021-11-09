@@ -1,15 +1,13 @@
-import React, { useEffect, useState, useContext } from "react";
-import DarkPark, { filteredParks } from "../models/DarkPark";
+import { useEffect, useState, useContext } from "react";
+import DarkPark from "../models/DarkPark";
 import { LongLat } from "../models/LongLat";
 import getParkList from "../services/GetParkList";
 import {WeatherInterface} from "../models/WeatherInterface";
-import { getSetWeather } from "../services/GetWeather";
-import { Router, NavLink } from "react-router-dom";
-import Forecast from "../components/Forecast";
-
+import { getSetWeather, getWeekForecast } from "../services/GetWeather";
 // useContext stuff
-import { SearchContext, SearchProps } from "../context/SearchProvider";
-import Header from "./Header";
+import { SearchContext } from "../context/SearchProvider";
+import NavbarWeather from "./NavbarWeather";
+
 
 
 export default function DarkParkSearch() {
@@ -17,16 +15,13 @@ export default function DarkParkSearch() {
     // make sure it's on the list. If not return an err message
     // return lon/lat , 
     // useContext stuff. Object containing searchLat, searchLon etc.
-    const {searchInputs, loadWeatherByLocation} = useContext(SearchContext);
+    const {searchInputs } = useContext(SearchContext);
     const [zipLat, setZipLat] = useState(searchInputs[0].searchLat);
     const [zipLon, setZipLon] = useState(searchInputs[0].searchLon);
     const [darkParkList, setDarkParkList] = useState<DarkPark[]>([]);
-    const [filteredParks, setFilteredParks] = useState<filteredParks[]>([]);
     const [weather, setWeather] = useState<WeatherInterface>();
+    const [forecast, setForecast] = useState<WeatherInterface>();
     const [numParks, setNumParks] = useState(0);
-
-
-    // const[searchLatLon, setSearchLatLon] = useState<SearchProps>({searchLat: zipLat, searchLon: zipLon});
 
 
     useEffect(() => {
@@ -67,65 +62,16 @@ export default function DarkParkSearch() {
         });
 
         getSetWeather(zipLat, zipLon).then(res => setWeather(res));
+        getWeekForecast(zipLat, zipLon).then((res) => setForecast(res));
 
 
     }, [zipLat])
-
-    function formatWeather() {
-        let timeZone = weather?.timezone;
-
-        timeZone = timeZone?.replace("America/", "")
-        timeZone = timeZone?.replace("_", " ")
-        return timeZone;
-
-    }
-
-    function formatTemp(temp: any){
-        let fixedTemp = temp?.toFixed()
-        return fixedTemp;
-        }
 
 
     return (
         <>
 
-            <nav className="navbar">
-                <ul>
-                    <li><NavLink to="/" style={{ textDecoration: "none" }}><p className="navbar_p">Home</p></NavLink></li>
-                    <li><NavLink to="/learnmore" style={{ textDecoration: "none" }}><p className="navbar_p">Learn More</p></NavLink></li>
-                    <li><NavLink to="/news" style={{ textDecoration: "none" }}><p className="navbar_p">News</p></NavLink></li>
-                    <li><NavLink to="/darkparklist" style={{ textDecoration: "none" }}><p className="navbar_p">Park List</p></NavLink></li>
-                </ul>
-            </nav>
-
-
-            <div className="weather_route_div">
-                <div className="timezone_and_conditions_div">
-                    {/* Shows timezone. Automatically set to 'America/Detroit' until changed. */}
-                    <h3 className="timezone_h3">
-                        <div className="timezone_text">Time Zone: </div>
-                        {formatWeather()}</h3>
-
-                    {/* Grabs a small description of current weather conditions (example: moderate rain) */}
-                    <p className="weather_conditions_p">
-                        <p className="conditions_text"> Conditions: </p>
-                        {weather?.current.weather[0].description}</p>
-                </div>
-
-
-                <div className="temp_icon_details_div">
-                    {/* temperature */}
-                    <p className="temp_p">{formatTemp(weather?.current.temp)}°</p>
-                    {/* Icon representing weather */}
-                    <img className="weather_icon_img" src={"http://openweathermap.org/img/wn/" + weather?.current.weather[0].icon + "@2x.png"} alt='icon representing weather conditions' />
-                    {/* link to see 7-day forescast and more details */}
-                    <p className="weather_info_p" onClick={(e) => {document.querySelectorAll(".modal_container").forEach(item => item.classList.toggle("hidden"))}}>&#9432;</p>
-                </div>
-            </div>
-
-            <div className="modal_container hidden">
-                <Forecast/>
-            </div>
+            <NavbarWeather weather={weather} forecast={forecast}/>
 
             <div className="park-search">
             <form className="park-search-form" aria-label="addForm" role="Form" onSubmit={(e) => { console.log(searchInputs); }}>
@@ -140,7 +86,6 @@ export default function DarkParkSearch() {
                                     setZipLat(array[1]);
                                     setZipLon(array[2]);
                                 }
-                                // let searchLatLon = {searchLat: zipLat, searchLon: zipLon, hasSearched: true};
                                 searchInputs.unshift({ searchLat: zipLat, searchLon: zipLon, hasSearched: true });
                             })
                         }
