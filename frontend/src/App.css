@@ -138,6 +138,7 @@ header {
 
 .weather_info_p:hover {
   color: #e0ca3c;
+  cursor: pointer;
 }
 
 .info-card {
@@ -290,6 +291,11 @@ header {
   border: none;
   border-radius: 7px;
 }
+
+.park-search-button:hover{
+  background: #ED6A5A;
+  color: #dde0e0;
+}
 /* ~~~~~~~~~~~~~ PARK LIST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .park-list {
   max-width: 100%;
@@ -407,7 +413,7 @@ summary:hover, details:hover {
   align-items: center;
   width: 100%;
 }
-.newsfeed_h2 {
+.newsfeed_h2{
   color: #93b7be;
   text-align: center;
   font-family: "Alumni Sans", sans-serif;
@@ -415,6 +421,14 @@ summary:hover, details:hover {
   font-weight: 400;
   margin-top: 5rem;
   margin-bottom: 0;
+}
+.newsfeed-headline {
+  color: #93b7be;
+  text-align: center;
+  font-family: "Alumni Sans", sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  margin-top: 2rem;
 }
 .newsfeed_title {
   font-size: 1.25em;
@@ -614,6 +628,10 @@ summary:hover, details:hover {
 
     .modal_h2{
         font-size: 2rem;
+    }
+
+    .park-search-zip {
+      width: 35%; 
     }
 
 
