@@ -306,10 +306,9 @@ header {
   font-size: 1.25rem; 
 }
 
-/* .park-list-name > a {
-  color: #dde0e0;
-  text-decoration: none;
-} */
+.park-list-card{
+  width: 80%;
+}
 
 .park-list-name > a:hover {
   color: #e0ca3c;
@@ -683,5 +682,6 @@ summary:hover, details:hover {
 
   .home-card, .learn-more-card, .park-list-card, .newsfeed-card {
     width: 80%; 
+    min-width: 80%;
   }
 }
