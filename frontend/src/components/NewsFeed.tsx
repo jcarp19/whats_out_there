@@ -8,16 +8,25 @@ import { ArticlesEntity } from "../models/NewsInterface";
 export default function NewsFeed({ title, url, description, content, publishedAt, image }: ArticlesEntity) {
 
     return (
-        <div className="info-card newsfeed_card">
-            <p className="newsfeed_title">{title}</p>
-            <div className="newsfeed-div"><img className="newsfeed-pix" src={image} /></div>
-            <details>
-                <summary>More Details</summary>
-                <a href={url} className="newsfeed_url">Click to read full story</a>
-                <p className="newsfeed_content">{description}</p>
-
-            </details>
+        <div className="info-card newsfeed-card">
+            <div className="newsfeed-div">
+                <img className="newsfeed-pix" src={image} />
+                <div className="newsfeed-text">
+                    <p className="newsfeed_title">{title}</p>
+                    <p className="newsfeed_content">{description}</p>
+                    <a href={url} className="newsfeed_url">Click to read full story</a>
+                </div>
+            </div>
         </div>
+        // <div className="info-card newsfeed-card">
+        //         <div className="newsfeed-div"><img className="newsfeed-pix" src={image} /></div>
+        //         <p className="newsfeed_title">{title}</p>
+        //         <details>
+        //             <summary>More Details</summary>
+        //             <a href={url} className="newsfeed_url">Click to read full story</a>
+        //             <p className="newsfeed_content">{description}</p>
+        //         </details>
+        // </div>
     )
 
 

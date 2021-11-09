@@ -163,10 +163,10 @@ export default function HomeParkSearch() {
             <div className="desktop-wrap_nav_weather">
                 <nav className="navbar_home">
                     <ul>
-                        <li className="navbar_p_home"><NavLink to="/" style={{ textDecoration: "none" }}>Home</NavLink></li>
-                        <li className="navbar_p_home"><NavLink to="/learnmore" style={{ textDecoration: "none" }}>Learn More</NavLink></li>
-                        <li className="navbar_p_home"><NavLink to="/news" style={{ textDecoration: "none" }}>News</NavLink></li>
-                        <li className="navbar_p_home"><NavLink to="/darkparklist" style={{ textDecoration: "none" }}>Park List</NavLink></li>
+                        <li className="navbar-item"><NavLink to="/" style={{ textDecoration: "none" }}>Home</NavLink></li>
+                        <li className="navbar-item"><NavLink to="/learnmore" style={{ textDecoration: "none" }}>Learn More</NavLink></li>
+                        <li className="navbar-item"><NavLink to="/news" style={{ textDecoration: "none" }}>News</NavLink></li>
+                        <li className="navbar-item"><NavLink to="/darkparklist" style={{ textDecoration: "none" }}>Park List</NavLink></li>
                     </ul>
                 </nav>
 
