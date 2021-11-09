@@ -264,7 +264,8 @@ export default function HomeParkSearch() {
                     <label className="park-search-label" aria-label="addLabel" role="Label" htmlFor="search"></label>
                         <input className="park-search-zip" name="search" id="search" type="text" placeholder="Enter Your Zip" onChange={(e) => {
                             if (e.target.value.length == 5) {
-                                setNumParks(10);
+                                //setNumParks(10);
+
                                 LongLat.forEach(array => {
                                     if (array[0] == e.target.value) {
                                         setZipLat(array[1]);
@@ -279,6 +280,7 @@ export default function HomeParkSearch() {
                         }} />
                     <button className="park-search-button" aria-label="addButton" role="Button" type="submit" onClick={(e) => {
                         e.preventDefault();
+                        setNumParks(10)
                         console.log(zipLat);
                         console.log(zipLon);
                         let searchLatLon = { searchLat: zipLat, searchLon: zipLon, hasSearched: true };
@@ -293,12 +295,13 @@ export default function HomeParkSearch() {
                 {/* <h2 aria-label="addH2" role="H2" className="park-list-headline">Dark Parks Near You</h2> */}
                 {darkParkList.sort((a, b) => a.miles - b.miles).map((data, index) => {
                     return (
-                        <div key={index} className="info-card">
+                        <div key={index} className="info-card home-card">
                             <p className="park-list-name"><a href={data.url} target="_blank">{data.name}</a></p>
                             <p>{data.state}</p>
                             <p>{data.description}</p>
                             <p>{data.miles} miles from your location.</p>
-
+                            
+                            <a href={data.url} target="_blank" className="more-details-link">More Details</a>
                             <details>
                                 <summary><span className="leaveRatingComment_h2">Click to Leave a Rating and Comment</span></summary>
                                 <form method="PUT" id="comment-form" onSubmit={(e) => {
