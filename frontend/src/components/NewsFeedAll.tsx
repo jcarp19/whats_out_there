@@ -43,7 +43,7 @@ export default function NewsFeedAll() {
       <NavbarWeather weather={weather} forecast={forecast}/>
 
       <div>
-        <h2 className="park-list-headline">Top 10 News Stories</h2>
+        <h2 className="newsfeed-headline">Top 10 News Stories</h2>
 
 
         <div>
