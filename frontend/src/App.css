@@ -375,7 +375,7 @@ details {
   max-width: 25px;
   cursor: pointer;
 }
-.clicked {
+.clicked{
   color: #ff8800;
 }
 .btn-submit-commit {
