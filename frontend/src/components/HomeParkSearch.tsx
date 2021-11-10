@@ -202,14 +202,14 @@ export default function HomeParkSearch() {
                                     {/* <label htmlFor="rating">Rating:</label>
                                     <input placeholder="rating" className="ratingInput" type="number" max="10" min="1" name="rating" onChange={(e) => { setRating(e.target.valueAsNumber) }}></input> */}
                                     <div className="rating">
-                                        <i id="star-rating1" onClick={() => {
-                                            setRating(1);
-                                            changeColor(1)
-                                            }} className="fas fa-star"></i>
-                                        <i id="star-rating2" onClick={() => {setRating(2); changeColor(2)}} className="fas fa-star"></i>
-                                        <i id="star-rating3" onClick={() => {setRating(3); changeColor(3)}} className="fas fa-star"></i>
-                                        <i id="star-rating4" onClick={() => {setRating(4); changeColor(4)}} className="fas fa-star"></i>
-                                        <i id="star-rating5" onClick={() => {setRating(5); changeColor(5)}} className="fas fa-star"></i>
+                                        <span>Rating: </span>
+                                        <ul className="rating-list">
+                                            <li id="star-rating1" onClick={() => {setRating(1); changeColor(1)}}><i className="fas fa-star"></i></li>
+                                            <li id="star-rating2" onClick={() => {setRating(2); changeColor(2)}}><i className="fas fa-star"></i></li>
+                                            <li id="star-rating3" onClick={() => {setRating(3); changeColor(3)}}><i className="fas fa-star"></i></li>
+                                            <li id="star-rating4" onClick={() => {setRating(4); changeColor(4)}}><i className="fas fa-star"></i></li>
+                                            <li id="star-rating5" onClick={() => {setRating(5); changeColor(5)}}><i className="fas fa-star"></i></li>
+                                        </ul>
                                     </div>
 
                                     <label htmlFor="comment">Comment:</label>

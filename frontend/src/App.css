@@ -364,6 +364,13 @@ details {
   padding: .5em 1em;
   margin-bottom: 1em;
 }
+.rating-list {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0 0 .5em 0;
+  gap: .5em;
+}
 .fa-star {
   max-width: 25px;
   cursor: pointer;
