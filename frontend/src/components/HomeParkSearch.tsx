@@ -1,4 +1,5 @@
-
+import telescope_Right from "../images/telescope_Right.svg"
+import telescope_Left from "../images/telescope_Left.svg"
 import { useEffect, useState, useContext } from "react";
 import DarkPark, { Comments, filteredParks } from "../models/DarkPark";
 import { LongLat } from "../models/LongLat";
@@ -183,13 +184,14 @@ export default function HomeParkSearch() {
                             <a href={data.url} target="_blank" className="more-details-link">More Details</a>
                             <details>
                                 <summary><span className="leaveRatingComment_h2">Click to Leave a Rating and Comment</span></summary>
-                                <form method="PUT" id="comment-form" onSubmit={(e) => {
+                                <form method="PUT" id="comment-form" className="info-card" onSubmit={(e) => {
                                     e.preventDefault();
                                     let newComment: Comments = { rating, comment };
                                     // testing to see if pushing would refresh the page, it did not
                                     upDateOne(data._id, newComment).then(res => data.comments.push(res))
                                     setRating(0);
                                     setComment("");
+                                    // document.querySelectorAll(".fa-star").forEach(star => star.classList.remove("clicked"))
                                     getParkList().then(res => setDarkParkList([...darkParkList]));
                                     // setRating(0);
                                     // setComment("");
@@ -200,15 +202,29 @@ export default function HomeParkSearch() {
 
 
                                     {/* <label htmlFor="rating">Rating:</label>
-                                    <input placeholder="rating" className="ratingInput" type="number" max="10" min="1" name="rating" onChange={(e) => { setRating(e.target.valueAsNumber) }}></input> */}
+                                    <input placeholder="rating" className="ratingInput" type="number" max="10" min="1" name="rating" onChange={(e) => { setRating(e.target.valueAsNumber) }}></input> index <= rating ? target.classList.add("clicked") : target.classList.add("")*/}
                                     <div className="rating">
                                         <span>Rating: </span>
-                                        <ul className="rating-list">
-                                            <li id="star-rating1" onClick={() => {setRating(1); changeColor(1)}}><i className="fas fa-star"></i></li>
-                                            <li id="star-rating2" onClick={() => {setRating(2); changeColor(2)}}><i className="fas fa-star"></i></li>
-                                            <li id="star-rating3" onClick={() => {setRating(3); changeColor(3)}}><i className="fas fa-star"></i></li>
-                                            <li id="star-rating4" onClick={() => {setRating(4); changeColor(4)}}><i className="fas fa-star"></i></li>
-                                            <li id="star-rating5" onClick={() => {setRating(5); changeColor(5)}}><i className="fas fa-star"></i></li>
+                                        < ul className="rating-list"> 
+                                            {[...Array(5)].map((star, index) => {
+                                                 index += 1;
+                                                return(
+                                                    <li key={index} id="star-rating2" className={index <= rating ? "clicked" : "star"}   onClick={(e) => {e.preventDefault(); var target = e.target as Element; setRating(index); }}><i className="fas fa-star star5"></i></li>
+                                                )
+                                            })}
+
+                                            {/* This sets up a new array of 5 with stars inside. If the index is less than or equal to the rating, then is has a the classname "clicked" and turns orange. */}
+
+                                            {/* <li id="star-rating1" onClick={(e) => {e.preventDefault(); var target1 = e.target as Element; setRating(1); target1.classList.add("clicked"); }}><i className={ <= rating ? "fas fa-star clicked" : "fas fa-star"}></i></li>
+                                            <li id="star-rating2" onClick={(e) => {e.preventDefault(); var target2 = e.target as Element; setRating(2); target2.classList.add("clicked")}}><i key="2" className={index <= rating ? "fas fa-star clicked" : "fas fa-star"}></i></li>
+                                            <li id="star-rating3" onClick={(e) => {e.preventDefault(); var target3 = e.target as Element; setRating(3); target3.classList.add("clicked")}}><i key="3" className={index <= rating ? "fas fa-star clicked" : "fas fa-star"}></i></li>
+                                            <li id="star-rating4" onClick={(e) => {e.preventDefault(); var target4 = e.target as Element; setRating(4); target4.classList.add("clicked");}}><i key="4" className={index <= rating ? "fas fa-star clicked" : "fas fa-star"}></i></li>
+                                            <li id="star-rating5" onClick={(e) => {e.preventDefault(); var target5 = e.target as Element; setRating(5); target5.classList.add("clicked");}}><i key="5" className={index <= rating ? "fas fa-star clicked" : "fas fa-star"}></i></li> */}
+                                        
+                                            {/* <li id="star-rating2" onClick={() => {setRating(2); changeColor(2)}}><i className="fas fa-star star2"></i></li>
+                                            <li id="star-rating3" onClick={() => {setRating(3); changeColor(3)}}><i className="fas fa-star star3"></i></li>
+                                            <li id="star-rating4" onClick={() => {setRating(4); changeColor(4)}}><i className="fas fa-star star4"></i></li>
+                                            <li id="star-rating5" onClick={() => {setRating(5); changeColor(5)}}><i className="fas fa-star star5"></i></li> */}
                                         </ul>
                                     </div>
 
@@ -222,11 +238,30 @@ export default function HomeParkSearch() {
                                         Submit Comment
                                     </button>
                                 </form>
-                                <div>{data.comments.map((comment, index) => {
+                                <div className="comments-container">{data.comments.map((comment, index) => {
+                                    function assignImage(index: any) {
+                                        if (index % 2 === 0) {
+                                          let img = telescope_Right;
+                                          return img;
+                                        } else {
+                                          let img = telescope_Left;
+                                          return img;
+                                        }
+                                      }
                                     return (
-                                        <div key={index}>
-                                            <p>{comment.rating}</p>
-                                            <p>{comment.comment}</p>
+                                        <div  key={index} className="comment-div">
+                                        <img src={assignImage(index)} alt="telescope icon" className="telescope_img comment-img"/>
+                                        <div className="info-card comment-card">
+                                            <ul className="rating-list">
+                                            {[...Array(5)].map((star, index) => {
+                                                 index += 1;
+                                                return(
+                                                    <li key={index} id="star-rating2" className={index <= comment.rating ? "clicked" : "star"}   onClick={(e) => {e.preventDefault(); var target = e.target as Element; setRating(index); }}><i className="fas fa-star star5"></i></li>
+                                                )
+                                            })}
+                                            </ul>
+                                            <p>"{comment.comment}"</p>
+                                        </div>
                                         </div>
                                     )
                                 })}</div>
