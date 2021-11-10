@@ -26,7 +26,52 @@ export default function HomeParkSearch() {
     const [comment, setComment] = useState("");
     const [numParks, setNumParks] = useState(0);
 
+    let star1: HTMLElement = document.getElementById("star-rating1")!;
+    let star2: HTMLElement = document.getElementById("star-rating2")!;
+    let star3: HTMLElement = document.getElementById("star-rating3")!;
+    let star4: HTMLElement = document.getElementById("star-rating4")!;
+    let star5: HTMLElement = document.getElementById("star-rating5")!;
 
+    const changeColor = (n:number) => {
+        if (n == 1) {
+           star1.classList.add("clicked");
+
+           star2.classList.remove("clicked");
+           star3.classList.remove("clicked");
+           star4.classList.remove("clicked");
+           star5.classList.remove("clicked");
+       
+        } else if (n == 2) {
+           star1.classList.add("clicked")
+           star2.classList.add("clicked")
+
+           star3.classList.remove("clicked");
+           star4.classList.remove("clicked");
+           star5.classList.remove("clicked");
+        } else if (n == 3) {
+           star1.classList.add("clicked")
+           star2.classList.add("clicked")
+           star3.classList.add("clicked")
+
+           star4.classList.remove("clicked");
+           star5.classList.remove("clicked");
+        } else if (n == 4) {
+           star1.classList.add("clicked")
+           star2.classList.add("clicked")
+           star3.classList.add("clicked")
+           star4.classList.add("clicked")
+
+           star5.classList.remove("clicked");
+        } else if (n == 5) {
+           star1.classList.add("clicked")
+           star2.classList.add("clicked")
+           star3.classList.add("clicked")
+           star4.classList.add("clicked")
+           star5.classList.add("clicked")
+        }
+        console.log(n)
+    }
+       
 
     // const[searchLatLon, setSearchLatLon] = useState<SearchProps>({searchLat: zipLat, searchLon: zipLon});
     
@@ -73,6 +118,7 @@ export default function HomeParkSearch() {
 
     }, [zipLat])
 
+    
    
     return (
         <main>
@@ -153,14 +199,26 @@ export default function HomeParkSearch() {
                                 }}>
 
 
-                                    <label htmlFor="rating">Rating:</label>
-                                    <input placeholder="rating" className="ratingInput" type="number" max="10" min="1" name="rating" onChange={(e) => { setRating(e.target.valueAsNumber) }}></input>
-
+                                    {/* <label htmlFor="rating">Rating:</label>
+                                    <input placeholder="rating" className="ratingInput" type="number" max="10" min="1" name="rating" onChange={(e) => { setRating(e.target.valueAsNumber) }}></input> */}
+                                    <div className="rating">
+                                        <i id="star-rating1" onClick={() => {
+                                            setRating(1);
+                                            changeColor(1)
+                                            }} className="fas fa-star"></i>
+                                        <i id="star-rating2" onClick={() => {setRating(2); changeColor(2)}} className="fas fa-star"></i>
+                                        <i id="star-rating3" onClick={() => {setRating(3); changeColor(3)}} className="fas fa-star"></i>
+                                        <i id="star-rating4" onClick={() => {setRating(4); changeColor(4)}} className="fas fa-star"></i>
+                                        <i id="star-rating5" onClick={() => {setRating(5); changeColor(5)}} className="fas fa-star"></i>
+                                    </div>
 
                                     <label htmlFor="comment">Comment:</label>
                                     <input placeholder="comment" className="commentInput" type="text" name="comment" onChange={(e) => { setComment(e.target.value) }}></input>
 
-                                    <button type="submit">
+                                    <button className="btn-submit-commit" type="submit" onClick={() => {
+                                        // setRating(starRating);
+                                        console.log(rating);
+                                        }}>
                                         Submit Comment
                                     </button>
                                 </form>
