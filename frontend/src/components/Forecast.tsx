@@ -3,17 +3,23 @@ import { getWeekForecast } from "../services/GetWeather";
 import { useEffect, useState, useContext } from "react";
 import { SearchContext } from "../context/SearchProvider";
 
-export default function Forecast() {
-  const [weather, setWeather] = useState<WeatherInterface>();
-  const { loadWeatherByLocation, searchInputs } = useContext(SearchContext);
 
+
+export default function Forecast(forecast?: any) {
+  const [weather, setWeather] = useState<WeatherInterface>()
+  const { searchInputs } = useContext(SearchContext);
+ 
   useEffect(() => {
     console.log(searchInputs[0]);
-    getWeekForecast(searchInputs[0].searchLat, searchInputs[0].searchLon).then(
-      (res) => setWeather(res)
-    );
-  }, []);
+  
+      getWeekForecast(searchInputs[0].searchLat, searchInputs[0].searchLon).then(
+        (res) => setWeather(res)
+      );
+    
+  
+  }, [forecast]);
 
+  
   function formatDateTime(unix: any) {
     var a = new Date(unix * 1000);
     var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -53,14 +59,14 @@ export default function Forecast() {
   return (
     <div className="modal">
       <div className="modal-content">
-      <span
+      <span onClick={(e) => {document.querySelectorAll(".modal_container").forEach((item) => item.classList.toggle("hidden"));}}
           className="close"
-          onClick={(e) => {document.querySelectorAll(".modal_container").forEach((item) => item.classList.toggle("hidden"));}}>
+          >
           &times;
         </span>
         <h2 className="modal_h2">5 Hour Forecast</h2>
         <div className="hourly_forecast">
-            {weather?.hourly.map((hour, index) => {
+            {weather?.hourly?.map((hour, index) => {
                 return (
                      <div key={index} className="hour_info">
                          <p className="forecast_p">
@@ -80,7 +86,7 @@ export default function Forecast() {
         
         <h2 className="modal_h2">7 Day Forecast</h2>
         <div className="daily_forecast">
-            {weather?.daily.map((day, index) => {
+            {weather?.daily?.map((day, index) => {
                 return <div key={index} className="daily_info">
                <p className="forecast_p">
               <img className="weather_icon_img" src={

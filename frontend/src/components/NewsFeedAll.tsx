@@ -1,25 +1,33 @@
 // returns 10 news stories (optional: able to load more) based on set space-related criteria.
 // uses the newsapi
 // TO DO: make route to newsapi
-
-import WeatherRoute from "../routes/WeatherRoute";
-import { NavLink } from "react-router-dom";
 import NewsInterface, { ArticlesEntity } from "../models/NewsInterface";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getNews } from "../services/GetNews";
-import DarkParkSearch from "./DarkParkSearch";
+import { WeatherInterface } from "../models/WeatherInterface";
 import telescope_Right from "../images/telescope_Right.svg"
 import telescope_Left from "../images/telescope_Left.svg"
 import NewsFeed from "./NewsFeed";
+import NavbarWeather from "./NavbarWeather";
+import { getSetWeather, getWeekForecast } from "../services/GetWeather";
+import { SearchContext } from "../context/SearchProvider";
 
 // used type "any" to avoid errors, but switch back to "ArticlesEntity" when retrieving all the data.
 export default function NewsFeedAll() {
-
-  const [news, setNews] = useState<NewsInterface>()
-  const [articles, setArticles] = useState<ArticlesEntity[]>()
+  const [news, setNews] = useState<NewsInterface>();
+  const [articles, setArticles] = useState<ArticlesEntity[]>();
+  const [weather, setWeather] = useState<WeatherInterface>();
+  const [forecast, setForecast] = useState<WeatherInterface>();
+  const { searchInputs } = useContext(SearchContext);
+  
+  
   useEffect(() => {
     loadNews();
+    getSetWeather(searchInputs[0].searchLat, searchInputs[0].searchLon).then(res => setWeather(res));
+    getWeekForecast(searchInputs[0].searchLat, searchInputs[0].searchLon).then((res) => setForecast(res));
   }, [])
+  
+  
   function loadNews() {
     getNews().then(res => {
       console.log(res)
@@ -31,19 +39,11 @@ export default function NewsFeedAll() {
 
   return (
     <div aria-label = "addDiv1" role = "Div1">
-      <nav className="navbar">
-        <ul>
-          <li><NavLink to="/" style={{ textDecoration: "none" }}><p className="navbar_p">Home</p></NavLink></li>
-          <li><NavLink to="/learnmore" style={{ textDecoration: "none" }}><p className="navbar_p">Learn More</p></NavLink></li>
-          <li><NavLink to="/news" style={{ textDecoration: "none" }}><p className="navbar_p">News</p></NavLink></li>
-          <li><NavLink to="/darkparklist" style={{ textDecoration: "none" }}><p className="navbar_p">Park List</p></NavLink></li>
-        </ul>
-      </nav>
-
-      <WeatherRoute />
+     
+      <NavbarWeather weather={weather} forecast={forecast}/>
 
       <div>
-        <h2 className="park-list-headline">Top 10 News Stories</h2>
+        <h2 className="newsfeed-headline">Top 10 News Stories</h2>
 
 
         <div>

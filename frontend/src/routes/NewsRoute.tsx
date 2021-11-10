@@ -23,7 +23,7 @@ export default function NewsRoute() {
 
 
     return (
-        <div>
+        <div className="news-container">
             <h2 className="newsfeed_h2">Top 3 News Feed</h2>
             {articles?.map((article, index) => {
                 function assignImage(index: any) {

@@ -11,6 +11,8 @@ import NewsFeedAll from './components/NewsFeedAll';
 import LearnMore from './components/LearnMore';
 import DarkParkList from './components/DarkParkList';
 import DarkParkSearch from './components/DarkParkSearch';
+import Forecast from './components/Forecast';
+import NavbarWeather from './components/NavbarWeather';
 
 
 
@@ -21,22 +23,16 @@ function App() {
 
     <SearchProvider>
       <div className="App">
-        {/* <Header /> */}
         <Router>
-          {/* <nav className="navbar">
-            <ul>
-              <li><NavLink to="/" style={{textDecoration: "none"}}><p className="navbar_p">Home</p></NavLink></li>
-              <li><NavLink to="/learnmore" style={{textDecoration: "none"}}><p className="navbar_p">Learn More</p></NavLink></li>
-              <li><NavLink to="/news" style={{textDecoration: "none"}}><p className="navbar_p">News</p></NavLink></li>
-              <li><NavLink to="/darkparklist" style={{textDecoration: "none"}}><p className="navbar_p">Park List</p></NavLink></li>
-            </ul>
-          </nav> */}
           <Switch>
             <Route path="/news" exact>
               <NewsFeedAll />
             </Route>
             <Route path="/learnmore" exact>
               <LearnMore />
+            </Route>
+            <Route path="/forecast">
+              <Forecast/>
             </Route>
             <Route path="/darkparklist" exact>
               <DarkParkList />

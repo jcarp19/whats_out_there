@@ -1,7 +1,18 @@
 /* Jim testing */
+body {
+  font-family: 'Roboto', sans-serif;
+}
 /* ~~~~~~~~~~~~~~~ MOBILE VIEW ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 main {
   width: 100%;
+}
+a {
+  color: #dde0e0;
+  text-decoration: none;
+  font-weight: 700;
+}
+a:hover {
+  color: #e0ca3c;
 }
 .logo_pic {
   /* height: 5rem;
@@ -127,6 +138,7 @@ header {
 
 .weather_info_p:hover {
   color: #e0ca3c;
+  cursor: pointer;
 }
 
 .info-card {
@@ -257,7 +269,11 @@ header {
   align-items: center;
   width: 100%;
 }
-
+.park-search-headline {
+  /* color: #93b7be; */
+  color: #dde0e0;
+  margin-top: 2em;
+}
 .park-search-zip {
   box-sizing: border-box;
   padding: 1em 2em;
@@ -267,11 +283,18 @@ header {
   margin-bottom: 0.5em;
   
 }
-
 .park-search-button {
+  margin-top: .5em;
   padding: 1em 2.5em;
   color: #2d3047;
   background-color: #93b7be;
+  border: none;
+  border-radius: 7px;
+}
+
+.park-search-button:hover{
+  background: #ED6A5A;
+  color: #dde0e0;
 }
 /* ~~~~~~~~~~~~~ PARK LIST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .park-list {
@@ -288,9 +311,9 @@ header {
   font-weight: 700;
   font-size: 1.25rem; 
 }
-.park-list-name > a {
-  color: #dde0e0;
-  text-decoration: none;
+
+.park-list-card{
+  width: 80%;
 }
 
 .park-list-name > a:hover {
@@ -348,23 +371,23 @@ summary:hover, details:hover {
   max-width: 100%;
 }
 
-.navbar_p {
+/* .navbar_p {
     color: #2D3047;
     font-family: "Alumni Sans", sans-serif;
     font-size: 1.15rem;
     margin: .25rem 2rem;
-}
+} */
 
-.navbar_p_home {
+.navbar-item > a {
     color: #2D3047;
     font-family: "Alumni Sans", sans-serif;
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     padding: 0px;
     margin: 0px;
     /* margin: .25rem 2rem; */
 }
 
-.navbar_p_home:hover {
+.navbar-item:hover > a {
   color: #e0ca3c;
 }
 
@@ -384,29 +407,56 @@ summary:hover, details:hover {
   padding: 1.5rem;
   border-radius: 50%;
 }
-
-.newsfeed_h2 {
+.news-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.newsfeed_h2{
   color: #93b7be;
   text-align: center;
   font-family: "Alumni Sans", sans-serif;
   font-size: 2rem;
   font-weight: 400;
-  margin-top: 3rem;
+  margin-top: 5rem;
+  margin-bottom: 0;
 }
-
+.newsfeed-headline {
+  color: #93b7be;
+  text-align: center;
+  font-family: "Alumni Sans", sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  margin-top: 2rem;
+}
+.newsfeed_title {
+  font-size: 1.25em;
+  font-weight: 700;
+  margin-top: 0;
+}
 .newsfeed_card {
   width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .newsArticle_div {
   display: flex;
+  justify-content: center;
   flex-direction: row-reverse;
+  align-items: center;
   margin: 1rem;
+  width: 80%;
 }
 
 .newsArticle_div_all {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   margin: 1rem;
 }
 
@@ -420,12 +470,20 @@ summary:hover, details:hover {
 
 /* ~~~~~~~~~~~~~ Steph added this for the NewsFeed ~~~~~~~~~~~~ */
 .newsfeed-pix {
-  width: 70%;
+  width: 35%;
+  border: 1px solid #dde0e0;
+  box-shadow: 3px 3px 5px rgba(0,0,0, .25);
 }
 
 .newsfeed-div {
-  width: 70%;
-  margin: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0;
+}
+.newsfeed-text {
+  margin-left: 1em;
 }
 
 /* ~~~~~~~~~~~~~ TABLET VIEW ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -572,6 +630,10 @@ summary:hover, details:hover {
         font-size: 2rem;
     }
 
+    .park-search-zip {
+      width: 35%; 
+    }
+
 
 
 }
@@ -607,7 +669,7 @@ summary:hover, details:hover {
     max-width: 60%;
   }
 
-  .navbar_p_home {
+  .navbar-item > a {
     margin: 0.25rem 1rem;
     font-size: 2rem;
   }
@@ -636,7 +698,8 @@ summary:hover, details:hover {
     width: 25%; 
   }
 
-  .home-card {
+  .home-card, .learn-more-card, .park-list-card, .newsfeed-card {
     width: 80%; 
+    min-width: 80%;
   }
 }
