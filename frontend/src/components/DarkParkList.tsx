@@ -36,13 +36,17 @@ export default function DarkParkList(): any {
               {/* <p>{data._id}</p> */}
               <p className="park-list-name"><a href={data.url} target="_blank">{data.name}</a></p>
               <p>{data.state}</p>
-              <p>Light Pollution: {data.lightPollution}</p>
-              <p>Is Camping Available?: {data.camping}</p>
-              <p>Fee: {data.fee}</p>
+              <p><strong>Light Pollution:</strong> {data.lightPollution}</p>
+              <p><strong>Is Camping Available?:</strong> {data.camping}</p>
+              <p><strong>Fee:</strong> {data.fee}</p>
               <p>{data.description}</p>
               <details>
                 <summary>Click for Full Address</summary>
-                <p>Address: {data.address}</p>
+                <p><strong>Address:</strong> {data.address}</p>
+
+                {/* https://maps.google.com/?ll=latitude,longitude */}
+                {/* <Link to={{ pathname: `https://maps.google.com/?ll=${data.latlong[0]}${data.latlong[1]}` }} target="_blank" /> */}
+                <p>{data.latlong}</p>
               </details>
             </div>
           )
