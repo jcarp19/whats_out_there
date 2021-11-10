@@ -1,4 +1,5 @@
-
+import telescope_Right from "../images/telescope_Right.svg"
+import telescope_Left from "../images/telescope_Left.svg"
 import { useEffect, useState, useContext } from "react";
 import DarkPark, { Comments, filteredParks } from "../models/DarkPark";
 import { LongLat } from "../models/LongLat";
@@ -183,7 +184,7 @@ export default function HomeParkSearch() {
                             <a href={data.url} target="_blank" className="more-details-link">More Details</a>
                             <details>
                                 <summary><span className="leaveRatingComment_h2">Click to Leave a Rating and Comment</span></summary>
-                                <form method="PUT" id="comment-form" onSubmit={(e) => {
+                                <form method="PUT" id="comment-form" className="info-card" onSubmit={(e) => {
                                     e.preventDefault();
                                     let newComment: Comments = { rating, comment };
                                     // testing to see if pushing would refresh the page, it did not
@@ -237,11 +238,30 @@ export default function HomeParkSearch() {
                                         Submit Comment
                                     </button>
                                 </form>
-                                <div>{data.comments.map((comment, index) => {
+                                <div className="comments-container">{data.comments.map((comment, index) => {
+                                    function assignImage(index: any) {
+                                        if (index % 2 === 0) {
+                                          let img = telescope_Right;
+                                          return img;
+                                        } else {
+                                          let img = telescope_Left;
+                                          return img;
+                                        }
+                                      }
                                     return (
-                                        <div key={index}>
-                                            <p>{comment.rating}</p>
-                                            <p>{comment.comment}</p>
+                                        <div  key={index} className="comment-div">
+                                        <img src={assignImage(index)} alt="telescope icon" className="telescope_img comment-img"/>
+                                        <div className="info-card comment-card">
+                                            <ul className="rating-list">
+                                            {[...Array(5)].map((star, index) => {
+                                                 index += 1;
+                                                return(
+                                                    <li key={index} id="star-rating2" className={index <= comment.rating ? "clicked" : "star"}   onClick={(e) => {e.preventDefault(); var target = e.target as Element; setRating(index); }}><i className="fas fa-star star5"></i></li>
+                                                )
+                                            })}
+                                            </ul>
+                                            <p>"{comment.comment}"</p>
+                                        </div>
                                         </div>
                                     )
                                 })}</div>
