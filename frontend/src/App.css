@@ -281,7 +281,6 @@ header {
   border: 3px solid #dde0e0;
   border-radius: 50px;
   margin-bottom: 0.5em;
-  
 }
 .park-search-button {
   margin-top: .5em;
@@ -290,6 +289,9 @@ header {
   background-color: #93b7be;
   border: none;
   border-radius: 7px;
+  font-weight: 700;
+  font-size: 1em;
+  transition: all 1s ease-in-out;
 }
 
 .park-search-button:hover{
@@ -320,11 +322,32 @@ header {
   color: #e0ca3c;
   
 }
+.more-details-link {
+  display: inline-block;
+  box-sizing: border-box;
+  margin-top: .5em;
+  padding: .5em 1.5em;
+  color: #2d3047;
+  background-color: #93b7be;
+  border: none;
+  border-radius: 7px;
+  font-size: 1em;
+  font-weight: 700;
+  transition: all .5s ease-in-out;
+}
+.more-details-link:hover {
+  background: #ED6A5A;
+  color: #dde0e0;
+}
+details {
+  margin-top: 1.5em;
+}
 
-summary:hover, details:hover {
+/* summary:hover, details:hover {
   color: #e0ca3c; 
 
-}
+} */
+
 /* ~~~~~~~~~~~~~ COMMENT FORM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #comment-form {
   display: flex;
@@ -341,13 +364,39 @@ summary:hover, details:hover {
   padding: .5em 1em;
   margin-bottom: 1em;
 }
-#comment-form > button {
-  padding: 1em 2.5em;
+.rating-list {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0 0 .5em 0;
+  gap: .5em;
+}
+.fa-star {
+  max-width: 25px;
+  cursor: pointer;
+}
+.clicked {
+  color: #ff8800;
+}
+.btn-submit-commit {
+  margin-top: .5em;
+  padding: .5em 1.5em;
   color: #2d3047;
   background-color: #93b7be;
+  border: none;
+  border-radius: 7px;
+  font-size: 1em;
+  font-weight: 700;
   width: 50%;
   align-self: center;
+  transition: all .5s ease-in-out;
 }
+.btn-submit-commit:hover {
+  background: #ED6A5A;
+  color: #dde0e0;
+}
+
+
 .navbar > ul {
   list-style: none;
   display: flex;
