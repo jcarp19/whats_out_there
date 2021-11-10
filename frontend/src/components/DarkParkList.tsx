@@ -46,7 +46,7 @@ export default function DarkParkList(): any {
 
                 {/* https://maps.google.com/?ll=latitude,longitude */}
                 {/* <Link to={{ pathname: `https://maps.google.com/?ll=${data.latlong[0]}${data.latlong[1]}` }} target="_blank" /> */}
-                <p>{data.latlong}</p>
+                {/* <p>{data.latlong}</p> */}
               </details>
             </div>
           )
