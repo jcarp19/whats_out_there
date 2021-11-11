@@ -302,8 +302,8 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-size: 100%;
-  background-attachment: fixed;
+  background-size: 100%; /* Steph started messing with this.. */
+  background-attachment: fixed; /* keeps background img from scrolling*/
   margin-top: 1rem;
 }
 .park-list-headline {
