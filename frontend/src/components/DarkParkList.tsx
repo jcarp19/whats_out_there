@@ -8,6 +8,8 @@ import WeatherRoute from "../routes/WeatherRoute";
 import DarkParkSearch from "./DarkParkSearch";
 import DarkPark from "../models/DarkPark";
 import getParkList from "../services/GetParkList";
+import darkpark1 from "../images/darkpark1.jpg";
+
 
 
 export default function DarkParkList(): any {
@@ -26,7 +28,14 @@ export default function DarkParkList(): any {
   return (
     <div>
       <DarkParkSearch />
-      <div className="park-list">
+
+      {/* dark park pic above the list: */}
+      {/* <div className="addParkListPic">
+        <img className="parkListPic" src={darkpark1} alt="image of stars in the blue sky" />
+      </div> */}
+
+      { /* dark park background image */}
+      <div className="park-list" style={{ backgroundImage: `url(${darkpark1})` }}>
         <h2 aria-label="addH2" role="H2" className="park-list-headline">Full Dark Park List</h2>
 
         {darkParkList.map((data, index) => {
@@ -56,5 +65,6 @@ export default function DarkParkList(): any {
 
     </div>
   )
+
 
 }
