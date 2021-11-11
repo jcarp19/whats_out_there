@@ -23,11 +23,12 @@ export default function LearnMore() {
     function loadPicURL() {
         GetNASAPic().then(res => setPicURL(res));
     }
+
     return (
         <div>
             
            {/* This is the navbar and weather */}
-            <NavbarWeather weather={weather} forecast={forecast}/>
+            <NavbarWeather weather={weather} />
 
 
             {/* <div className="BackgroundImage"> */}

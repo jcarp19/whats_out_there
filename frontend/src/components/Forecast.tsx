@@ -1,23 +1,24 @@
-import { WeatherInterface } from "../models/WeatherInterface";
+import { DailyEntity, HourlyEntity, WeatherInterface } from "../models/WeatherInterface";
 import { getWeekForecast } from "../services/GetWeather";
 import { useEffect, useState, useContext } from "react";
 import { SearchContext } from "../context/SearchProvider";
 
 
 
-export default function Forecast(forecast?: any) {
+export default function Forecast() {
+  
   const [weather, setWeather] = useState<WeatherInterface>()
   const { searchInputs } = useContext(SearchContext);
  
   useEffect(() => {
     console.log(searchInputs[0]);
-  
+      
       getWeekForecast(searchInputs[0].searchLat, searchInputs[0].searchLon).then(
         (res) => setWeather(res)
       );
     
   
-  }, [forecast]);
+  }, [searchInputs[0]]);
 
   
   function formatDateTime(unix: any) {

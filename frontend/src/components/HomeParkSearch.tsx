@@ -13,6 +13,7 @@ import Header from "./Header";
 import NavbarWeather from "./NavbarWeather";
 
 
+
 export default function HomeParkSearch() {
     // receive zip code from form
     // make sure it's on the list. If not return an err message
@@ -25,6 +26,7 @@ export default function HomeParkSearch() {
     const [forecast, setForecast] = useState<WeatherInterface>();
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("");
+    const [comments, setComments] = useState<Comments[]>([])
     const [numParks, setNumParks] = useState(0);
 
     let star1: HTMLElement = document.getElementById("star-rating1")!;
@@ -108,24 +110,32 @@ export default function HomeParkSearch() {
                         return Value * Math.PI / 180;
                     }
                     calcDistance(zLat, zLon, pLat, pLon);
+                    setComments(data.comments);
                 })
             }
             setDarkParkList(res);
         });
-
+        
         console.log(searchInputs[0]);
         getSetWeather(zipLat, zipLon).then(res => setWeather(res));
         getWeekForecast(zipLat, zipLon).then((res) => setForecast(res));
 
-    }, [zipLat])
+    }, [numParks])
 
-    
+    function reloadParkList () {
+        getParkList().then(res => setDarkParkList([...darkParkList]));
+    }
+
+    function addComment(id: any, newComment: any){
+        upDateOne(id, newComment).then(res => comments.push(res));
+    }
+
    
     return (
         <main>
           
         {/* THIS IS THE NAVBAR AND WEATHER */}
-             <NavbarWeather weather={weather} forecast={forecast}/>
+             <NavbarWeather weather={weather} />
 
         
         {/* THIS IS THE HEADER */}
@@ -171,6 +181,7 @@ export default function HomeParkSearch() {
                 </div>
             </div>
 
+
             <div className="park-list">
                 {/* <h2 aria-label="addH2" role="H2" className="park-list-headline">Dark Parks Near You</h2> */}
                 {darkParkList.sort((a, b) => a.miles - b.miles).map((data, index) => {
@@ -182,6 +193,7 @@ export default function HomeParkSearch() {
                             <p>{data.miles} miles from your location.</p>
                             
                             <a href={data.url} target="_blank" className="more-details-link">More Details</a>
+                            {/* Comment Form below */}
                             <details>
                                 <summary><span className="leaveRatingComment_h2">Click to Leave a Rating and Comment</span></summary>
                                 <form method="PUT" id="comment-form" className="info-card" onSubmit={(e) => {
@@ -199,38 +211,31 @@ export default function HomeParkSearch() {
                                     // document.getElementsByName("rating").forEach(input => input = 0);
                                     // document.querySelectorAll("input").forEach(input => input.textContent = "");
                                 }}>
-
-
                                     {/* <label htmlFor="rating">Rating:</label>
                                     <input placeholder="rating" className="ratingInput" type="number" max="10" min="1" name="rating" onChange={(e) => { setRating(e.target.valueAsNumber) }}></input> index <= rating ? target.classList.add("clicked") : target.classList.add("")*/}
                                     <div className="rating">
                                         <span>Rating: </span>
-                                        < ul className="rating-list"> 
+                                        < ul className="rating-list">
                                             {[...Array(5)].map((star, index) => {
                                                  index += 1;
                                                 return(
                                                     <li key={index} id="star-rating2" className={index <= rating ? "clicked" : "star"}   onClick={(e) => {e.preventDefault(); var target = e.target as Element; setRating(index); }}><i className="fas fa-star star5"></i></li>
                                                 )
                                             })}
-
                                             {/* This sets up a new array of 5 with stars inside. If the index is less than or equal to the rating, then is has a the classname "clicked" and turns orange. */}
-
                                             {/* <li id="star-rating1" onClick={(e) => {e.preventDefault(); var target1 = e.target as Element; setRating(1); target1.classList.add("clicked"); }}><i className={ <= rating ? "fas fa-star clicked" : "fas fa-star"}></i></li>
                                             <li id="star-rating2" onClick={(e) => {e.preventDefault(); var target2 = e.target as Element; setRating(2); target2.classList.add("clicked")}}><i key="2" className={index <= rating ? "fas fa-star clicked" : "fas fa-star"}></i></li>
                                             <li id="star-rating3" onClick={(e) => {e.preventDefault(); var target3 = e.target as Element; setRating(3); target3.classList.add("clicked")}}><i key="3" className={index <= rating ? "fas fa-star clicked" : "fas fa-star"}></i></li>
                                             <li id="star-rating4" onClick={(e) => {e.preventDefault(); var target4 = e.target as Element; setRating(4); target4.classList.add("clicked");}}><i key="4" className={index <= rating ? "fas fa-star clicked" : "fas fa-star"}></i></li>
                                             <li id="star-rating5" onClick={(e) => {e.preventDefault(); var target5 = e.target as Element; setRating(5); target5.classList.add("clicked");}}><i key="5" className={index <= rating ? "fas fa-star clicked" : "fas fa-star"}></i></li> */}
-                                        
                                             {/* <li id="star-rating2" onClick={() => {setRating(2); changeColor(2)}}><i className="fas fa-star star2"></i></li>
                                             <li id="star-rating3" onClick={() => {setRating(3); changeColor(3)}}><i className="fas fa-star star3"></i></li>
                                             <li id="star-rating4" onClick={() => {setRating(4); changeColor(4)}}><i className="fas fa-star star4"></i></li>
                                             <li id="star-rating5" onClick={() => {setRating(5); changeColor(5)}}><i className="fas fa-star star5"></i></li> */}
                                         </ul>
                                     </div>
-
                                     <label htmlFor="comment">Comment:</label>
                                     <input placeholder="comment" className="commentInput" type="text" name="comment" onChange={(e) => { setComment(e.target.value) }}></input>
-
                                     <button className="btn-submit-commit" type="submit" onClick={() => {
                                         // setRating(starRating);
                                         console.log(rating);
@@ -238,6 +243,7 @@ export default function HomeParkSearch() {
                                         Submit Comment
                                     </button>
                                 </form>
+
                                 <div className="comments-container">{data.comments.map((comment, index) => {
                                     function assignImage(index: any) {
                                         if (index % 2 === 0) {
@@ -267,6 +273,7 @@ export default function HomeParkSearch() {
                                 })}</div>
                             </details>
                         </div>
+                       
                     )
                 }).slice(0, numParks)}
             </div>

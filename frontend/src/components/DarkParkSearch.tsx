@@ -23,7 +23,7 @@ export default function DarkParkSearch() {
     const [forecast, setForecast] = useState<WeatherInterface>();
     const [numParks, setNumParks] = useState(0);
 
-
+    
     useEffect(() => {
         getParkList().then(function (res) {
             {
@@ -71,7 +71,7 @@ export default function DarkParkSearch() {
     return (
         <>
 
-            <NavbarWeather weather={weather} forecast={forecast}/>
+            <NavbarWeather weather={weather} />
 
             <div className="park-search">
             <form className="park-search-form" aria-label="addForm" role="Form" onSubmit={(e) => { console.log(searchInputs); }}>

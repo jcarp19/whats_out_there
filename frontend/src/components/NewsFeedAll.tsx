@@ -5,8 +5,8 @@ import NewsInterface, { ArticlesEntity } from "../models/NewsInterface";
 import { useEffect, useState, useContext } from "react";
 import { getNews } from "../services/GetNews";
 import { WeatherInterface } from "../models/WeatherInterface";
-import telescope_Right from "../images/telescope_Right.svg"
-import telescope_Left from "../images/telescope_Left.svg"
+import telescope_Right from "../images/telescope_Right.svg";
+import telescope_Left from "../images/telescope_Left.svg";
 import NewsFeed from "./NewsFeed";
 import NavbarWeather from "./NavbarWeather";
 import { getSetWeather, getWeekForecast } from "../services/GetWeather";
@@ -37,10 +37,11 @@ export default function NewsFeedAll() {
     })
   }
 
+  
   return (
     <div aria-label = "addDiv1" role = "Div1">
      
-      <NavbarWeather weather={weather} forecast={forecast}/>
+      <NavbarWeather weather={weather} />
 
       <div>
         <h2 className="newsfeed-headline">Top 10 News Stories</h2>

@@ -165,6 +165,20 @@ header {
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
+
+.form-modal {
+    display: flex;
+    flex-wrap: wrap;
+    position: fixed;
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
   
   /* Modal Content/Box */
   .modal-content {
@@ -175,6 +189,18 @@ header {
     border-radius: 7px;
     width: 80%; /* Could be more or less, depending on screen size */
     height: 40rem;
+    box-sizing: content-box;
+  }
+
+  .form-modal-content{
+    display: flex;
+    background-color: rgba(147, 183, 190, 0.25);
+    margin: auto;
+    padding: 1rem;
+    border: 1px solid #dde0e0;
+    border-radius: 7px;
+    width: 80%; /* Could be more or less, depending on screen size */
+    height: 20rem;
     box-sizing: content-box;
   }
 
@@ -547,15 +573,17 @@ details {
 
 /* ~~~~~~~~~~~~~ Steph added this for the NewsFeed ~~~~~~~~~~~~ */
 .newsfeed-pix {
-  width: 35%;
+  width: 55%;
+  margin-bottom: .5em;
   border: 1px solid #dde0e0;
   box-shadow: 3px 3px 5px rgba(0,0,0, .25);
 }
 
 .newsfeed-div {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
   margin: 0;
 }
@@ -709,6 +737,27 @@ details {
 
     .park-search-zip {
       width: 35%; 
+    }
+
+    .home-card, .learn-more-card, .park-list-card, .newsfeed-card {
+      width: 80%; 
+      min-width: 80%;
+    }
+
+    .newsfeed-div {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      width: 100%;
+      margin: 0;
+    }
+  
+    .newsfeed-pix {
+      width: 35%;
+      margin-bottom: 0;
+      border: 1px solid #dde0e0;
+      box-shadow: 3px 3px 5px rgba(0,0,0, .25);
     }
 
 
