@@ -1,6 +1,6 @@
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 /* ~~~~~~~~~~~~~~~ MOBILE VIEW ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 main {
@@ -153,135 +153,148 @@ header {
 
 /* ~~~~~~~~~~~~~~~~~~~~ FORECAST MODAL ~~~~~~~~~~~~~~~~~~` */
 .modal {
-    display: flex;
-    flex-wrap: wrap;
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
+  display: flex;
+  flex-wrap: wrap;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
 
 .form-modal {
-    display: flex;
-    flex-wrap: wrap;
-    position: fixed;
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: rgba(147, 183, 190, 1);
-    margin: auto;
-    padding: 1rem;
-    border: 1px solid #dde0e0;
-    border-radius: 7px;
-    width: 80%; /* Could be more or less, depending on screen size */
-    height: 40rem;
-    box-sizing: content-box;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  position: fixed;
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
 
-  .form-modal-content{
-    display: flex;
-    background-color: rgba(147, 183, 190, 0.25);
-    margin: auto;
-    padding: 1rem;
-    border: 1px solid #dde0e0;
-    border-radius: 7px;
-    width: 80%; /* Could be more or less, depending on screen size */
-    height: 20rem;
-    box-sizing: content-box;
-  }
+/* Modal Content/Box */
+.modal-content {
+  background-color: rgba(147, 183, 190, 1);
+  margin: auto;
+  padding: 1rem;
+  border: 1px solid #dde0e0;
+  border-radius: 7px;
+  width: 80%; /* Could be more or less, depending on screen size */
+  height: 40rem;
+  box-sizing: content-box;
+}
 
-  .modal_h2{
-      color: #dde0e0;
-      text-align: center;
-      margin:5px;
-      font-family:  "Alumni Sans", sans-serif;
-  }
-  
-  /* The Close Button */
-  .close {
-    color: #2d3047;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: #e0ca3c;
-    text-decoration: none;
-    cursor: pointer;
-  }
+.form-modal-content {
+  display: flex;
+  background-color: rgba(147, 183, 190, 0.25);
+  margin: auto;
+  padding: 1rem;
+  border: 1px solid #dde0e0;
+  border-radius: 7px;
+  width: 80%; /* Could be more or less, depending on screen size */
+  height: 20rem;
+  box-sizing: content-box;
+}
 
-  .hour_info,
-  .daily_info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid #dde0e0;
-      border-radius: 7px;
-      width: calc(28% - .01rem);
-      height: calc(30% - .02rem);
-      box-shadow: 0px 2px 10px #1d2038;
-      margin: .2rem .3rem;
-      color: #2d3047;
-      box-sizing: border-box;
-      font-size: 1rem;
-      font-family:  "Alumni Sans", sans-serif;
-  }
+.modal_h2 {
+  color: #dde0e0;
+  text-align: center;
+  margin: 5px;
+  font-family: "Alumni Sans", sans-serif;
+}
 
-  .daily_info{
-    width: calc(20% - .01rem);
-    height: calc(30% - .02rem);
-  }
+/* The Close Button */
+.close {
+  color: #2d3047;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
 
-  .forecast_card {
-      background: #dde0e0;
-      width: 100%;  
-      border-radius: 0px 0px 7px 7px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      
-  }
+.close:hover,
+.close:focus {
+  color: #e0ca3c;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-  .hourly_forecast{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-  }
+/* The Close Button */
+.close {
+  color: #2d3047;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
 
-  .daily_forecast{
-      display: flex;
-      width: 100%;
-      /* height: 10rem; */
-      box-sizing: border-box;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-  }
+.close:hover,
+.close:focus {
+  color: #e0ca3c;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-  .forecast_p {
-      margin: 0px;
-  }
+.hour_info,
+.daily_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #dde0e0;
+  border-radius: 7px;
+  width: calc(28% - 0.01rem);
+  height: calc(30% - 0.02rem);
+  box-shadow: 0px 2px 10px #1d2038;
+  margin: 0.2rem 0.3rem;
+  color: #2d3047;
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-family: "Alumni Sans", sans-serif;
+}
 
+.daily_info {
+  width: calc(20% - 0.01rem);
+  height: calc(30% - 0.02rem);
+}
+
+.forecast_card {
+  background: #dde0e0;
+  width: 100%;
+  border-radius: 0px 0px 7px 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hourly_forecast {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.daily_forecast {
+  display: flex;
+  width: 100%;
+  /* height: 10rem; */
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.forecast_p {
+  margin: 0px;
+}
 
 /* ~~~~~~~~~~~~~ PARK SEARCH LIST ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .hidden {
@@ -292,7 +305,7 @@ header {
 .park-search-form {
   display: flex;
   flex-direction: column;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
   width: 100%;
 }
@@ -310,7 +323,7 @@ header {
   margin-bottom: 0.5em;
 }
 .park-search-button {
-  margin-top: .5em;
+  margin-top: 0.5em;
   padding: 1em 2.5em;
   color: #2d3047;
   background-color: #93b7be;
@@ -318,11 +331,13 @@ header {
   border-radius: 7px;
   font-weight: 700;
   font-size: 1em;
+
   transition: all .5s ease-in-out;
+
 }
 
-.park-search-button:hover{
-  background: #ED6A5A;
+.park-search-button:hover {
+  background: #ed6a5a;
   color: #dde0e0;
 }
 /* ~~~~~~~~~~~~~~~~~ DARK PARK SEARCH ~~~~~~~~~~~~~ */
@@ -385,6 +400,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 1rem;
 }
 
 .full-park-list{
@@ -409,34 +425,34 @@ header {
   /* text-shadow: 2px 2px 10px rgba(0,0,0, .95); */
   text-align: center;
 }
+
 .park-list-name {
   font-weight: 700;
-  font-size: 1.25rem; 
+  font-size: 1.25rem;
 }
 
-.park-list-card{
+.park-list-card {
   width: 80%;
 }
 
 .park-list-name > a:hover {
   color: #e0ca3c;
-  
 }
 .more-details-link {
   display: inline-block;
   box-sizing: border-box;
-  margin-top: .5em;
-  padding: .5em 1.5em;
+  margin-top: 0.5em;
+  padding: 0.5em 1.5em;
   color: #2d3047;
   background-color: #93b7be;
   border: none;
   border-radius: 7px;
   font-size: 1em;
   font-weight: 700;
-  transition: all .5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 .more-details-link:hover {
-  background: #ED6A5A;
+  background: #ed6a5a;
   color: #dde0e0;
 }
 details {
@@ -457,19 +473,19 @@ details {
   padding-top: 1em;
 }
 .ratingInput {
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   margin-bottom: 1em;
 }
 .commentInput {
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   margin-bottom: 1em;
 }
 .rating-list {
   list-style: none;
   display: flex;
   padding: 0;
-  margin: 0 0 .5em 0;
-  gap: .5em;
+  margin: 0 0 0.5em 0;
+  gap: 0.5em;
 }
 .fa-star {
   max-width: 25px;
@@ -479,8 +495,8 @@ details {
   color: #ff8800;
 }
 .btn-submit-commit {
-  margin-top: .5em;
-  padding: .5em 1.5em;
+  margin-top: 0.5em;
+  padding: 0.5em 1.5em;
   color: #2d3047;
   background-color: #93b7be;
   border: none;
@@ -489,36 +505,32 @@ details {
   font-weight: 700;
   width: 50%;
   align-self: center;
-  transition: all .5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 .btn-submit-commit:hover {
-  background: #ED6A5A;
+  background: #ed6a5a;
   color: #dde0e0;
 }
 
-
-.comments-container{
+.comments-container {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.comment-div{
+.comment-div {
   display: flex;
   align-items: center;
-  
 }
 
-.comment-div:nth-child(2n){
+.comment-div:nth-child(2n) {
   display: flex;
   align-items: center;
   flex-direction: row-reverse;
-  
 }
 
-
-.comment-card{
-  flex: .8;
+.comment-card {
+  flex: 0.8;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -556,21 +568,21 @@ details {
 } */
 
 .navbar-item > a {
-    color: #2D3047;
-    font-family: "Alumni Sans", sans-serif;
-    font-size: 1.25rem;
-    padding: 0px;
-    margin: 0px;
-    /* margin: .25rem 2rem; */
+  color: #2d3047;
+  font-family: "Alumni Sans", sans-serif;
+  font-size: 1.25rem;
+  padding: 0px;
+  margin: 0px;
+  /* margin: .25rem 2rem; */
 }
 
 .navbar-item:hover > a {
   color: #e0ca3c;
 }
 
-.navbar_p_home > a{
-    text-decoration: none;
-    color: #2D3047;
+.navbar_p_home > a {
+  text-decoration: none;
+  color: #2d3047;
 }
 
 .navbar_p:hover {
@@ -590,7 +602,7 @@ details {
   align-items: center;
   width: 100%;
 }
-.newsfeed_h2{
+.newsfeed_h2 {
   color: #93b7be;
   text-align: center;
   font-family: "Alumni Sans", sans-serif;
@@ -648,9 +660,9 @@ details {
 /* ~~~~~~~~~~~~~ Steph added this for the NewsFeed ~~~~~~~~~~~~ */
 .newsfeed-pix {
   width: 55%;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
   border: 1px solid #dde0e0;
-  box-shadow: 3px 3px 5px rgba(0,0,0, .25);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
 }
 
 .newsfeed-div {
@@ -663,6 +675,20 @@ details {
 }
 .newsfeed-text {
   margin-left: 1em;
+}
+
+/* ~~~~~~~~~~~~~ Steph added this for the ParkList ~~~~~~~~~~~~ */
+
+.parkListPic {
+  width: 80%;
+  border-radius: 10px;
+}
+
+/* only needed for dark park pic ABOVE the parklist */
+.addParkListPic {
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
 }
 
 /* ~~~~~~~~~~~~~ TABLET VIEW ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -703,7 +729,7 @@ details {
   }
 
   /* ~~~~~~~~~~~~~~~~~~~~ TABLET VIEW FORECAST MODAL ~~~~~~~~~~~~~~~~~~` */
-.modal {
+  .modal {
     display: flex;
     flex-wrap: wrap;
     position: fixed; /* Stay in place */
@@ -713,10 +739,10 @@ details {
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
   }
-  
+
   /* Modal Content/Box */
   .modal-content {
     background-color: rgba(147, 183, 190, 1);
@@ -729,12 +755,12 @@ details {
     box-sizing: content-box;
   }
 
-  .modal_h2{
-      color: #dde0e0;
-      text-align: center;
-      margin: 1.25rem;
+  .modal_h2 {
+    color: #dde0e0;
+    text-align: center;
+    margin: 1.25rem;
   }
-  
+
   /* The Close Button */
   .close {
     color: #2d3047;
@@ -742,7 +768,7 @@ details {
     font-size: 28px;
     font-weight: bold;
   }
-  
+
   .close:hover,
   .close:focus {
     color: #e0ca3c;
@@ -752,25 +778,24 @@ details {
 
   .hour_info,
   .daily_info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid #dde0e0;
-      border-radius: 7px;
-      width: calc(12% - .01rem);
-      height: calc(30% - .02rem);
-      box-shadow: 0px 2px 10px #1d2038;
-      margin: .2rem .3rem;
-      color: #2d3047;
-      box-sizing: border-box;
-      font-size: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #dde0e0;
+    border-radius: 7px;
+    width: calc(12% - 0.01rem);
+    height: calc(30% - 0.02rem);
+    box-shadow: 0px 2px 10px #1d2038;
+    margin: 0.2rem 0.3rem;
+    color: #2d3047;
+    box-sizing: border-box;
+    font-size: 1.25rem;
   }
 
-  .hour_info{
-    width: calc(15% - .01rem);
+  .hour_info {
+    width: calc(15% - 0.01rem);
   }
-
 
   .forecast_card {
       background: #dde0e0;
@@ -844,9 +869,64 @@ details {
       border: 1px solid #dde0e0;
       box-shadow: 3px 3px 5px rgba(0,0,0, .25);
     }
+    /* background: #dde0e0;
+    width: 100%;
+    border-radius: 0px 0px 7px 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+  
 
+  .hourly_forecast {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
 
+  .daily_forecast {
+    display: flex;
+    width: 100%;
+    /* height: 10rem; */
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
 
+  .home-card,
+  .learn-more-card,
+  .park-list-card,
+  .newsfeed-card {
+    width: 80%;
+    min-width: 80%;
+  }
+
+  .newsfeed-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0;
+  }
+
+  .newsfeed-pix {
+    width: 35%;
+    margin-bottom: 0;
+    border: 1px solid #dde0e0;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+  }
+
+  .modal_h2 {
+    font-size: 2rem;
+  }
+
+  .park-search-zip {
+    width: 35%;
+  }
 }
 
 /* ~~~~~~~~~~~ DESKTOP VIEW ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -906,7 +986,7 @@ details {
   }
 
   .park-search-zip {
-    width: 25%; 
+    width: 25%;
   }
 
   .dark-park-search-zip{
@@ -919,10 +999,14 @@ details {
 
   .home-card, .learn-more-card, .park-list-card, .newsfeed-card {
     width: 80%; 
-    min-width: 80%;
   }
 
-  .comment-card{
-    flex: .6
+  .comment-card {
+    flex: 0.6;
+  }
+
+  /* Steph added this, don't delete it! */
+  .parkListPic {
+    width: 30%;
   }
 }

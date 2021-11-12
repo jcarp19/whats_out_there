@@ -8,6 +8,12 @@ import WeatherRoute from "../routes/WeatherRoute";
 import DarkParkSearch from "./DarkParkSearch";
 import DarkPark from "../models/DarkPark";
 import getParkList from "../services/GetParkList";
+import darkpark1 from "../images/darkpark1.jpg";
+import darkpark2 from "../images/darkpark2.jpg";
+import darkpark3 from "../images/darkpark3.jpg";
+import darkpark4 from "../images/darkpark4.jpg";
+
+
 
 
 export default function DarkParkList(): any {
@@ -23,6 +29,20 @@ export default function DarkParkList(): any {
     })
   }
 
+  // function imgScroll () {
+  //     return (
+  //       <div className="parkScrollDiv">
+  //         <div className="imgContainer">
+  //           <div className="darkpark1"></div>
+  //           <div className="darkpark2"></div>
+  //           <div className="darkpark3"></div>
+  //           <div className="darkpark4"></div>
+  //         </div>
+  //         <a className="next" onClick={scroll.bind(null, 1)}>&#10095;</a>
+  //       </div>
+  //     )
+  //   }
+
   return (
     <div>
       <DarkParkSearch />
@@ -37,13 +57,17 @@ export default function DarkParkList(): any {
               {/* <p>{data._id}</p> */}
               <p className="park-list-name"><a href={data.url} target="_blank">{data.name}</a></p>
               <p>{data.state}</p>
-              <p>Light Pollution: {data.lightPollution}</p>
-              <p>Is Camping Available?: {data.camping}</p>
-              <p>Fee: {data.fee}</p>
+              <p><strong>Light Pollution:</strong> {data.lightPollution}</p>
+              <p><strong>Is Camping Available?:</strong> {data.camping}</p>
+              <p><strong>Fee:</strong> {data.fee}</p>
               <p>{data.description}</p>
               <details>
                 <summary>Click for Full Address</summary>
-                <p>Address: {data.address}</p>
+                <p><strong>Address:</strong> {data.address}</p>
+
+                {/* https://maps.google.com/?ll=latitude,longitude */}
+                {/* <Link to={{ pathname: `https://maps.google.com/?ll=${data.latlong[0]}${data.latlong[1]}` }} target="_blank" /> */}
+                {/* <p>{data.latlong}</p> */}
               </details>
             </div>
           )
@@ -51,7 +75,8 @@ export default function DarkParkList(): any {
 
       </div>
 
-    </div>
+    // </div >
   )
+
 
 }
