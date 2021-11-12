@@ -262,7 +262,7 @@ export default function HomeParkSearch() {
                                             {[...Array(5)].map((star, index) => {
                                                  index += 1;
                                                 return(
-                                                    <li key={index} id="star-rating2" className={index <= comment.rating ? "clicked" : "star"}   onClick={(e) => {e.preventDefault(); var target = e.target as Element; setRating(index); }}><i className="fas fa-star star5"></i></li>
+                                                    <li key={index} id="star-rating2" className={index <= comment.rating ? "clicked" : "star"} ><i className="fas fa-star star5"></i></li>
                                                 )
                                             })}
                                             </ul>
