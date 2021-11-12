@@ -73,7 +73,7 @@ export default function WeatherRoute() {
       </div>
 
       <div className="modal_container hidden">
-        <Forecast />
+        {/* <Forecast forecast={forecast}/> */}
       </div>
     </>
   );

@@ -9,6 +9,10 @@ import DarkParkSearch from "./DarkParkSearch";
 import DarkPark from "../models/DarkPark";
 import getParkList from "../services/GetParkList";
 import darkpark1 from "../images/darkpark1.jpg";
+import darkpark2 from "../images/darkpark2.jpg";
+import darkpark3 from "../images/darkpark3.jpg";
+import darkpark4 from "../images/darkpark4.jpg";
+
 
 
 
@@ -25,17 +29,39 @@ export default function DarkParkList(): any {
     })
   }
 
+  // function imgScroll () {
+  //     return (
+  //       <div className="parkScrollDiv">
+  //         <div className="imgContainer">
+  //           <div className="darkpark1"></div>
+  //           <div className="darkpark2"></div>
+  //           <div className="darkpark3"></div>
+  //           <div className="darkpark4"></div>
+  //         </div>
+  //         <a className="next" onClick={scroll.bind(null, 1)}>&#10095;</a>
+  //       </div>
+  //     )
+  //   }
+
   return (
     <div>
       <DarkParkSearch />
 
       {/* dark park pic above the list: */}
-      {/* <div className="addParkListPic">
+      <div className="addParkListPic">
         <img className="parkListPic" src={darkpark1} alt="image of stars in the blue sky" />
-      </div> */}
+        {/* <div className="parkListScroll">
+          <img className="darkpark1" src={darkpark1} />
+          <img className="darkpark2" src={darkpark2} />
+          <img className="darkpark3" src={darkpark3} />
+          <img className="darkpark4" src={darkpark4} />
+        </div> */}
 
-      { /* dark park background image */}
-      <div className="park-list" style={{ backgroundImage: `url(${darkpark1})` }}>
+      </div>
+
+
+
+      <div className="park-list">
         <h2 aria-label="addH2" role="H2" className="park-list-headline">Full Dark Park List</h2>
 
         {darkParkList.map((data, index) => {
@@ -63,7 +89,7 @@ export default function DarkParkList(): any {
 
       </div>
 
-    </div>
+    // </div >
   )
 
 

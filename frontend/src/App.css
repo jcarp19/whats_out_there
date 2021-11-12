@@ -166,6 +166,20 @@ header {
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
+.form-modal {
+  display: flex;
+  flex-wrap: wrap;
+  position: fixed;
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
 /* Modal Content/Box */
 .modal-content {
   background-color: rgba(147, 183, 190, 1);
@@ -178,11 +192,38 @@ header {
   box-sizing: content-box;
 }
 
+.form-modal-content {
+  display: flex;
+  background-color: rgba(147, 183, 190, 0.25);
+  margin: auto;
+  padding: 1rem;
+  border: 1px solid #dde0e0;
+  border-radius: 7px;
+  width: 80%; /* Could be more or less, depending on screen size */
+  height: 20rem;
+  box-sizing: content-box;
+}
+
 .modal_h2 {
   color: #dde0e0;
   text-align: center;
   margin: 5px;
   font-family: "Alumni Sans", sans-serif;
+}
+
+/* The Close Button */
+.close {
+  color: #2d3047;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #e0ca3c;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 /* The Close Button */
@@ -289,7 +330,7 @@ header {
   border-radius: 7px;
   font-weight: 700;
   font-size: 1em;
-  transition: all 1s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .park-search-button:hover {
@@ -302,14 +343,13 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-size: 100%; /* Steph started messing with this.. */
-  background-attachment: fixed; /* keeps background img from scrolling*/
   margin-top: 1rem;
 }
 .park-list-headline {
   color: rgba(147, 183, 190, 1);
   margin-left: 1rem;
 }
+
 .park-list-name {
   font-weight: 700;
   font-size: 1.25rem;
@@ -317,7 +357,6 @@ header {
 
 .park-list-card {
   width: 80%;
-  background-color: rgba(45, 48, 71, 0.9);
 }
 
 .park-list-name > a:hover {
@@ -544,15 +583,17 @@ details {
 
 /* ~~~~~~~~~~~~~ Steph added this for the NewsFeed ~~~~~~~~~~~~ */
 .newsfeed-pix {
-  width: 35%;
+  width: 55%;
+  margin-bottom: 0.5em;
   border: 1px solid #dde0e0;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
 }
 
 .newsfeed-div {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
   margin: 0;
 }
@@ -562,27 +603,17 @@ details {
 
 /* ~~~~~~~~~~~~~ Steph added this for the ParkList ~~~~~~~~~~~~ */
 
-/* .parkListPic {
-  background-size: 50%;
-} */
+.parkListPic {
+  width: 80%;
+  border-radius: 10px;
+}
 
 /* only needed for dark park pic ABOVE the parklist */
-/* .addParkListPic {
+.addParkListPic {
   display: flex;
   justify-content: center;
   margin-top: 1em;
-} */
-
-/* background-image: url("https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/potw2101a_0.jpg"); */
-/* position: center;
-  color: #dde0e0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 3em 0;
-  margin-top: -15px; */
-/* Had to put this negative margin after making the navbar/weather component the standard */
+}
 
 /* ~~~~~~~~~~~~~ TABLET VIEW ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
@@ -718,8 +749,28 @@ details {
     flex-wrap: wrap;
   }
 
-  .forecast_p {
-    margin: 0.5rem;
+  .home-card,
+  .learn-more-card,
+  .park-list-card,
+  .newsfeed-card {
+    width: 80%;
+    min-width: 80%;
+  }
+
+  .newsfeed-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0;
+  }
+
+  .newsfeed-pix {
+    width: 35%;
+    margin-bottom: 0;
+    border: 1px solid #dde0e0;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
   }
 
   .modal_h2 {
@@ -801,5 +852,10 @@ details {
 
   .comment-card {
     flex: 0.6;
+  }
+
+  /* Steph added this, don't delete it! */
+  .parkListPic {
+    width: 30%;
   }
 }
