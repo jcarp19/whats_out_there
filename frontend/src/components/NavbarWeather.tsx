@@ -1,15 +1,16 @@
-import { WeatherInterface} from "../models/WeatherInterface";
+import { WeatherInterface } from "../models/WeatherInterface";
 import { NavLink } from "react-router-dom";
 import Forecast from "../components/Forecast"
 import { getWeekForecast } from "../services/GetWeather";
 import { SearchContext } from "../context/SearchProvider";
 import { useContext, useState, useEffect } from "react";
+import GoogleAuth from "./GoogleAuth";
 
 interface Props {
     weather?: WeatherInterface;
 }
 
-export default function NavbarWeather({weather}: Props) {
+export default function NavbarWeather({ weather }: Props) {
     const [forecast2, setForecast2] = useState<WeatherInterface>();
     const { searchInputs } = useContext(SearchContext);
 
@@ -22,54 +23,55 @@ export default function NavbarWeather({weather}: Props) {
 
     }
 
-    function formatTemp(temp: any){
+    function formatTemp(temp: any) {
         let fixedTemp = temp?.toFixed()
         return fixedTemp;
     }
 
-   
-    return (        
+
+    return (
         <div className="desktop-wrap_nav_weather">
-                <nav className="navbar_home">
-                    <ul>
-                        <li className="navbar-item"><NavLink to="/" style={{ textDecoration: "none" }}>Home</NavLink></li>
-                        <li className="navbar-item"><NavLink to="/learnmore" style={{ textDecoration: "none" }}>Learn More</NavLink></li>
-                        <li className="navbar-item"><NavLink to="/news" style={{ textDecoration: "none" }}>News</NavLink></li>
-                        <li className="navbar-item"><NavLink to="/darkparklist" style={{ textDecoration: "none" }}>Park List</NavLink></li>
-                    </ul>
-                </nav>
-
-    
-                <div className="weather_route_div_home">
-                    <div className="timezone_and_conditions_div">
-                        {/* Shows timezone. Automatically set to 'America/Detroit' until changed. */}
-                        <h3 className="timezone_h3">
-                            <div className="timezone_text">Time Zone: </div>
-                            {formatWeather()}</h3>
-
-                        {/* Grabs a small description of current weather conditions (example: moderate rain) */}
-                        <p className="weather_conditions_p">
-                            <p className="conditions_text"> Conditions: </p>
-                            {weather?.current.weather[0].description}</p>
-                    </div>
+            <nav className="navbar_home">
+                <ul>
+                    <li className="navbar-item"><NavLink to="/" style={{ textDecoration: "none" }}>Home</NavLink></li>
+                    <li className="navbar-item"><NavLink to="/learnmore" style={{ textDecoration: "none" }}>Learn More</NavLink></li>
+                    <li className="navbar-item"><NavLink to="/news" style={{ textDecoration: "none" }}>News</NavLink></li>
+                    <li className="navbar-item"><NavLink to="/darkparklist" style={{ textDecoration: "none" }}>Park List</NavLink></li>
+                </ul>
+            </nav>
 
 
-                    <div className="temp_icon_details_div">
-                        {/* temperature */}
-                        <p className="temp_p">{formatTemp(weather?.current.temp)}°</p>
-                        {/* Icon representing weather */}
-                        <img className="weather_icon_img" src={"http://openweathermap.org/img/wn/" + weather?.current.weather[0].icon + "@2x.png"} alt='icon representing weather conditions' />
-                        {/* link to see 7-day forescast and more details */}
-                        <p onClick={(e) => {
-                            e.preventDefault();
-                            document.querySelectorAll(".modal_container").forEach(item => item.classList.toggle("hidden"))}} className="weather_info_p" >&#9432;</p>
-                    </div>
+            <div className="weather_route_div_home">
+                <div className="timezone_and_conditions_div">
+                    {/* Shows timezone. Automatically set to 'America/Detroit' until changed. */}
+                    <h3 className="timezone_h3">
+                        <div className="timezone_text">Time Zone: </div>
+                        {formatWeather()}</h3>
+
+                    {/* Grabs a small description of current weather conditions (example: moderate rain) */}
+                    <p className="weather_conditions_p">
+                        <p className="conditions_text"> Conditions: </p>
+                        {weather?.current.weather[0].description}</p>
                 </div>
 
-                <div className="modal_container hidden">
-                    <Forecast />
+
+                <div className="temp_icon_details_div">
+                    {/* temperature */}
+                    <p className="temp_p">{formatTemp(weather?.current.temp)}°</p>
+                    {/* Icon representing weather */}
+                    <img className="weather_icon_img" src={"http://openweathermap.org/img/wn/" + weather?.current.weather[0].icon + "@2x.png"} alt='icon representing weather conditions' />
+                    {/* link to see 7-day forescast and more details */}
+                    <p onClick={(e) => {
+                        e.preventDefault();
+                        document.querySelectorAll(".modal_container").forEach(item => item.classList.toggle("hidden"))
+                    }} className="weather_info_p" >&#9432;</p>
                 </div>
             </div>
+
+            <div className="modal_container hidden">
+                <Forecast />
+            </div>
+        </div>
 
     )
 

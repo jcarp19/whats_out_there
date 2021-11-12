@@ -14,11 +14,8 @@ import DarkParkSearch from './components/DarkParkSearch';
 import Forecast from './components/Forecast';
 import NavbarWeather from './components/NavbarWeather';
 
-
-
-
 function App() {
-  
+
   return (
 
     <SearchProvider>
@@ -32,7 +29,7 @@ function App() {
               <LearnMore />
             </Route>
             <Route path="/forecast">
-              <Forecast/>
+              <Forecast />
             </Route>
             <Route path="/darkparklist" exact>
               <DarkParkList />
