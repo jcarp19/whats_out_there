@@ -26,13 +26,14 @@ export default function DarkParkList(): any {
   return (
     <div>
       <DarkParkSearch />
-      <div className="park-list">
-        <h2 aria-label="addH2" role="H2" className="park-list-headline">Full Dark Park List</h2>
+      <h2 aria-label="addH2" role="H2" className="park-list-headline">Full Dark Park List</h2>
+      <div className="full-park-list" >
+        {/* <h2 aria-label="addH2" role="H2" className="park-list-headline">Full Dark Park List</h2> */}
 
         {darkParkList.map((data, index) => {
           console.log(data);
           return (
-            <div key={index} className="info-card park-list-card">
+            <div key={index} className="info-card dark-park-list-card">
               {/* <p>{data._id}</p> */}
               <p className="park-list-name"><a href={data.url} target="_blank">{data.name}</a></p>
               <p>{data.state}</p>

@@ -187,6 +187,7 @@ export default function HomeParkSearch() {
                 {darkParkList.sort((a, b) => a.miles - b.miles).map((data, index) => {
                     return (
                         <div key={index} className="info-card home-card">
+                            
                             <p className="park-list-name"><a href={data.url} target="_blank">{data.name}</a></p>
                             <p>{data.state}</p>
                             <p>{data.description}</p>
@@ -194,7 +195,15 @@ export default function HomeParkSearch() {
                             
                             <a href={data.url} target="_blank" className="more-details-link">More Details</a>
                             {/* Comment Form below */}
-                            <details>
+                            <details onClick={() => {
+                               for (let i = 0; i < document.querySelectorAll("details").length; i++) {
+                                if (document.querySelectorAll("details")[i].open) {
+                                    if (i != index) {
+                                        document.querySelectorAll("details")[i].removeAttribute("open")
+                                    }
+                                }
+                            }
+                            }}>
                                 <summary><span className="leaveRatingComment_h2">Click to Leave a Rating and Comment</span></summary>
                                 <form method="PUT" id="comment-form" className="info-card" onSubmit={(e) => {
                                     e.preventDefault();
@@ -262,7 +271,7 @@ export default function HomeParkSearch() {
                                             {[...Array(5)].map((star, index) => {
                                                  index += 1;
                                                 return(
-                                                    <li key={index} id="star-rating2" className={index <= comment.rating ? "clicked" : "star"} ><i className="fas fa-star star5"></i></li>
+                                                    <li key={index} id="star-rating2" className={index <= comment.rating ? "clicked" : "star"}><i className="fas fa-star star5"></i></li>
                                                 )
                                             })}
                                             </ul>
