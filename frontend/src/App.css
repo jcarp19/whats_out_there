@@ -330,7 +330,9 @@ header {
   border-radius: 7px;
   font-weight: 700;
   font-size: 1em;
-  transition: all 0.5s ease-in-out;
+
+  transition: all .5s ease-in-out;
+
 }
 
 .park-search-button:hover {
