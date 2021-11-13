@@ -19,15 +19,15 @@ export default function NewsFeedAll() {
   const [weather, setWeather] = useState<WeatherInterface>();
   const [forecast, setForecast] = useState<WeatherInterface>();
   const { searchInputs } = useContext(SearchContext);
-  
-  
+
+
   useEffect(() => {
     loadNews();
     getSetWeather(searchInputs[0].searchLat, searchInputs[0].searchLon).then(res => setWeather(res));
     getWeekForecast(searchInputs[0].searchLat, searchInputs[0].searchLon).then((res) => setForecast(res));
   }, [])
-  
-  
+
+
   function loadNews() {
     getNews().then(res => {
       console.log(res)
@@ -37,10 +37,10 @@ export default function NewsFeedAll() {
     })
   }
 
-  
+
   return (
-    <div aria-label = "addDiv1" role = "Div1">
-     
+    <div aria-label="addDiv1" role="Div1">
+
       <NavbarWeather weather={weather} />
 
       <div>
@@ -71,11 +71,3 @@ export default function NewsFeedAll() {
     </div>
   )
 }
-
-
-
-
-// // newsapi key
-// //  01506b975fb14e549a407f6016bb935b
-// // https://newsapi.org/v2/everything?domains=nasa.gov&apiKey=01506b975fb14e549a407f6016bb935b
-// // https://newsapi.org/
