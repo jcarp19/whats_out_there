@@ -120,7 +120,7 @@ export default function HomeParkSearch() {
         getSetWeather(zipLat, zipLon).then(res => setWeather(res));
         getWeekForecast(zipLat, zipLon).then((res) => setForecast(res));
 
-    }, [numParks])
+    }, zipLat)
 
     function reloadParkList () {
         getParkList().then(res => setDarkParkList([...darkParkList]));
