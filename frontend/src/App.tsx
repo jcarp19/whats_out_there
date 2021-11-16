@@ -36,7 +36,6 @@ function App() {
             </Route>
             <Route path="/" exact>
               <Container />
-              {/* <Homepage /> */}
             </Route>
           </Switch>
         </Router>

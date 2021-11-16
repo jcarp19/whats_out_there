@@ -9,6 +9,7 @@ import { getSetWeather, getWeekForecast } from "../services/GetWeather";
 import { upDateOne } from "../services/GetParkList";
 // useContext stuff
 import { SearchContext } from "../context/SearchProvider";
+import AuthContext from "../context/AuthContext";
 import Header from "./Header";
 import NavbarWeather from "./NavbarWeather";
 
@@ -18,6 +19,7 @@ export default function HomeParkSearch() {
     // receive zip code from form
     // make sure it's on the list. If not return an err message
     // return lon/lat , 
+    const { user } = useContext(AuthContext);
     const { searchInputs } = useContext(SearchContext);
     const [zipLat, setZipLat] = useState(searchInputs[0].searchLat);
     const [zipLon, setZipLon] = useState(searchInputs[0].searchLon);
@@ -35,45 +37,6 @@ export default function HomeParkSearch() {
     let star4: HTMLElement = document.getElementById("star-rating4")!;
     let star5: HTMLElement = document.getElementById("star-rating5")!;
 
-    const changeColor = (n:number) => {
-        if (n == 1) {
-           star1.classList.add("clicked");
-
-           star2.classList.remove("clicked");
-           star3.classList.remove("clicked");
-           star4.classList.remove("clicked");
-           star5.classList.remove("clicked");
-       
-        } else if (n == 2) {
-           star1.classList.add("clicked")
-           star2.classList.add("clicked")
-
-           star3.classList.remove("clicked");
-           star4.classList.remove("clicked");
-           star5.classList.remove("clicked");
-        } else if (n == 3) {
-           star1.classList.add("clicked")
-           star2.classList.add("clicked")
-           star3.classList.add("clicked")
-
-           star4.classList.remove("clicked");
-           star5.classList.remove("clicked");
-        } else if (n == 4) {
-           star1.classList.add("clicked")
-           star2.classList.add("clicked")
-           star3.classList.add("clicked")
-           star4.classList.add("clicked")
-
-           star5.classList.remove("clicked");
-        } else if (n == 5) {
-           star1.classList.add("clicked")
-           star2.classList.add("clicked")
-           star3.classList.add("clicked")
-           star4.classList.add("clicked")
-           star5.classList.add("clicked")
-        }
-        console.log(n)
-    }
        
 
     // const[searchLatLon, setSearchLatLon] = useState<SearchProps>({searchLat: zipLat, searchLon: zipLon});
@@ -120,7 +83,7 @@ export default function HomeParkSearch() {
         getSetWeather(zipLat, zipLon).then(res => setWeather(res));
         getWeekForecast(zipLat, zipLon).then((res) => setForecast(res));
 
-    }, [numParks])
+    }, [zipLat])
 
     function reloadParkList () {
         getParkList().then(res => setDarkParkList([...darkParkList]));
@@ -164,7 +127,7 @@ export default function HomeParkSearch() {
 
                                 })
                                 searchInputs.unshift({ searchLat: zipLat, searchLon: zipLon, hasSearched: true });
-                                // console.log(searchInputs)
+                                console.log(searchInputs)
 
                             }
                         }} />
@@ -205,20 +168,25 @@ export default function HomeParkSearch() {
                             }
                             }}>
                                 <summary><span className="leaveRatingComment_h2">Click to Leave a Rating and Comment</span></summary>
-                                <form method="PUT" id="comment-form" className="info-card" onSubmit={(e) => {
+                                <form method="PUT" id="comment-form" className="info-card comment-form" onSubmit={(e) => {
                                     e.preventDefault();
-                                    let newComment: Comments = { rating, comment };
+                                    if(user?.displayName != null) {
+                                        var userName = user.displayName
+                                    } else {
+                                        var userName = "Anonymous"
+                                    }
+                                    if(user?.photoURL != null) {
+                                        var photoURL = user.photoURL  
+                                    } else {
+                                        var photoURL = "none"
+                                    }
+                                    let newComment: Comments = { rating, comment, userName, photoURL};
                                     // testing to see if pushing would refresh the page, it did not
                                     upDateOne(data._id, newComment).then(res => data.comments.push(res))
                                     setRating(0);
                                     setComment("");
-                                    // document.querySelectorAll(".fa-star").forEach(star => star.classList.remove("clicked"))
                                     getParkList().then(res => setDarkParkList([...darkParkList]));
-                                    // setRating(0);
-                                    // setComment("");
-                                    // resetUse();
-                                    // document.getElementsByName("rating").forEach(input => input = 0);
-                                    // document.querySelectorAll("input").forEach(input => input.textContent = "");
+                                    
                                 }}>
                                     {/* <label htmlFor="rating">Rating:</label>
                                     <input placeholder="rating" className="ratingInput" type="number" max="10" min="1" name="rating" onChange={(e) => { setRating(e.target.valueAsNumber) }}></input> index <= rating ? target.classList.add("clicked") : target.classList.add("")*/}
@@ -228,23 +196,14 @@ export default function HomeParkSearch() {
                                             {[...Array(5)].map((star, index) => {
                                                  index += 1;
                                                 return(
-                                                    <li key={index} id="star-rating2" className={index <= rating ? "clicked" : "star"}   onClick={(e) => {e.preventDefault(); var target = e.target as Element; setRating(index); }}><i className="fas fa-star star5"></i></li>
+                                                    <li key={index} className={index <= rating ? "clicked" : "star"}   onClick={(e) => {e.preventDefault(); var target = e.target as Element; setRating(index); }}><i className="fas fa-star star5"></i></li>
                                                 )
                                             })}
-                                            {/* This sets up a new array of 5 with stars inside. If the index is less than or equal to the rating, then is has a the classname "clicked" and turns orange. */}
-                                            {/* <li id="star-rating1" onClick={(e) => {e.preventDefault(); var target1 = e.target as Element; setRating(1); target1.classList.add("clicked"); }}><i className={ <= rating ? "fas fa-star clicked" : "fas fa-star"}></i></li>
-                                            <li id="star-rating2" onClick={(e) => {e.preventDefault(); var target2 = e.target as Element; setRating(2); target2.classList.add("clicked")}}><i key="2" className={index <= rating ? "fas fa-star clicked" : "fas fa-star"}></i></li>
-                                            <li id="star-rating3" onClick={(e) => {e.preventDefault(); var target3 = e.target as Element; setRating(3); target3.classList.add("clicked")}}><i key="3" className={index <= rating ? "fas fa-star clicked" : "fas fa-star"}></i></li>
-                                            <li id="star-rating4" onClick={(e) => {e.preventDefault(); var target4 = e.target as Element; setRating(4); target4.classList.add("clicked");}}><i key="4" className={index <= rating ? "fas fa-star clicked" : "fas fa-star"}></i></li>
-                                            <li id="star-rating5" onClick={(e) => {e.preventDefault(); var target5 = e.target as Element; setRating(5); target5.classList.add("clicked");}}><i key="5" className={index <= rating ? "fas fa-star clicked" : "fas fa-star"}></i></li> */}
-                                            {/* <li id="star-rating2" onClick={() => {setRating(2); changeColor(2)}}><i className="fas fa-star star2"></i></li>
-                                            <li id="star-rating3" onClick={() => {setRating(3); changeColor(3)}}><i className="fas fa-star star3"></i></li>
-                                            <li id="star-rating4" onClick={() => {setRating(4); changeColor(4)}}><i className="fas fa-star star4"></i></li>
-                                            <li id="star-rating5" onClick={() => {setRating(5); changeColor(5)}}><i className="fas fa-star star5"></i></li> */}
                                         </ul>
                                     </div>
                                     <label htmlFor="comment">Comment:</label>
-                                    <input placeholder="comment" className="commentInput" type="text" name="comment" onChange={(e) => { setComment(e.target.value) }}></input>
+                                    <input placeholder="comment" value={comment} className="commentInput" type="text" name="comment" onChange={(e) => { setComment(e.target.value) }}></input>
+                        
                                     <button className="btn-submit-commit" type="submit" onClick={() => {
                                         // setRating(starRating);
                                         console.log(rating);
@@ -255,13 +214,19 @@ export default function HomeParkSearch() {
 
                                 <div className="comments-container">{data.comments.map((comment, index) => {
                                     function assignImage(index: any) {
-                                        if (index % 2 === 0) {
-                                          let img = telescope_Right;
-                                          return img;
-                                        } else {
-                                          let img = telescope_Left;
-                                          return img;
+                                        if(comment.photoURL == undefined || comment.photoURL == "none") {
+                                            if (index % 2 === 0) {
+                                                let img = telescope_Right;
+                                                return img;
+                                              } else {
+                                                let img = telescope_Left;
+                                                return img;
+                                              }
+                                        } else{
+                                            let img = comment.photoURL;
+                                            return img
                                         }
+                                       
                                       }
                                     return (
                                         <div  key={index} className="comment-div">
@@ -276,6 +241,7 @@ export default function HomeParkSearch() {
                                             })}
                                             </ul>
                                             <p>"{comment.comment}"</p>
+                                            <p>-{comment.userName}</p>
                                         </div>
                                         </div>
                                     )
