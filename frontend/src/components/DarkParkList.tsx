@@ -66,6 +66,7 @@ export default function DarkParkList(): any {
               <details>
                 <summary>Click for Full Address</summary>
                 <p><strong>Address:</strong> {data.address}</p>
+                <a href={`https://www.google.com/maps/search/?api=1&query=${data.latlong[0]}%2C${data.latlong[1]}`} target={"_blank"}>Click here for Google Map directions</a>
 
                 {/* https://maps.google.com/?ll=latitude,longitude */}
                 {/* <Link to={{ pathname: `https://maps.google.com/?ll=${data.latlong[0]}${data.latlong[1]}` }} target="_blank" /> */}
