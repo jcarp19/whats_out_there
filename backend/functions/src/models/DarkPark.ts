@@ -19,7 +19,7 @@ export interface Comments {
     rating: number;
     comment: string;
     userName?: string;
-    photoUrl?: string
+    photoURL?: string
 }
 
 export interface filteredParks {
