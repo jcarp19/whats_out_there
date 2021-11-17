@@ -17,6 +17,7 @@ export default function GoogleAuth() {
                 <button onClick={() => { signOut() }}>Sign Out</button>
             )}
             <p>Welcome: {user?.displayName}</p>
+            <div>{user?.photoURL}</div>
             {/* <p>{JSON.stringify(user, null, 2)}</p> */}
 
         </div>

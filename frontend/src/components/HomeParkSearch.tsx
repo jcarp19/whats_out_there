@@ -171,17 +171,18 @@ export default function HomeParkSearch() {
                                 <form method="PUT" id="comment-form" className="info-card comment-form" onSubmit={(e) => {
                                     e.preventDefault();
                                     if(user?.displayName != null) {
-                                        var userName = user.displayName
+                                        var userName = user?.displayName
                                     } else {
                                         var userName = "Anonymous"
                                     }
                                     if(user?.photoURL != null) {
-                                        var photoURL = user.photoURL  
+                                        var photoURL = user?.photoURL  
                                     } else {
                                         var photoURL = "none"
                                     }
                                     let newComment: Comments = { rating, comment, userName, photoURL};
                                     // testing to see if pushing would refresh the page, it did not
+                                    console.log(`this is a new comment ${newComment}`);
                                     upDateOne(data._id, newComment).then(res => data.comments.push(res))
                                     setRating(0);
                                     setComment("");
