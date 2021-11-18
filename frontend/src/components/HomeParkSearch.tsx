@@ -73,7 +73,7 @@ export default function HomeParkSearch() {
                         return Value * Math.PI / 180;
                     }
                     calcDistance(zLat, zLon, pLat, pLon);
-                    setComments(data.comments);
+                    
                 })
             }
             setDarkParkList(res);
@@ -161,8 +161,10 @@ export default function HomeParkSearch() {
                             <details onClick={() => {
                                for (let i = 0; i < document.querySelectorAll("details").length; i++) {
                                 if (document.querySelectorAll("details")[i].open) {
+                                    setComments(data.comments);
                                     if (i != index) {
                                         document.querySelectorAll("details")[i].removeAttribute("open")
+                                        setComments(data.comments);
                                     }
                                 }
                             }
@@ -182,8 +184,9 @@ export default function HomeParkSearch() {
                                     }
                                     let newComment: Comments = { rating, comment, userName, photoURL};
                                     // testing to see if pushing would refresh the page, it did not
-                                    console.log(`this is a new comment ${newComment}`);
-                                    upDateOne(data._id, newComment).then(res => data.comments.push(res))
+                                    // let newComments = [...data.comments]
+                                    upDateOne(data._id, newComment).then(res => comments.push(res))
+                                    // setComments(newComments)
                                     setRating(0);
                                     setComment("");
                                     getParkList().then(res => setDarkParkList([...darkParkList]));
@@ -213,7 +216,7 @@ export default function HomeParkSearch() {
                                     </button>
                                 </form>
 
-                                <div className="comments-container">{data.comments.map((comment, index) => {
+                                <div className="comments-container">{comments.map((comment, index) => {
                                     function assignImage(index: any) {
                                         if(comment.photoURL == undefined || comment.photoURL == "none") {
                                             if (index % 2 === 0) {
@@ -246,7 +249,7 @@ export default function HomeParkSearch() {
                                         </div>
                                         </div>
                                     )
-                                })}</div>
+                                }).reverse()}</div>
                             </details>
                         </div>
                        
