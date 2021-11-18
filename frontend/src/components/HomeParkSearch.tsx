@@ -168,7 +168,7 @@ export default function HomeParkSearch() {
                                         document.querySelectorAll("details")[i].removeAttribute("open")
                                     }
                                 }
-                            }}>
+                            }}}>
                                 <summary><span className="leaveRatingComment_h2">Click to Leave a Rating and Comment</span></summary>
                                 <form method="PUT" id="comment-form" className="info-card comment-form" onSubmit={(e) => {
                                     e.preventDefault();
