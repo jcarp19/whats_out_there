@@ -73,10 +73,10 @@ export default function HomeParkSearch() {
                         return Value * Math.PI / 180;
                     }
                     calcDistance(zLat, zLon, pLat, pLon);
-                    setComments(data.comments);
                 })
             }
             setDarkParkList(res);
+            
         });
         
         console.log(searchInputs[0]);
@@ -159,6 +159,7 @@ export default function HomeParkSearch() {
                             <a href={data.url} target="_blank" className="more-details-link">More Details</a>
                             {/* Comment Form below */}
                             <details onClick={() => {
+                                setComments(data.comments);
                                for (let i = 0; i < document.querySelectorAll("details").length; i++) {
                                 if (document.querySelectorAll("details")[i].open) {
                                     if (i != index) {
@@ -181,8 +182,11 @@ export default function HomeParkSearch() {
                                         var photoURL = "none"
                                     }
                                     let newComment: Comments = { rating, comment, userName, photoURL};
+                                    console.log(newComment)
                                     // testing to see if pushing would refresh the page, it did not
-                                    upDateOne(data._id, newComment).then(res => data.comments.push(res))
+                                    // let newComments = [...data.comments]
+                                    upDateOne(data._id, newComment).then(res => comments.push(res))
+                                    // setComments(newComments)
                                     setRating(0);
                                     setComment("");
                                     getParkList().then(res => setDarkParkList([...darkParkList]));
@@ -211,8 +215,9 @@ export default function HomeParkSearch() {
                                         Submit Comment
                                     </button>
                                 </form>
-
-                                <div className="comments-container">{data.comments.map((comment, index) => {
+                                
+                               
+                                <div className="comments-container">{comments.map((comment, index) => {
                                     function assignImage(index: any) {
                                         if(comment.photoURL == undefined || comment.photoURL == "none") {
                                             if (index % 2 === 0) {
