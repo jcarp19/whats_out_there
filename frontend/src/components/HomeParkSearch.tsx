@@ -30,6 +30,7 @@ export default function HomeParkSearch() {
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState<Comments[]>([])
     const [numParks, setNumParks] = useState(0);
+    const [loaded, setLoaded] = useState(3);
 
     let star1: HTMLElement = document.getElementById("star-rating1")!;
     let star2: HTMLElement = document.getElementById("star-rating2")!;
@@ -159,12 +160,11 @@ export default function HomeParkSearch() {
                             <a href={data.url} target="_blank" className="more-details-link">More Details</a>
                             {/* Comment Form below */}
                             <details onClick={() => {
-                               for (let i = 0; i < document.querySelectorAll("details").length; i++) {
+                                setComments(data.comments);
+                                for (let i = 0; i < document.querySelectorAll("details").length; i++) {
                                 if (document.querySelectorAll("details")[i].open) {
-                                    setComments(data.comments);
                                     if (i != index) {
                                         document.querySelectorAll("details")[i].removeAttribute("open")
-                                        setComments(data.comments);
                                     }
                                 }
                             }
@@ -232,24 +232,37 @@ export default function HomeParkSearch() {
                                         }
                                        
                                       }
+                                      function loadMoreComments() {
+                                        //   let loadButton = document.querySelectorAll(".btn-load-more")!;
+                                        //   if (comments.length >= 4) {
+                                        //       loadButton.forEach(more => more.classList.remove("hidden"))
+                                        //   }
+                                      }
                                     return (
-                                        <div  key={index} className="comment-div">
-                                        <img src={assignImage(index)} alt="telescope icon" className="telescope_img comment-img"/>
-                                        <div className="info-card comment-card">
-                                            <ul className="rating-list">
-                                            {[...Array(5)].map((star, index) => {
-                                                 index += 1;
-                                                return(
-                                                    <li key={index} id="star-rating2" className={index <= comment.rating ? "clicked" : "star"}><i className="fas fa-star star5"></i></li>
-                                                )
-                                            })}
-                                            </ul>
-                                            <p>"{comment.comment}"</p>
-                                            <p>-{comment.userName}</p>
-                                        </div>
+                                        
+                                        <div  key={index} className="comment-div" onLoad={loadMoreComments}>
+                                            <img src={assignImage(index)} alt="telescope icon" className="telescope_img comment-img"/>
+                                            <div className="info-card comment-card">
+                                                <ul className="rating-list">
+                                                {[...Array(5)].map((star, index) => {
+                                                    index += 1;
+                                                    return(
+                                                        <li key={index} id="star-rating2" className={index <= comment.rating ? "clicked" : "star"}><i className="fas fa-star star5"></i></li>
+                                                    )
+                                                })}
+                                                </ul>
+                                                <p>"{comment.comment}"</p>
+                                                <p>-{comment.userName}</p>
+                                            </div>
                                         </div>
                                     )
-                                }).reverse()}</div>
+                                    
+                                }).reverse().slice(0, loaded)}</div>
+
+                                {/* <button className="btn-load-more hidden" onClick={() => {
+                                    
+                                    setLoaded(prv => prv + 3);
+                                }}>Load more</button> */}
                             </details>
                         </div>
                        
