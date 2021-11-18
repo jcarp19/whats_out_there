@@ -30,7 +30,7 @@ export default function HomeParkSearch() {
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState<Comments[]>([])
     const [numParks, setNumParks] = useState(0);
-    const [loaded, setLoaded] = useState(3);
+
 
     let star1: HTMLElement = document.getElementById("star-rating1")!;
     let star2: HTMLElement = document.getElementById("star-rating2")!;
@@ -232,15 +232,10 @@ export default function HomeParkSearch() {
                                         }
                                        
                                       }
-                                      function loadMoreComments() {
-                                        //   let loadButton = document.querySelectorAll(".btn-load-more")!;
-                                        //   if (comments.length >= 4) {
-                                        //       loadButton.forEach(more => more.classList.remove("hidden"))
-                                        //   }
-                                      }
+                                      
                                     return (
                                         
-                                        <div  key={index} className="comment-div" onLoad={loadMoreComments}>
+                                        <div  key={index} className="comment-div">
                                             <img src={assignImage(index)} alt="telescope icon" className="telescope_img comment-img"/>
                                             <div className="info-card comment-card">
                                                 <ul className="rating-list">
@@ -257,12 +252,9 @@ export default function HomeParkSearch() {
                                         </div>
                                     )
                                     
-                                }).reverse().slice(0, loaded)}</div>
+                                }).reverse()}</div>
 
-                                {/* <button className="btn-load-more hidden" onClick={() => {
-                                    
-                                    setLoaded(prv => prv + 3);
-                                }}>Load more</button> */}
+                               
                             </details>
                         </div>
                        
