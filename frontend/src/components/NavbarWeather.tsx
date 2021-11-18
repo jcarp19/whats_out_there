@@ -1,10 +1,11 @@
 import { WeatherInterface } from "../models/WeatherInterface";
 import { NavLink } from "react-router-dom";
 import Forecast from "../components/Forecast"
-import { getWeekForecast } from "../services/GetWeather";
 import { SearchContext } from "../context/SearchProvider";
 import { useContext, useState, useEffect } from "react";
 import GoogleAuth from "./GoogleAuth";
+import AuthContext from "../context/AuthContext";
+import { User } from "@firebase/auth";
 
 interface Props {
     weather?: WeatherInterface;
@@ -13,6 +14,7 @@ interface Props {
 export default function NavbarWeather({ weather }: Props) {
     const [forecast2, setForecast2] = useState<WeatherInterface>();
     const { searchInputs } = useContext(SearchContext);
+    const { user } = useContext(AuthContext);
 
 
     function formatWeather() {
@@ -26,6 +28,13 @@ export default function NavbarWeather({ weather }: Props) {
     function formatTemp(temp: any) {
         let fixedTemp = temp?.toFixed()
         return fixedTemp;
+    }
+
+    function welcomeName(){
+        if (user?.displayName != null){
+           let name =  (user.displayName.split(" ")[0])
+            return "Welcome," + " " + name
+        }
     }
 
 
@@ -66,9 +75,10 @@ export default function NavbarWeather({ weather }: Props) {
                         e.preventDefault();
                         document.querySelectorAll(".modal_container").forEach(item => item.classList.toggle("hidden"))
                     }} className="weather_info_p" >&#9432;</p>
+                      <p className="user-name-welcome">{welcomeName()}</p>
                 </div>
             </div>
-
+           
             <div className="modal_container hidden">
                 <Forecast />
             </div>

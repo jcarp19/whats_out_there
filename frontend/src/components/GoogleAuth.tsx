@@ -29,7 +29,7 @@ export default function GoogleAuth() {
                 <>
                 <a
                     className="googleSignOut"
-                    onClick={() => { signOut() }}>Welcome: {user.displayName} - Sign Out</a>
+                    onClick={() => { signOut() }}>Sign Out</a>
                 </>
             )}
             {/* <p>Welcome: {user?.displayName}</p> */}
