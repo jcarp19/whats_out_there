@@ -235,7 +235,7 @@ export default function HomeParkSearch() {
                                     return (
                                         <div key={index} className="comment-div">
                                             <img src={assignImage(index)} alt="telescope icon" className="telescope_img comment-img" />
-                                            <div className="info-card comment-card search">
+                                            <div className="info-card comment-card comment-list">
                                                 <ul className="rating-list">
                                                     {[...Array(5)].map((star, index) => {
                                                         index += 1;
