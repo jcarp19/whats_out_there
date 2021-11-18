@@ -213,6 +213,7 @@ export default function HomeParkSearch() {
                                     <button className="btn-submit-commit" type="submit" onClick={() => {
                                         // setRating(starRating);
                                         console.log(rating);
+                                        console.log(comment);
                                         
                                     }}>
                                         Submit Comment
