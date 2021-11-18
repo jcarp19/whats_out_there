@@ -74,10 +74,10 @@ export default function HomeParkSearch() {
                         return Value * Math.PI / 180;
                     }
                     calcDistance(zLat, zLon, pLat, pLon);
-
                 })
             }
             setDarkParkList(res);
+            
         });
 
         console.log(searchInputs[0]);
@@ -219,7 +219,6 @@ export default function HomeParkSearch() {
                                         Submit Comment
                                     </button>
                                 </form>
-
                                 <div className="comments-container">{comments.map((comment, index) => {
                                     function assignImage(index: any) {
                                         if (comment.photoURL == undefined || comment.photoURL == "none") {
