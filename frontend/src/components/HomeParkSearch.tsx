@@ -186,7 +186,9 @@ export default function HomeParkSearch() {
                                     // testing to see if pushing would refresh the page, it did not
                                     let newComments = [...data.comments]
                                     upDateOne(data._id, newComment).then(res => comments.push(res))
-                                    setComments(newComments)
+                                    // setComments(newComments)
+                                    setComments(data.comments)
+
                                     setRating(0);
                                     setComment("");
                                     getParkList().then(res => setDarkParkList([...darkParkList]));
@@ -211,6 +213,7 @@ export default function HomeParkSearch() {
                                     <button className="btn-submit-commit" type="submit" onClick={() => {
                                         // setRating(starRating);
                                         console.log(rating);
+                                        
                                     }}>
                                         Submit Comment
                                     </button>
