@@ -31,6 +31,7 @@ export default function HomeParkSearch() {
     const [comments, setComments] = useState<Comments[]>([])
     const [numParks, setNumParks] = useState(0);
 
+
     let star1: HTMLElement = document.getElementById("star-rating1")!;
     let star2: HTMLElement = document.getElementById("star-rating2")!;
     let star3: HTMLElement = document.getElementById("star-rating3")!;
@@ -159,13 +160,12 @@ export default function HomeParkSearch() {
                             <a href={data.url} target="_blank" className="more-details-link">More Details</a>
                             {/* Comment Form below */}
                             <details onClick={() => {
+
+                                setComments(data.comments);
                                 for (let i = 0; i < document.querySelectorAll("details").length; i++) {
-                                    if (document.querySelectorAll("details")[i].open) {
-                                        setComments(data.comments);
-                                        if (i != index) {
-                                            document.querySelectorAll("details")[i].removeAttribute("open")
-                                            setComments(data.comments);
-                                        }
+                                if (document.querySelectorAll("details")[i].open) {
+                                    if (i != index) {
+                                        document.querySelectorAll("details")[i].removeAttribute("open")
                                     }
                                 }
                             }}>
@@ -230,7 +230,6 @@ export default function HomeParkSearch() {
                                             let img = comment.photoURL;
                                             return img
                                         }
-
                                     }
                                     return (
                                         <div key={index} className="comment-div">
@@ -243,13 +242,17 @@ export default function HomeParkSearch() {
                                                             <li key={index} id="star-rating2" className={index <= comment.rating ? "clicked" : "star"}><i className="fas fa-star star5"></i></li>
                                                         )
                                                     })}
+
                                                 </ul>
                                                 <p>"{comment.comment}"</p>
                                                 <p>-{comment.userName}</p>
                                             </div>
                                         </div>
                                     )
+                                    
                                 }).reverse()}</div>
+
+                               
                             </details>
                         </div>
 
