@@ -18,6 +18,7 @@ routes.get("/darkparks", async (req, res) => {
     }
 })
 
+
 routes.put(`/darkparks/addcomment/:id`, async (req, res) => {
     const newComment: Comments = {
         rating: req.body.rating,
@@ -33,12 +34,12 @@ routes.put(`/darkparks/addcomment/:id`, async (req, res) => {
         await client.db()
         .collection<DarkPark>('darkparks')
         .updateOne({_id: new ObjectId(id)}, {$push: {comments: newComment}});
-        res.status(200).json(newComment)
+        // res.status(200).json(newComment)
+        res.json(newComment)
     } catch (err) {
         console.error("ERROR", err);
         res.status(500).json({message: "Internal Service Error."})
     }
 })
-
 
 export default routes;
