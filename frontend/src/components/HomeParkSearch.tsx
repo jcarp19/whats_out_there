@@ -184,9 +184,9 @@ export default function HomeParkSearch() {
                                     }
                                     let newComment: Comments = { rating, comment, userName, photoURL };
                                     // testing to see if pushing would refresh the page, it did not
-                                    // let newComments = [...data.comments]
+                                    let newComments = [...data.comments]
                                     upDateOne(data._id, newComment).then(res => comments.push(res))
-                                    // setComments(newComments)
+                                    setComments(newComments)
                                     setRating(0);
                                     setComment("");
                                     getParkList().then(res => setDarkParkList([...darkParkList]));
@@ -235,7 +235,7 @@ export default function HomeParkSearch() {
                                     return (
                                         <div key={index} className="comment-div">
                                             <img src={assignImage(index)} alt="telescope icon" className="telescope_img comment-img" />
-                                            <div className="info-card comment-card">
+                                            <div className="info-card comment-card search">
                                                 <ul className="rating-list">
                                                     {[...Array(5)].map((star, index) => {
                                                         index += 1;

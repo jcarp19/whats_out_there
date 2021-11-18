@@ -1,7 +1,7 @@
-
 body {
   font-family: "Roboto", sans-serif;
 }
+
 /* ~~~~~~~~~~~~~~~ MOBILE VIEW ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 main {
   width: 100%;
@@ -149,6 +149,11 @@ header {
   border-radius: 7px;
   background-color: rgba(147, 183, 190, 0.25);
   color: #dde0e0;
+}
+
+/* steph was here */
+.googleLogin {
+  content: url("../src/images/googleLoginSmall.png");
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~ FORECAST MODAL ~~~~~~~~~~~~~~~~~~` */
@@ -301,7 +306,6 @@ header {
   display: none;
 }
 
-
 .park-search-form {
   display: flex;
   flex-direction: column;
@@ -332,8 +336,7 @@ header {
   font-weight: 700;
   font-size: 1em;
 
-  transition: all .5s ease-in-out;
-
+  transition: all 0.5s ease-in-out;
 }
 
 .park-search-button:hover {
@@ -341,14 +344,14 @@ header {
   color: #dde0e0;
 }
 /* ~~~~~~~~~~~~~~~~~ DARK PARK SEARCH ~~~~~~~~~~~~~ */
-.dark-park-search{
+.dark-park-search {
   height: 12vh;
 }
 
-.dark-park-search-form{
+.dark-park-search-form {
   display: flex;
   flex-direction: column;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
   width: 100%;
 }
@@ -356,40 +359,39 @@ header {
 .dark-park-search-zip {
   /* margin: .5rem; */
   box-sizing: border-box;
-  padding: .5em 1.5em;
+  padding: 0.5em 1.5em;
   width: 30%;
   border: 3px solid #dde0e0;
   border-radius: 50px;
   margin-bottom: 0.5em;
-  font-size: .6rem;
+  font-size: 0.6rem;
 }
 
 .dark-park-search-button {
   /* margin: .5rem; */
-  padding: .25em 1em;
+  padding: 0.25em 1em;
   color: #2d3047;
   background-color: #93b7be;
   border: none;
   border-radius: 7px;
   font-weight: 700;
-  font-size: .75em;
-  transition: all .5s ease-in-out;
-
+  font-size: 0.75em;
+  transition: all 0.5s ease-in-out;
 }
 
-.dark-park-search-button:hover{
-  background: #ED6A5A;
+.dark-park-search-button:hover {
+  background: #ed6a5a;
   color: #dde0e0;
 }
 
-.dark-park-search-headline{
+.dark-park-search-headline {
   color: #dde0e0;
   /* margin-top: 1.5em; */
   text-align: center;
   font-size: 1rem;
 }
 
-.dark-park-list-card{
+.dark-park-list-card {
   background-color: rgba(45, 48, 71, 0.75);
   width: 80%;
 }
@@ -403,9 +405,9 @@ header {
   margin-top: 1rem;
 }
 
-.full-park-list{
+.full-park-list {
   background-image: url("./images/parklistbackground.png");
-  background-position:bottom;
+  background-position: bottom;
   background-repeat: no-repeat;
   max-width: 100%;
   height: 80vh;
@@ -413,7 +415,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-size: cover; 
+  background-size: cover;
 }
 
 .park-list-headline {
@@ -728,6 +730,11 @@ details {
     width: 60vw;
   }
 
+  .googleLogin {
+    width: 70%;
+    padding-top: 5px;
+  }
+
   /* ~~~~~~~~~~~~~~~~~~~~ TABLET VIEW FORECAST MODAL ~~~~~~~~~~~~~~~~~~` */
   .modal {
     display: flex;
@@ -798,85 +805,86 @@ details {
   }
 
   .forecast_card {
-      background: #dde0e0;
-      width: 100%;  
-      border-radius: 0px 0px 7px 7px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      
+    background: #dde0e0;
+    width: 100%;
+    border-radius: 0px 0px 7px 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
-  .hourly_forecast{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
+  .hourly_forecast {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
   }
 
-  .daily_forecast{
-      display: flex;
-      width: 100%;
-      /* height: 10rem; */
-      box-sizing: border-box;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
+  .daily_forecast {
+    display: flex;
+    width: 100%;
+    /* height: 10rem; */
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
   }
 
   .forecast_p {
-    margin: .5rem;
-    }
+    margin: 0.5rem;
+  }
 
-    .modal_h2{
-        font-size: 2rem;
-    }
+  .modal_h2 {
+    font-size: 2rem;
+  }
 
-    /* ~~~~~~~~~~ PARK SEARCH AND DARK PARK SEARCH ~~~~~~~~~~~~~ */
+  /* ~~~~~~~~~~ PARK SEARCH AND DARK PARK SEARCH ~~~~~~~~~~~~~ */
 
-    .park-search-zip {
-      width: 35%; 
-    }
+  .park-search-zip {
+    width: 35%;
+  }
 
-    .dark-park-search-zip{
-      width: 35%;
-      font-size: .75rem;
-    }
+  .dark-park-search-zip {
+    width: 35%;
+    font-size: 0.75rem;
+  }
 
-    .park-list-headline{
-      font-size: 2rem;
-    }
+  .park-list-headline {
+    font-size: 2rem;
+  }
 
-    .home-card, .learn-more-card, .park-list-card, .newsfeed-card {
-      width: 80%; 
-      min-width: 80%;
-    }
+  .home-card,
+  .learn-more-card,
+  .park-list-card,
+  .newsfeed-card {
+    width: 80%;
+    min-width: 80%;
+  }
 
-    .newsfeed-div {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: flex-start;
-      width: 100%;
-      margin: 0;
-    }
-  
-    .newsfeed-pix {
-      width: 35%;
-      margin-bottom: 0;
-      border: 1px solid #dde0e0;
-      box-shadow: 3px 3px 5px rgba(0,0,0, .25);
-    }
-    /* background: #dde0e0;
+  .newsfeed-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0;
+  }
+
+  .newsfeed-pix {
+    width: 35%;
+    margin-bottom: 0;
+    border: 1px solid #dde0e0;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+  }
+  /* background: #dde0e0;
     width: 100%;
     border-radius: 0px 0px 7px 7px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center; */
-  
 
   .hourly_forecast {
     display: flex;
@@ -952,6 +960,7 @@ details {
 
   .navbar_home {
     width: 60%;
+    display: contents;
   }
 
   .navbar_home > ul {
@@ -989,16 +998,19 @@ details {
     width: 25%;
   }
 
-  .dark-park-search-zip{
+  .dark-park-search-zip {
     width: 25%;
   }
 
   .dark-park-search-button {
-    padding: .5rem 2rem;
+    padding: 0.5rem 2rem;
   }
 
-  .home-card, .learn-more-card, .park-list-card, .newsfeed-card {
-    width: 80%; 
+  .home-card,
+  .learn-more-card,
+  .park-list-card,
+  .newsfeed-card {
+    width: 80%;
   }
 
   .comment-card {
@@ -1006,7 +1018,8 @@ details {
   }
 
   /* Steph added this, don't delete it! */
-  .parkListPic {
-    width: 30%;
+  .googleLogin {
+    width: 70%;
+    padding-top: 4px;
   }
 }
