@@ -190,6 +190,8 @@ export default function HomeParkSearch() {
                                 
                                     setRating(0);
                                     setComment("");
+                                    setComments(data.comments)
+
                                     // getParkList().then(res => setDarkParkList([...darkParkList]));
                                     getParkList().then(function (res) {
                                         {
@@ -227,8 +229,6 @@ export default function HomeParkSearch() {
                                         setDarkParkList(res);
                                         
                                     });
-                                    setComments(data.comments)
-
                                 }}>
                                     {/* <label htmlFor="rating">Rating:</label>
                                     <input placeholder="rating" className="ratingInput" type="number" max="10" min="1" name="rating" onChange={(e) => { setRating(e.target.valueAsNumber) }}></input> index <= rating ? target.classList.add("clicked") : target.classList.add("")*/}
