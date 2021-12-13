@@ -3,10 +3,10 @@
 // TO DO: make route to newsapi
 import placeholder from "../images/placeholder.png"
 import parklistbackground from "../images/parklistbackground.png"
-import { ArticlesEntity } from "../models/NewsInterface";
+import NewsInterface from "../models/NewsInterface";
 
 // used type "any" to avoid errors, but switch back to "ArticlesEntity" when retrieving all the data.
-export default function NewsFeed({ title, url, description, content, publishedAt, image }: ArticlesEntity) {
+export default function NewsFeed({ title, url, description, image }: NewsInterface) {
     function replaceImage(image: any) {
         if (image.includes('403') || !image.includes("jpg")) {
             return placeholder;
