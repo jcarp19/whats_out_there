@@ -39,6 +39,17 @@ routes.put(`/darkparks/addcomment/:id`, async (req, res) => {
         console.error("ERROR", err);
         res.status(500).json({message: "Internal Service Error."})
     }
-})
+});
+
+routes.get("/news", async (req, res) => {
+    try {
+      const client = await getClient();
+      const results = await client.db().collection("news").find().toArray();
+      res.json(results);
+    } catch (err) {
+      console.error("ERROR", err);
+      res.status(500).json({ message: "Internal server error for news" });
+    }
+  });
 
 export default routes;
