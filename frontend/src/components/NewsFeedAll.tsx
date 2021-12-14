@@ -1,7 +1,7 @@
 // returns 10 news stories (optional: able to load more) based on set space-related criteria.
 // uses the newsapi
 // TO DO: make route to newsapi
-import NewsInterface, { ArticlesEntity } from "../models/NewsInterface";
+import NewsInterface from "../models/NewsInterface";
 import { useEffect, useState, useContext } from "react";
 import { getNews } from "../services/GetNews";
 import { WeatherInterface } from "../models/WeatherInterface";
@@ -15,7 +15,7 @@ import { SearchContext } from "../context/SearchProvider";
 // used type "any" to avoid errors, but switch back to "ArticlesEntity" when retrieving all the data.
 export default function NewsFeedAll() {
   const [news, setNews] = useState<NewsInterface>();
-  const [articles, setArticles] = useState<ArticlesEntity[]>();
+  const [articles, setArticles] = useState<NewsInterface[]>();
   const [weather, setWeather] = useState<WeatherInterface>();
   const [forecast, setForecast] = useState<WeatherInterface>();
   const { searchInputs } = useContext(SearchContext);
@@ -32,7 +32,7 @@ export default function NewsFeedAll() {
     getNews().then(res => {
       console.log(res)
       // setNews(res)
-      setArticles(res.articles)
+      setArticles(res)
       console.log(news)
     })
   }
@@ -61,7 +61,7 @@ export default function NewsFeedAll() {
             return (
               <div key={index} className="newsArticle_div_all">
                 <img src={assignImage(index)} alt="telescope inside of a circle" className="telescope_img" />
-                <NewsFeed title={article.title} source={article.source} description={article.description} url={article.url} image={article.image} publishedAt={article.publishedAt} content={article.content} />
+                <NewsFeed _id={article._id} title={article.title}  description={article.description} url={article.url} image={article.image} />
               </div>
             )
           })}
